@@ -3,17 +3,17 @@
 ##编译说明：
 
 ###1、安装编译依赖库
-ubuntu: 
-apt-get update
-apt-get -y install libcurl4-openssl-dev libssl-dev pkg-config libxml2 libxml2-dev libfuse-dev libunwind8-dev
+	ubuntu: 
+	apt-get update
+	apt-get -y install libcurl4-openssl-dev libssl-dev pkg-config libxml2 libxml2-dev libfuse-dev libunwind8-dev
 
-centos: 
-yum -y install libcurl libcurl-devel openssl-devel fuse fuse-libs fuse-devel libxml2-devel libunwind-devel
+	centos: 
+	yum -y install libcurl libcurl-devel openssl-devel fuse fuse-libs fuse-devel libxml2-devel libunwind-devel
 
 ###2、make
-在工程目录下运行 make ，完成后会在工程目录下生成 cloudfs 二进制文件
+	在工程目录下运行 make ，完成后会在工程目录下生成 cloudfs 二进制文件
 
-安装运行请参考cloudfs安装指导书下的指导书。
+###安装运行请参考cloudfs安装指导书下的指导书。
 
 
 ##软件特点：
@@ -40,4 +40,4 @@ yum -y install libcurl libcurl-devel openssl-devel fuse fuse-libs fuse-devel lib
 	
 ###7、代码结构清晰, 可充分扩展;	
 
-欢迎使用。
+##欢迎使用。
