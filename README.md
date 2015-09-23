@@ -17,7 +17,8 @@ yum -y install libcurl libcurl-devel openssl-devel fuse fuse-libs fuse-devel lib
 
 
 ##软件特点：
-###1、速度快 利用多线程+MultiPart机制, 大文件写入OSS可以达到50MB~100MB每秒, 可充分利用ECS和OSS之间的内网带宽;
+###1、速度快 
+    利用多线程+MultiPart机制, 大文件写入OSS可以达到50MB~100MB每秒, 可充分利用ECS和OSS之间的内网带宽;
 
 ###2、功能齐全     
 	支持FTP/rsync/sftp/scp等传输软件的断点续传;
