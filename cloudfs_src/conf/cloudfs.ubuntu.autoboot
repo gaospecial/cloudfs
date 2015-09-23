@@ -1,0 +1,36 @@
+description "cloudfs for Aliyun OSS"
+author      "Zhoushuangquan <zhoushuangquan@cloudtalkers.com>"
+
+setuid root
+setgid root
+
+start on (local-filesystems and net-device-up)
+stop on runlevel [!2345]
+
+env MOUNT_POINT="/mnt/oss/"
+env BIN_PATH="/usr/local/cloudfs"
+env PROG="cloudfs"
+
+#expect fork
+respawn
+respawn limit 10 5
+
+
+pre-start script
+	logger "cloudfs is startting."
+	mkdir -p $MOUNT_POINT
+	/bin/fusermount -uq $MOUNT_POINT || true
+	chdir $BIN_PATH
+	exec $BIN_PATH/$PROG $MOUNT_POINT -o allow_other
+end script
+
+
+pre-stop script
+        logger "cloudfs is stopping."
+end script
+
+post-stop script
+	logger "cloudfs is stopped."
+	killall $PROG
+        /bin/fusermount -uq $MOUNT_POINT || true
+end script

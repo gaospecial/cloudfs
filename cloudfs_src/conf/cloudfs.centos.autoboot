@@ -1,0 +1,63 @@
+#!/bin/bash
+# yy_cloudfs script to auto start/stop cloudfs
+# chkconfig: 2345 70 30
+# description: cloudfs is a virtual file system that could convert OSS bucket to a directory of ECS
+# processname: cloudfs
+# config: /usr/local/cloudfs/conf/cloudfs.conf
+
+source /etc/init.d/functions
+
+BIN_PATH="/usr/local/cloudfs"
+MOUNT_POINT="/mnt/oss/"
+BIN="$BIN_PATH/cloudfs"
+
+
+RETVAL=0 
+prog="cloudfs"
+desc="cloudfs"
+
+cloudfs_start() {
+
+	mkdir -p $MOUNT_POINT
+	cd $BIN_PATH
+	/bin/fusermount -uq $MOUNT_POINT || true
+	daemon $BIN $MOUNT_POINT -o allow_other
+	RETVAL=$?
+	echo "Starting $desc: "
+	return $RETVAL
+}
+
+cloudfs_stop() {
+	killproc $prog
+	RETVAL=$?
+	echo "Stopping $desc: "
+	/bin/fusermount -uq $MOUNT_POINT || true
+	return $RETVAL
+}
+
+cloudfs_restart() {
+	cloudfs_stop
+	cloudfs_start
+}
+
+cloudfs_status() {
+	status $prog
+	RETVAL=$?
+	return $RETVAL
+}
+
+case "$1" in 
+	start)     	cloudfs_start
+		   	;;
+	stop)     	cloudfs_stop
+			;;  
+	restart)     	cloudfs_restart
+			;;
+	status)     	cloudfs_status
+			;;   
+	*)     	echo $"Usage: $0 {start|stop|restart|status}"    
+		RETVAL=1 
+esac   
+exit $RETVAL
+
+
