@@ -183,7 +183,7 @@ oss_result_t convert_xml_to_bucket_list(string xml_string, vector<oss_bucket_des
         bucket_desc.creation_date = string(date_string);
         bucket_list.push_back(bucket_desc);
 
-		//ÊÍ·ÅXML¿âº¯ÊıÉêÇë·µ»ØµÄÄÚ´æ×ÊÔ´
+		//é‡Šæ”¾XMLåº“å‡½æ•°ç”³è¯·è¿”å›çš„å†…å­˜èµ„æº
 		xmlFree(name_string);
 		xmlFree(date_string);
         xmlXPathFreeObject(name_node);
@@ -214,7 +214,7 @@ oss_result_t append_xml_to_object_list(string xml_string, vector<oss_object_desc
     content_nodes = contents_xp->nodesetval;
 
     int i;
-    //»ñÈ¡content½ÚµãÔªËØ
+    //è·å–contentèŠ‚ç‚¹å…ƒç´ 
     for(i = 0; i < content_nodes->nodeNr; i++) {
         ctx->node = content_nodes->nodeTab[i];
         oss_object_desc_t object_desc;
@@ -246,14 +246,14 @@ oss_result_t append_xml_to_object_list(string xml_string, vector<oss_object_desc
         xmlXPathFreeObject(type_object);
         xmlXPathFreeObject(size_object);
 
-        //xmlNodeListGetString·µ»ØµÄ×Ö·û´®µÄÄÚ´æĞèÒªµ÷ÓÃÕßÊÍ·Å
+        //xmlNodeListGetStringè¿”å›çš„å­—ç¬¦ä¸²çš„å†…å­˜éœ€è¦è°ƒç”¨è€…é‡Šæ”¾
 		if (key_string != NULL)		xmlFree(key_string);
 		if (type_string != NULL)	xmlFree(type_string);
         if (size_string != NULL)	xmlFree(size_string);
         
     }
 
-	//»ñÈ¡ËùÓĞµÄCommonPrefixÔªËØ, Èç¹û´æÔÚµÄ»°, CommonPrefix³öÏÖÔÚµ±ÇëÇóÓĞdelimiterÊ±, Ä¿Â¼¶ÔÏóÒÔCommonPrefixĞÎÊ½·µ»Ø
+	//è·å–æ‰€æœ‰çš„CommonPrefixå…ƒç´ , å¦‚æœå­˜åœ¨çš„è¯, CommonPrefixå‡ºç°åœ¨å½“è¯·æ±‚æœ‰delimiteræ—¶, ç›®å½•å¯¹è±¡ä»¥CommonPrefixå½¢å¼è¿”å›
     xmlXPathObjectPtr commonPrefix_xp;
     xmlNodeSetPtr prefix_nodes;
     commonPrefix_xp = xmlXPathEvalExpression((xmlChar *) "//CommonPrefixes", ctx);
@@ -269,14 +269,14 @@ oss_result_t append_xml_to_object_list(string xml_string, vector<oss_object_desc
 		char * Prefix_string = (char *)xmlNodeListGetString(doc, Prefix_nodes->nodeTab[0]->xmlChildrenNode, 1);
 		object_desc.name = string(Prefix_string);
 
-		// object type size Ò»¶¨ÊÇ0
+		// object type size ä¸€å®šæ˜¯0
 		object_desc.size = 0;
 
 		object_list.push_back(object_desc);
 
 		xmlXPathFreeObject(Prefix_object);
 
-		//xmlNodeListGetString·µ»ØµÄ×Ö·û´®µÄÄÚ´æĞèÒªµ÷ÓÃÕßÊÍ·Å
+		//xmlNodeListGetStringè¿”å›çš„å­—ç¬¦ä¸²çš„å†…å­˜éœ€è¦è°ƒç”¨è€…é‡Šæ”¾
 		if (Prefix_string != NULL)	  xmlFree(Prefix_string);
 		
 	}

@@ -34,119 +34,119 @@
  */
 
 /**
- * struct oss_response_header_overrides_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_response_header_overrides_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_response_header_overrides_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_response_header_overrides_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_response_header_overrides_s oss_response_header_overrides_t;
 
 /**
- * oss_response_header_overrides_t °üº¬ÁËÔÚ·¢ËÍOSS GETÇëÇóÊ±¿ÉÒÔÖØÔØµÄ·µ»ØÇëÇóÍ·
+ * oss_response_header_overrides_t åŒ…å«äº†åœ¨å‘é€OSS GETè¯·æ±‚æ—¶å¯ä»¥é‡è½½çš„è¿”å›è¯·æ±‚å¤´
  */
 struct oss_response_header_overrides_s {
-	char *cache_control;  /**< ÖØÔØµÄcacheControl·µ»ØÇëÇóÍ·*/
-	char *content_disposition;  /**< ÖØÔØµÄcontentDisposition·µ»ØÇëÇóÍ·*/
-	char *content_encoding;  /**< ÖØÔØµÄcontentEncoding·µ»ØÇëÇóÍ·*/
-	char *content_language; /**< ÖØÔØµÄcontent language·µ»ØÇëÇóÍ·*/
-	char *content_type;  /**< ÖØÔØµÄcontent type·µ»ØÇëÇóÍ·*/
-	char * expires; /**< ÖØÔØµÄexpires·µ»ØÇëÇóÍ·*/
+	char *cache_control;  /**< é‡è½½çš„cacheControlè¿”å›è¯·æ±‚å¤´*/
+	char *content_disposition;  /**< é‡è½½çš„contentDispositionè¿”å›è¯·æ±‚å¤´*/
+	char *content_encoding;  /**< é‡è½½çš„contentEncodingè¿”å›è¯·æ±‚å¤´*/
+	char *content_language; /**< é‡è½½çš„content languageè¿”å›è¯·æ±‚å¤´*/
+	char *content_type;  /**< é‡è½½çš„content typeè¿”å›è¯·æ±‚å¤´*/
+	char * expires; /**< é‡è½½çš„expiresè¿”å›è¯·æ±‚å¤´*/
 
 	/**
-	 * »ñµÃÖØÔØµÄcacheControl·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @return ÖØÔØµÄcacheControl·µ»ØÇëÇóÍ·
+	 * è·å¾—é‡è½½çš„cacheControlè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @return é‡è½½çš„cacheControlè¿”å›è¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_cache_control)(oss_response_header_overrides_t *overrides);
 
 	/**
-	 * ÉèÖÃÖØÔØµÄcacheControl·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @param cache_control [in] ÖØÔØµÄcacheControl·µ»ØÇëÇóÍ·
+	 * è®¾ç½®é‡è½½çš„cacheControlè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @param cache_control [in] é‡è½½çš„cacheControlè¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_cache_control)(oss_response_header_overrides_t *overrides,
 			const char *cache_control);
 
 	/**
-	 * »ñµÃÖØÔØµÄcontentDisposition·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØÖØÔØµÄcontentDisposition·µ»ØÇëÇóÍ·
+	 * è·å¾—é‡è½½çš„contentDispositionè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›é‡è½½çš„contentDispositionè¿”å›è¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_disposition)(oss_response_header_overrides_t *overrides);
 
 	/**
-	 * ÉèÖÃÖØÔØµÄcontentDisposition·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @param content_disposition [in] ÖØÔØµÄcontentDisposition·µ»ØÇëÇóÍ·
+	 * è®¾ç½®é‡è½½çš„contentDispositionè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @param content_disposition [in] é‡è½½çš„contentDispositionè¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_disposition)(oss_response_header_overrides_t *overrides,
 			const char *content_disposition);
 
 	/**
-	 * »ñµÃÖØÔØµÄcontentEncoding·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @return ÖØÔØµÄcontentEncoding·µ»ØÇëÇóÍ·
+	 * è·å¾—é‡è½½çš„contentEncodingè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @return é‡è½½çš„contentEncodingè¿”å›è¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_encoding)(oss_response_header_overrides_t *overrides);
 
 	/**
-	 * ÉèÖÃÖØÔØµÄcontentEncoding·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @param content_encoding [in] ÖØÔØµÄcontentEncoding·µ»ØÇëÇóÍ·
+	 * è®¾ç½®é‡è½½çš„contentEncodingè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @param content_encoding [in] é‡è½½çš„contentEncodingè¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_encoding)(oss_response_header_overrides_t *overrides,
 			const char *content_encoding);
 
 	/**
-	 * »ñµÃÖØÔØµÄcontent language·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØÖØÔØµÄcontent language·µ»ØÇëÇóÍ·
+	 * è·å¾—é‡è½½çš„content languageè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›é‡è½½çš„content languageè¿”å›è¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_language)(oss_response_header_overrides_t *overrides);
 
 	/**
-	 * ÉèÖÃÖØÔØµÄcontent language·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @param content_language [in] ÖØÔØµÄcontent language·µ»ØÇëÇóÍ·
+	 * è®¾ç½®é‡è½½çš„content languageè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @param content_language [in] é‡è½½çš„content languageè¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_language)(oss_response_header_overrides_t *overrides,
 			const char *content_language);
 
 	/**
-	 * »ñµÃÖØÔØµÄcontent type·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @return ÖØÔØµÄcontent type·µ»ØÇëÇóÍ·
+	 * è·å¾—é‡è½½çš„content typeè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @return é‡è½½çš„content typeè¿”å›è¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_type)(oss_response_header_overrides_t *overrides);
 
 	/**
-	 * ÉèÖÃÖØÔØµÄcontent type·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @param content_type [in] ÖØÔØµÄcontent type·µ»ØÇëÇóÍ·
+	 * è®¾ç½®é‡è½½çš„content typeè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @param content_type [in] é‡è½½çš„content typeè¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_type)(oss_response_header_overrides_t *overrides,
 			const char *content_type);
 
 	/**
-	 * »ñµÃÖØÔØµÄexpires·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @return ÖØÔØµÄexpires·µ»ØÇëÇóÍ·
+	 * è·å¾—é‡è½½çš„expiresè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @return é‡è½½çš„expiresè¿”å›è¯·æ±‚å¤´
 	 * retval const char *
 	 */
 	const char * (*get_expires)(oss_response_header_overrides_t *overrides);
 
 	/**
-	 * ÉèÖÃÖØÔØµÄexpires·µ»ØÇëÇóÍ·
-	 * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
-	 * @param expires  [in] ÉèÖÃÖØÔØµÄexpires·µ»ØÇëÇóÍ·
+	 * è®¾ç½®é‡è½½çš„expiresè¿”å›è¯·æ±‚å¤´
+	 * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
+	 * @param expires  [in] è®¾ç½®é‡è½½çš„expiresè¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_expires)(oss_response_header_overrides_t *overrides,
@@ -154,20 +154,20 @@ struct oss_response_header_overrides_s {
 };
 
 /**
- * oss_response_header_overrides_t ¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_response_header_overrides_t ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_response_header_overrides_t æ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_response_header_overrides_t ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_response_header_overrides_t *
 response_header_overrides_initialize(void);
 
 /**
- * oss_response_header_overrides_t Îö¹¹º¯Êı
- * @param overrides [in] ±êÊ¶Ò»¸öoss_response_header_overrides_t½á¹¹Ö¸Õë
+ * oss_response_header_overrides_t ææ„å‡½æ•°
+ * @param overrides [in] æ ‡è¯†ä¸€ä¸ªoss_response_header_overrides_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre overrides ±ØĞëÊ¹ÓÃresponse_header_overrides_initializeµÄ·µ»ØÖµ
+ * @pre overrides å¿…é¡»ä½¿ç”¨response_header_overrides_initializeçš„è¿”å›å€¼
  */
 extern void 
 response_header_overrides_finalize(oss_response_header_overrides_t *overrides);

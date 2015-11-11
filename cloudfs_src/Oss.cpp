@@ -22,14 +22,14 @@ using namespace std;
 
 Oss::Oss() {
 	// TODO Auto-generated constructor stub
-	//³õÊ¼»¯OSS_C SDK¼øÈ¨ĞÅÏ¢
+	//åˆå§‹åŒ–OSS_C SDKé‰´æƒä¿¡æ¯
 	oss_auth_init();
 	xml_load_buffer_init();
 }
 
 Oss::~Oss() {
 	// TODO Auto-generated destructor stub
-	//Îö¹¹OSS_C SDK¼øÈ¨
+	//ææ„OSS_C SDKé‰´æƒ
 	oss_auth_destroy();	
 	xml_load_buffer_destroy();
 	SAFE_DELETE(m_mime);
@@ -43,7 +43,7 @@ int Oss::init(const char *host, const char *id, const char *key)
 	address.access_id = string(id);
 	address.access_key = string(key);
 
-	// ¶ÁÈ¡MIMEĞÅÏ¢
+	// è¯»å–MIMEä¿¡æ¯
 	m_mime = new OssMime();
 	if (0 != m_mime->init())
 	{
@@ -73,12 +73,12 @@ int Oss::init(const char *host, const char *id, const char *key)
 
 
 /*
-oss api get bucket½Ó¿ÚÊµÏÖ
-prefix Ö¸¶¨µÄÎÄ¼ş¼ĞÂ·¾¶
-delimiter ÊÇ·ñµİ¹é±éÀú
+oss api get bucketæ¥å£å®ç°
+prefix æŒ‡å®šçš„æ–‡ä»¶å¤¹è·¯å¾„
+delimiter æ˜¯å¦é€’å½’éå†
 
-³É¹¦·µ»Ø0
-Ê§°Ü·µ»Ø-1
+æˆåŠŸè¿”å›0
+å¤±è´¥è¿”å›-1
 */
 
 int Oss::get_bucket(const char *bucket, const char *prefix, const char *delimiter, vector<oss_object_desc_t> &object_list)
@@ -174,7 +174,7 @@ int Oss::put_object_data(const char *bucket, const char *name, const char *buf,
 	put_object_desc.user_meta["x-oss-meta-mode"] = meta["mode"];
 	oss_data_buffer_t put_data_buf = (oss_data_buffer_t) buf;
 
-	// ¸ù¾İ²ÎÊıÉèÖÃcontent-type
+	// æ ¹æ®å‚æ•°è®¾ç½®content-type
 	string suffix = getFileSuffix(name);
 	log_debug("file:[%s],suffix:[%s]", name, suffix.c_str());
 
@@ -185,7 +185,7 @@ int Oss::put_object_data(const char *bucket, const char *name, const char *buf,
 	log_debug("type:%s", type.c_str());
 	put_object_desc.type = type;
 
-	// ÉèÖÃ header ²ÎÊı
+	// è®¾ç½® header å‚æ•°
 	if (m_header->get_cache_control() != "")
 		put_object_desc.cache_control = m_header->get_cache_control();
 	if (m_header->get_content_disposition() != "")
@@ -330,8 +330,8 @@ unsigned int Oss::get_object_data(const char *bucket, const char *name, char *bu
 			int start_pos, size_t size)
 {
 	unsigned int ret = 0;
-	unsigned short retcode = -1;			//±£´æ·şÎñÆ÷http·µ»ØÂëµÄ½âÎö½á¹û;
-	const char *retinfo = NULL;            //±£´æÍ¨¹ıretcode»ñµÃµÄ´íÎóĞÅÏ¢
+	unsigned short retcode = -1;			//ä¿å­˜æœåŠ¡å™¨httpè¿”å›ç çš„è§£æç»“æœ;
+	const char *retinfo = NULL;            //ä¿å­˜é€šè¿‡retcodeè·å¾—çš„é”™è¯¯ä¿¡æ¯
 	void *buffer = NULL;
 	
 	oss_client_t *client = client_initialize_with_endpoint(
@@ -445,33 +445,33 @@ int Oss::get_object_meta(const char* bucket, const char* name,
 	stringstream ss, oss_type;
 	oss_object_desc_t * iter = &response_header;
 
-	/* »ñÈ¡¶ÔÏóµÄSize */
+	/* è·å–å¯¹è±¡çš„Size */
 	ss << iter->size;
 	meta["size"] = ss.str();
 
 	log_debug("meta size: %s", meta["size"].c_str());
 
-	/* ÅĞ¶Ï¶ÔÏóµÄÀàĞÍ 
-	ÎÄ¼ş¼ĞµÄnameĞÎÈç: a/b/c/
-	ÆäËûÎÄ¼şµÄnameĞÎÈç: a.txt a/b/c.tar
+	/* åˆ¤æ–­å¯¹è±¡çš„ç±»å‹ 
+	æ–‡ä»¶å¤¹çš„nameå½¢å¦‚: a/b/c/
+	å…¶ä»–æ–‡ä»¶çš„nameå½¢å¦‚: a.txt a/b/c.tar
 	*/
 	if (object_name[object_name.size()-1] == '/')
 	{
-		/* ×îºóÒ»¸ö×Ö·ûÎª'/', ËµÃ÷¸Ã¶ÔÏóÎªÄ¿Â¼¶ÔÏó */
+		/* æœ€åä¸€ä¸ªå­—ç¬¦ä¸º'/', è¯´æ˜è¯¥å¯¹è±¡ä¸ºç›®å½•å¯¹è±¡ */
 		oss_type << OSS_DIR;
 		meta["type"] = oss_type.str();
 	}
 	else
 	{
-		//²»ÊÇÎÄ¼ş¼Ğ, ÔòÎªÆäËûÀàĞÍ, ÏÈ¿´ÊÇ·ñ´æÔÚx-oss-meta-type, Èç¹û´æÔÚÔòÖ±½Ó¸³Öµ¼´¿É
+		//ä¸æ˜¯æ–‡ä»¶å¤¹, åˆ™ä¸ºå…¶ä»–ç±»å‹, å…ˆçœ‹æ˜¯å¦å­˜åœ¨x-oss-meta-type, å¦‚æœå­˜åœ¨åˆ™ç›´æ¥èµ‹å€¼å³å¯
 		if (iter->user_meta.find("x-oss-meta-type") != iter->user_meta.end())
 		{
-			//´æÔÚx-oss-meta-type×Ö¶Î, ËµÃ÷¸ÃÎÄ¼şÊ±Í¨¹ıcloudfsÉÏ´«µÄ, Ö±½Ó¸³Öµ
+			//å­˜åœ¨x-oss-meta-typeå­—æ®µ, è¯´æ˜è¯¥æ–‡ä»¶æ—¶é€šè¿‡cloudfsä¸Šä¼ çš„, ç›´æ¥èµ‹å€¼
 			meta["type"] = iter->user_meta["x-oss-meta-type"];
 		}
 		else
 		{
-			//ÎŞx-oss-meta-type, ÅĞ¶Ï¸ÃobjectÎªOSS_REGULAR, ¸Ã²Ù×÷ÎªÁË¼æÈİÔÚOSS¿ØÖÆÌ¨ÉÏÖ±½Ó´´½¨µÄÎÄ¼ş
+			//æ— x-oss-meta-type, åˆ¤æ–­è¯¥objectä¸ºOSS_REGULAR, è¯¥æ“ä½œä¸ºäº†å…¼å®¹åœ¨OSSæ§åˆ¶å°ä¸Šç›´æ¥åˆ›å»ºçš„æ–‡ä»¶
 			oss_type << OSS_REGULAR;
 			meta["type"] = oss_type.str();
 		}				
@@ -479,8 +479,8 @@ int Oss::get_object_meta(const char* bucket, const char* name,
 	
 	log_debug("meta type: %s", meta["type"].c_str());
 
-	// ´¦Àímodified timeÊôĞÔ, Èç¹û¶ÔÏó±¾ÉíĞ¯´øÁËx-oss-meta-mtime, ÔòÖ±½Ó¸³Öµ
-	// ·ñÔò°ÑÎÄ¼şÊ±¼äÉèÖÃÎªµ±Ç°Ê±¼ä
+	// å¤„ç†modified timeå±æ€§, å¦‚æœå¯¹è±¡æœ¬èº«æºå¸¦äº†x-oss-meta-mtime, åˆ™ç›´æ¥èµ‹å€¼
+	// å¦åˆ™æŠŠæ–‡ä»¶æ—¶é—´è®¾ç½®ä¸ºå½“å‰æ—¶é—´
 	if (iter->user_meta.find("x-oss-meta-mtime") != iter->user_meta.end())
 	{
 		meta["mtime"] = iter->user_meta["x-oss-meta-mtime"];
@@ -494,8 +494,8 @@ int Oss::get_object_meta(const char* bucket, const char* name,
 	
 	log_debug("meta mtime: %s", meta["mtime"].c_str());
 
-	// ´¦ÀímodeÊôĞÔ, Èç¹û¶ÔÏó±¾ÉíĞ¯´øÁËx-oss-meta-mode, ÔòÖ±½Ó¸³Öµ
-	// ·ñÔò°ÑmodeÉèÖÃÎª0666
+	// å¤„ç†modeå±æ€§, å¦‚æœå¯¹è±¡æœ¬èº«æºå¸¦äº†x-oss-meta-mode, åˆ™ç›´æ¥èµ‹å€¼
+	// å¦åˆ™æŠŠmodeè®¾ç½®ä¸º0666
 	if (iter->user_meta.find("x-oss-meta-mode") != iter->user_meta.end())
 	{
 		meta["mode"] = iter->user_meta["x-oss-meta-mode"];
@@ -535,15 +535,15 @@ int Oss::put_object_meta(const char * bucket, const char * name,
 string Oss::initiate_multipart_upload(const char *bucket, const char *name)
 {
 	string ret = "";
-	unsigned short retcode = -1;			//±£´æ·şÎñÆ÷http·µ»ØÂëµÄ½âÎö½á¹û;
-	const char *retinfo = NULL;            //±£´æÍ¨¹ıretcode»ñµÃµÄ´íÎóĞÅÏ¢
+	unsigned short retcode = -1;			//ä¿å­˜æœåŠ¡å™¨httpè¿”å›ç çš„è§£æç»“æœ;
+	const char *retinfo = NULL;            //ä¿å­˜é€šè¿‡retcodeè·å¾—çš„é”™è¯¯ä¿¡æ¯
 	oss_client_t *client = client_initialize_with_endpoint(
 		address.access_id.c_str(), address.access_key.c_str(), address.hostname.c_str());
 
 	log_debug("access id:[%s]", address.access_id.c_str());
 	log_debug("access key:[%s]", address.access_key.c_str());
 	log_debug("hostname url:[%s]", address.hostname.c_str());
-#if 1 /* ÉèÖÃ´øÔªĞÅÏ¢µÄMultipart Upload ÉÏ´«ÇëÇó */
+#if 1 /* è®¾ç½®å¸¦å…ƒä¿¡æ¯çš„Multipart Upload ä¸Šä¼ è¯·æ±‚ */
 
 	oss_object_metadata_t *metadata = object_metadata_initialize();
 
@@ -556,7 +556,7 @@ string Oss::initiate_multipart_upload(const char *bucket, const char *name)
 	
 	log_debug("type:%s", type.c_str());
 	
-	/* ÉèÖÃÉÏ´«¶ÔÏóµÄÔªĞÅÏ¢ */
+	/* è®¾ç½®ä¸Šä¼ å¯¹è±¡çš„å…ƒä¿¡æ¯ */
 	metadata->set_content_type(metadata, type.c_str());
 
 	if (m_header->get_cache_control() != "") {
@@ -585,7 +585,7 @@ string Oss::initiate_multipart_upload(const char *bucket, const char *name)
 
 	oss_initiate_multipart_upload_request_t *request = 
 		initiate_multipart_upload_request_initialize_with_metadata(bucket, name, metadata);
-#else /* ²»´øÔªĞÅÏ¢µÄMultipart UploadÉÏ´«ÇëÇó */
+#else /* ä¸å¸¦å…ƒä¿¡æ¯çš„Multipart Uploadä¸Šä¼ è¯·æ±‚ */
 	oss_initiate_multipart_upload_request_t *request = 
 		initiate_multipart_upload_request_initialize(bucket_name, key, NULL);
 #endif
@@ -634,8 +634,8 @@ string Oss::upload_part(const char *bucket, const char *name, const char *upload
 		int part_num, char *buf, size_t data_len)
 {
 	string ret = "";
-	unsigned short retcode = -1;			//±£´æ·şÎñÆ÷http·µ»ØÂëµÄ½âÎö½á¹û;
-	const char *retinfo = NULL;            //±£´æÍ¨¹ıretcode»ñµÃµÄ´íÎóĞÅÏ¢
+	unsigned short retcode = -1;			//ä¿å­˜æœåŠ¡å™¨httpè¿”å›ç çš„è§£æç»“æœ;
+	const char *retinfo = NULL;            //ä¿å­˜é€šè¿‡retcodeè·å¾—çš„é”™è¯¯ä¿¡æ¯
 	oss_client_t *client = client_initialize_with_endpoint(
 		address.access_id.c_str(), address.access_key.c_str(), address.hostname.c_str());
 
@@ -656,17 +656,17 @@ string Oss::upload_part(const char *bucket, const char *name, const char *upload
 			
 	if (retcode == OK) 
 	{ 
-		/* ´òÓ¡·µ»ØĞÅÏ¢£¬°üÀ¨ Part Number ºÍ ETag Öµ */
+		/* æ‰“å°è¿”å›ä¿¡æ¯ï¼ŒåŒ…æ‹¬ Part Number å’Œ ETag å€¼ */
 		log_debug("PartNumber:%d, ETag:%s", result->get_part_number(result), result->get_etag(result));
 		ret = result->get_etag(result);
 	} 
 	else 
 	{ 
-		/* ´òÓ¡³ö´íĞÅÏ¢ */
+		/* æ‰“å°å‡ºé”™ä¿¡æ¯ */
 		retinfo = oss_get_error_message_from_retcode(retcode);
 		log_error("%s", retinfo);
 	}
-	/* ×îºÃ¼°Ê±ÊÍ·Å result ¿Õ¼ä£¬·ñÔò»ØÔì³ÉÄÚ´æĞ¹Â© */
+	/* æœ€å¥½åŠæ—¶é‡Šæ”¾ result ç©ºé—´ï¼Œå¦åˆ™å›é€ æˆå†…å­˜æ³„æ¼ */
 	if (result != NULL)
 	{
 		upload_part_result_finalize(result);
@@ -688,8 +688,8 @@ string Oss::upload_part_copy(const char *bucket, const char *name, const char* s
 							 const char *upload_id, int part_num, size_t start_pos, size_t end_pos)
 {
 	string ret = "";
-	unsigned short retcode = -1;			//±£´æ·şÎñÆ÷http·µ»ØÂëµÄ½âÎö½á¹û;
-	const char *retinfo = NULL;            //±£´æÍ¨¹ıretcode»ñµÃµÄ´íÎóĞÅÏ¢
+	unsigned short retcode = -1;			//ä¿å­˜æœåŠ¡å™¨httpè¿”å›ç çš„è§£æç»“æœ;
+	const char *retinfo = NULL;            //ä¿å­˜é€šè¿‡retcodeè·å¾—çš„é”™è¯¯ä¿¡æ¯
 	oss_client_t *client = client_initialize_with_endpoint(
 		address.access_id.c_str(), address.access_key.c_str(), address.hostname.c_str());
 
@@ -703,17 +703,17 @@ string Oss::upload_part_copy(const char *bucket, const char *name, const char* s
 			
 	if (retcode == OK) 
 	{ 
-		/* ´òÓ¡·µ»ØĞÅÏ¢£¬°üÀ¨ Part Number ºÍ ETag Öµ */
+		/* æ‰“å°è¿”å›ä¿¡æ¯ï¼ŒåŒ…æ‹¬ Part Number å’Œ ETag å€¼ */
 		log_debug("PartNumber:%d, ETag:%s", result->get_part_number(result), result->get_etag(result));
 		ret = result->get_etag(result);
 	}
 	else
 	{ 
-		/* ´òÓ¡³ö´íĞÅÏ¢ */
+		/* æ‰“å°å‡ºé”™ä¿¡æ¯ */
 		retinfo = oss_get_error_message_from_retcode(retcode);
 		log_error("errorinfo:%s, name:%s", retinfo, s_name);
 	}
-	/* ×îºÃ¼°Ê±ÊÍ·Å result ¿Õ¼ä£¬·ñÔò»ØÔì³ÉÄÚ´æĞ¹Â© */
+	/* æœ€å¥½åŠæ—¶é‡Šæ”¾ result ç©ºé—´ï¼Œå¦åˆ™å›é€ æˆå†…å­˜æ³„æ¼ */
 	if (result != NULL)
 	{
 		upload_part_result_finalize(result);
@@ -733,15 +733,15 @@ string Oss::upload_part_copy(const char *bucket, const char *name, const char* s
 	return ret;
 }
 
-//³É¹¦·µ»ØÕı³£etag,Ê§°Ü·µ»Ø¿Õ("")etag
+//æˆåŠŸè¿”å›æ­£å¸¸etag,å¤±è´¥è¿”å›ç©º("")etag
 string Oss::complete_multipart_upload(const char *bucket, const char *name, const char *upload_id)
 {
 	string ret = "";
 	
-	unsigned short retcode = -1;			//±£´æ·şÎñÆ÷http·µ»ØÂëµÄ½âÎö½á¹û;
-	const char *retinfo = NULL; 		   //±£´æÍ¨¹ıretcode»ñµÃµÄ´íÎóĞÅÏ¢
+	unsigned short retcode = -1;			//ä¿å­˜æœåŠ¡å™¨httpè¿”å›ç çš„è§£æç»“æœ;
+	const char *retinfo = NULL; 		   //ä¿å­˜é€šè¿‡retcodeè·å¾—çš„é”™è¯¯ä¿¡æ¯
 	// int part_num_array[MAX_PART_NUM];
-	// char part_etag[MAX_PART_NUM][MAX_ETAG_LENGTH + 1]; // Õ»Ô½½ç
+	// char part_etag[MAX_PART_NUM][MAX_ETAG_LENGTH + 1]; // æ ˆè¶Šç•Œ
 	int total_part = 0;
 	map<int, string> part_etag;
 	map<int, long> part_size;
@@ -787,7 +787,7 @@ string Oss::complete_multipart_upload(const char *bucket, const char *name, cons
 
 	//struct timeval tv3, tv4;
 	//gettimeofday(&tv3, NULL);
-	/* Íê³ÉÒ»´ÎMultipart UploadÉÏ´«²Ù×÷ */
+	/* å®Œæˆä¸€æ¬¡Multipart Uploadä¸Šä¼ æ“ä½œ */
 	oss_complete_multipart_upload_result_t *result = 
 		client_complete_multipart_upload(client, request, &retcode);
 	//gettimeofday(&tv4, NULL);
@@ -805,7 +805,7 @@ string Oss::complete_multipart_upload(const char *bucket, const char *name, cons
 		log_error("result message:%s", retinfo);
 	}
 
-	/* ÊÍ·Å¿Õ¼ä */
+	/* é‡Šæ”¾ç©ºé—´ */
 	for (int i = 0; i < total_part; i++) 
 	{
 		part_etag_finalize(*(oss_part_etag + i));
@@ -869,8 +869,8 @@ int Oss::list_part(const char *bucket, const char *name, const char *upload_id,
 				   map<int, string>& part_etag, map<int, long>& part_size)
 {
 	int ret = 0;
-	unsigned short retcode = -1;			//±£´æ·şÎñÆ÷http·µ»ØÂëµÄ½âÎö½á¹û;
-	const char *retinfo = NULL;            //±£´æÍ¨¹ıretcode»ñµÃµÄ´íÎóĞÅÏ¢
+	unsigned short retcode = -1;			//ä¿å­˜æœåŠ¡å™¨httpè¿”å›ç çš„è§£æç»“æœ;
+	const char *retinfo = NULL;            //ä¿å­˜é€šè¿‡retcodeè·å¾—çš„é”™è¯¯ä¿¡æ¯
 	bool truncated = true;
 	unsigned int nextPartNumberMarker = 0;
 	

@@ -32,183 +32,183 @@
  * @{
  */
 /**
- * struct oss_copy_object_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_copy_object_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_copy_object_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_copy_object_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_copy_object_request_s oss_copy_object_request_t;
 
 /**
- * ¿½±´Ò»¸öÔÚOSSÉÏÒÑ¾­´æÔÚµÄObject³ÉÁíÍâÒ»¸öObjectµÄÇëÇó²ÎÊı
+ * æ‹·è´ä¸€ä¸ªåœ¨OSSä¸Šå·²ç»å­˜åœ¨çš„Objectæˆå¦å¤–ä¸€ä¸ªObjectçš„è¯·æ±‚å‚æ•°
  */
 struct oss_copy_object_request_s {
-	char *destination_bucket_name;    /**< Ä¿±êBucketµÄÃû³Æ */
-	char *destination_key;            /**< Ä¿±êObjectµÄÃû³Æ */
-	char **matching_etag_constraints; /**< ETagÏŞ¶¨ÖµµÄÁĞ±í */
-	char *modified_since_constraints; /**< Ò»¸öÊ±¼ä£¬Èç¹ûÔ´Object×Ô´Ó¸ÃÊ±¼äÒÔºó±»ĞŞ¸Ä¹ı£¬ÔòÖ´ĞĞ¿½±´²Ù×÷£» ·ñÔòÅ×³öÒì³£ */
-	oss_object_metadata_t *object_metadata; /**< Ä¿±êObjectµÄObjectMetadataĞÅÏ¢ */
-	char **no_matching_etag_constraints; /**< ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í */
-	char *source_bucket_name; /**< Ô´BucketµÄÃû³Æ */
-	char *source_key;         /**< Ô´ObjectµÄÃû³Æ */
-	char *unmodified_since_constraints;   /**< Ò»¸öÊ±¼ä£¬Èç¹û¸ÃÊ±¼äµÈÓÚ»òÕßÍíÓÚÎÄ¼şÊµ¼ÊĞŞ¸ÄÊ±¼ä£¬ÔòÕı³£´«ÊäÎÄ¼ş£» ·ñÔòÅ×³öÒì³£ */
+	char *destination_bucket_name;    /**< ç›®æ ‡Bucketçš„åç§° */
+	char *destination_key;            /**< ç›®æ ‡Objectçš„åç§° */
+	char **matching_etag_constraints; /**< ETagé™å®šå€¼çš„åˆ—è¡¨ */
+	char *modified_since_constraints; /**< ä¸€ä¸ªæ—¶é—´ï¼Œå¦‚æœæºObjectè‡ªä»è¯¥æ—¶é—´ä»¥åè¢«ä¿®æ”¹è¿‡ï¼Œåˆ™æ‰§è¡Œæ‹·è´æ“ä½œï¼› å¦åˆ™æŠ›å‡ºå¼‚å¸¸ */
+	oss_object_metadata_t *object_metadata; /**< ç›®æ ‡Objectçš„ObjectMetadataä¿¡æ¯ */
+	char **no_matching_etag_constraints; /**< é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨ */
+	char *source_bucket_name; /**< æºBucketçš„åç§° */
+	char *source_key;         /**< æºObjectçš„åç§° */
+	char *unmodified_since_constraints;   /**< ä¸€ä¸ªæ—¶é—´ï¼Œå¦‚æœè¯¥æ—¶é—´ç­‰äºæˆ–è€…æ™šäºæ–‡ä»¶å®é™…ä¿®æ”¹æ—¶é—´ï¼Œåˆ™æ­£å¸¸ä¼ è¾“æ–‡ä»¶ï¼› å¦åˆ™æŠ›å‡ºå¼‚å¸¸ */
 
-	unsigned int _counts_matching_etag_constraints;  	 /**< ETagÏŞ¶¨ÖµµÄÁĞ±íµÄ¸öÊı */
-	unsigned int _counts_no_matching_etag_constraints;   /**< ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±íµÄ¸öÊı */
+	unsigned int _counts_matching_etag_constraints;  	 /**< ETagé™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•° */
+	unsigned int _counts_no_matching_etag_constraints;   /**< é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•° */
 
 	/**
-	 * »ñµÃÄ¿±êBucketµÄÃû³Æ
-	 * @param request ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return Ä¿±êBucketµÄÃû³Æ
+	 * è·å¾—ç›®æ ‡Bucketçš„åç§°
+	 * @param request æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return ç›®æ ‡Bucketçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_destination_bucket_name)(oss_copy_object_request_t *request);
 
 	/**
-	 * »ñµÃÄ¿±êObjectµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return Ä¿±êObjectµÄÃû³Æ
+	 * è·å¾—ç›®æ ‡Objectçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return ç›®æ ‡Objectçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_destination_key)(oss_copy_object_request_t *request);
 
 	/**
-	 * »ñµÃETagÏŞ¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return ETagÏŞ¶¨ÖµµÄÁĞ±í
+	 * è·å¾—ETagé™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return ETagé™å®šå€¼çš„åˆ—è¡¨
 	 * @retval const char **
 	 */
 	const char ** (*get_matching_etag_constraints)(oss_copy_object_request_t *request,
 			unsigned int *counts);
 
 	/**
-	 * »ñµÃmodified_since_constraintsÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return modified_since_constraintsÊ±¼ä
+	 * è·å¾—modified_since_constraintsæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return modified_since_constraintsæ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_modified_since_constraints)(oss_copy_object_request_t *request);
 
 	/**
-	 * »ñµÃÄ¿±êObjectµÄObjectMetadataĞÅÏ¢
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return Ä¿±êObjectµÄObjectMetadataĞÅÏ¢
-	 * @retval ·µ»ØÒ»¸öoss_object_metadata_tµÄ½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—ç›®æ ‡Objectçš„ObjectMetadataä¿¡æ¯
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return ç›®æ ‡Objectçš„ObjectMetadataä¿¡æ¯
+	 * @retval è¿”å›ä¸€ä¸ªoss_object_metadata_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_object_metadata_t * (*get_object_metadata)(oss_copy_object_request_t *request);
 
 	/**
-	 * »ñµÃÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
+	 * è·å¾—é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
 	 * @retval const char **
 	 */
 	const char ** (*get_no_matching_etag_constraints)(oss_copy_object_request_t *request,
 			unsigned int *counts);
 
 	/**
-	 * »ñµÃÔ´BucketµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return Ô´BucketµÄÃû³Æ
+	 * è·å¾—æºBucketçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return æºBucketçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_source_bucket_name)(oss_copy_object_request_t *request);
 
 	/**
-	 * »ñµÃÔ´ObjectµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return Ô´ObjectµÄÃû³Æ
+	 * è·å¾—æºObjectçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return æºObjectçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_source_key)(oss_copy_object_request_t *request);
 
 	/**
-	 * »ñµÃunmodified_since_constraintsÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @return unmodified_since_constraintsÊ±¼ä
+	 * è·å¾—unmodified_since_constraintsæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return unmodified_since_constraintsæ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_unmodified_since_constraints)(oss_copy_object_request_t *request);
 
 
 	/**
-	 * ÉèÖÃÄ¿±êBucketµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param destination_bucket_name [in] Ä¿±êBucketµÄÃû³Æ
+	 * è®¾ç½®ç›®æ ‡Bucketçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param destination_bucket_name [in] ç›®æ ‡Bucketçš„åç§°
 	 * @retval void
 	 */
 	void (*set_destination_bucket_name)(oss_copy_object_request_t *request,
 			const char * destination_bucket_name);
 
 	/**
-	 * ÉèÖÃÄ¿±êObjectµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param destination_key [in] Ä¿±êObjectµÄÃû³Æ
+	 * è®¾ç½®ç›®æ ‡Objectçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param destination_key [in] ç›®æ ‡Objectçš„åç§°
 	 * @retval void
 	 */
 	void (*set_destination_key)(oss_copy_object_request_t *request,
 			const char *destination_key);
 
 	/**
-	 * ÉèÖÃETagÏŞ¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param matching_etag_constraints [in] ETagÏŞ¶¨ÖµµÄÁĞ±í
-	 * @param counts [in] ETagÏŞ¶¨ÖµµÄÁĞ±íµÄ¸öÊı
+	 * è®¾ç½®ETagé™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param matching_etag_constraints [in] ETagé™å®šå€¼çš„åˆ—è¡¨
+	 * @param counts [in] ETagé™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_matching_etag_constraints)(oss_copy_object_request_t *request,
 			const char **matching_etag_constraints, unsigned int counts);
 
 	/**
-	 * ÉèÖÃmodified_since_constraintsÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param modified_since_constraints [in] modified_since_constraintsÊ±¼ä
+	 * è®¾ç½®modified_since_constraintsæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param modified_since_constraints [in] modified_since_constraintsæ—¶é—´
 	 * @retval void
 	 */
 	void (*set_modified_since_constraints)(oss_copy_object_request_t *request,
 			const char *modified_since_constraints);
 
 	/**
-	 * ÉèÖÃÄ¿±êObjectµÄObjectMetadataĞÅÏ¢
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param object_metadata [in] Ä¿±êObjectµÄObjectMetadataĞÅÏ¢
+	 * è®¾ç½®ç›®æ ‡Objectçš„ObjectMetadataä¿¡æ¯
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param object_metadata [in] ç›®æ ‡Objectçš„ObjectMetadataä¿¡æ¯
 	 * @retval void
 	 */
 	void (*set_new_object_metadata)(oss_copy_object_request_t *request,
 			oss_object_metadata_t *object_metadata);
 
 	/**
-	 * ÉèÖÃÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param no_matching_etag_constraints [in] ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
-	 * @param counts ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±íµÄ¸öÊı
+	 * è®¾ç½®é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param no_matching_etag_constraints [in] é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
+	 * @param counts é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_no_matching_etag_constraints)(oss_copy_object_request_t *request,
 			const char **no_matching_etag_constraints, unsigned counts);
 
 	/**
-	 * ÉèÖÃÔ´BucketµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param source_bucket_name [in] Ô´BucketµÄÃû³Æ
+	 * è®¾ç½®æºBucketçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param source_bucket_name [in] æºBucketçš„åç§°
 	 * @retval void
 	 */
 	void (*set_source_bucket_name)(oss_copy_object_request_t *request,
 			const char *source_bucket_name);
 
 	/**
-	 * ÉèÖÃÔ´ObjectµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param source_key [in] Ô´ObjectµÄÃû³Æ
+	 * è®¾ç½®æºObjectçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param source_key [in] æºObjectçš„åç§°
 	 * @retval void
 	 */
 	void (*set_source_key)(oss_copy_object_request_t *request,
 			const char *source_key);
 
 	/**
-	 * ÉèÖÃunmodified_since_constraintsÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
-	 * @param unmodified_since_constraints [in] unmodified_since_constraintsÊ±¼ä
+	 * è®¾ç½®unmodified_since_constraintsæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param unmodified_since_constraints [in] unmodified_since_constraintsæ—¶é—´
 	 * @retval void
 	 */
 	void (*set_unmodified_since_constraints)(oss_copy_object_request_t *request,
@@ -216,15 +216,15 @@ struct oss_copy_object_request_s {
 };
 
 /**
- * oss_copy_object_request_t ¹¹Ôìº¯Êı
- * @param source_bucket_name [in] Ô´BucketµÄÃû³Æ
- * @param source_key [in] Ô´ObjectµÄÃû³Æ
- * @param destination_bucket_name [in] Ä¿±êBucketµÄÃû³Æ
- * @param destination_key [in] Ä¿±êObjectµÄÃû³Æ
- * @return ·µ»ØÒ»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_copy_object_request_t æ„é€ å‡½æ•°
+ * @param source_bucket_name [in] æºBucketçš„åç§°
+ * @param source_key [in] æºObjectçš„åç§°
+ * @param destination_bucket_name [in] ç›®æ ‡Bucketçš„åç§°
+ * @param destination_key [in] ç›®æ ‡Objectçš„åç§°
+ * @return è¿”å›ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_copy_object_request_t *
 copy_object_request_initialize(const char *source_bucket_name,
@@ -233,10 +233,10 @@ copy_object_request_initialize(const char *source_bucket_name,
 		const char *destination_key);
 
 /**
- * oss_copy_object_request_t Îö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_copy_object_request_tµÄ½á¹¹Ö¸Õë
+ * oss_copy_object_request_t ææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_request_tçš„ç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃcopy_object_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨copy_object_request_initializeçš„è¿”å›å€¼
  */
 extern void copy_object_request_finalize(oss_copy_object_request_t *request);
 /**@}*/

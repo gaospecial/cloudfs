@@ -31,119 +31,119 @@
  */
 
 /**
- * struct oss_list_multipart_uploads_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_list_multipart_uploads_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_list_multipart_uploads_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_list_multipart_uploads_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_list_multipart_uploads_request_s oss_list_multipart_uploads_request_t;
 
 /**
- * °üº¬ÁĞ³öËùÓĞÖ´ĞĞÖĞMultipartÉÏ´«ÊÂ¼şµÄÇëÇó²ÎÊı
+ * åŒ…å«åˆ—å‡ºæ‰€æœ‰æ‰§è¡Œä¸­Multipartä¸Šä¼ äº‹ä»¶çš„è¯·æ±‚å‚æ•°
  */
 struct oss_list_multipart_uploads_request_s {
-	char *bucket_name;            /**< BucketÃû³Æ */
-	char *delimiter;              /**< ·Ö¸ô·û */
-	char *key_marker;             /**< ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í */
-	unsigned int max_uploads;     /**< ÏŞÖÆµÄ×î´ó·µ»Ø¼ÇÂ¼Êı */
-	char *prefix;                 /**< Ç°×º */
-	char *upload_id_marker;       /**< ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í */
+	char *bucket_name;            /**< Bucketåç§° */
+	char *delimiter;              /**< åˆ†éš”ç¬¦ */
+	char *key_marker;             /**< æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨ */
+	unsigned int max_uploads;     /**< é™åˆ¶çš„æœ€å¤§è¿”å›è®°å½•æ•° */
+	char *prefix;                 /**< å‰ç¼€ */
+	char *upload_id_marker;       /**< æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨ */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_list_multipart_uploads_request_t *request);
 
 	/**
-	 * »ñµÃ·Ö¸ô·û
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
+	 * è·å¾—åˆ†éš”ç¬¦
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
 	 * @return delimiter
 	 * @retval const char *
 	 */
 	const char * (*get_delimiter)(oss_list_multipart_uploads_request_t *request);
 
 	/**
-	 * »ñµÃkey_marker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
+	 * è·å¾—key_marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
 	 * @return key_marker
 	 * @retval const char *
 	 */
 	const char * (*get_key_marker)(oss_list_multipart_uploads_request_t *request);
 
 	/**
-	 * »ñµÃ×î´ó·µ»Ø¼ÇÂ¼Êı
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @return ×î´ó·µ»Ø¼ÇÂ¼Êı
+	 * è·å¾—æœ€å¤§è¿”å›è®°å½•æ•°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @return æœ€å¤§è¿”å›è®°å½•æ•°
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_max_uploads)(oss_list_multipart_uploads_request_t *request);
 
 	/**
-	 * »ñµÃÇ°×º
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @return Ç°×º
+	 * è·å¾—å‰ç¼€
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @return å‰ç¼€
 	 * @retval const char *
 	 */
 	const char * (*get_prefix)(oss_list_multipart_uploads_request_t *request);
 
 	/**
-	 * »ñµÃupload_id_marker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
+	 * è·å¾—upload_id_marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
 	 * @return upload_id_marker
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id_marker)(oss_list_multipart_uploads_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_list_multipart_uploads_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * ÉèÖÃ·Ö¸ô·û
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @param delimiter [in] ·Ö¸ô·û
+	 * è®¾ç½®åˆ†éš”ç¬¦
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @param delimiter [in] åˆ†éš”ç¬¦
 	 * @retval void
 	 */
 	void (*set_delimiter)(oss_list_multipart_uploads_request_t *request,
 			const char *delimiter);
 
 	/**
-	 * ÉèÖÃkey_marker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @param key_marker [in] ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í
+	 * è®¾ç½®key_marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @param key_marker [in] æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨
 	 * @retval void
 	 */
 	void (*set_key_marker)(oss_list_multipart_uploads_request_t *request,
 			const char *key_marker);
 
 	/**
-	 * ÉèÖÃ×î´ó·µ»Ø¼ÇÂ¼Êı
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @param max_uploads [in] ×î´ó·µ»Ø¼ÇÂ¼Êı
+	 * è®¾ç½®æœ€å¤§è¿”å›è®°å½•æ•°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @param max_uploads [in] æœ€å¤§è¿”å›è®°å½•æ•°
 	 * @retval void
 	 */
 	void (*set_max_uploads)(oss_list_multipart_uploads_request_t *request,
 			unsigned int max_uploads);
 
 	/**
-	 * ÉèÖÃÇ°×º
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @param prefix [in] Ç°×º
+	 * è®¾ç½®å‰ç¼€
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @param prefix [in] å‰ç¼€
 	 * @retval void
 	 */
 	void (*set_prefix)(oss_list_multipart_uploads_request_t *request,
 			const char *prefix);
 
 	/**
-	 * ÉèÖÃ upload_id_marker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
-	 * @param upload_id_marker [in] ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í
+	 * è®¾ç½® upload_id_marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+	 * @param upload_id_marker [in] æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨
 	 * @retval void
 	 */
 	void (*set_upload_id_marker)(oss_list_multipart_uploads_request_t *request,
@@ -151,21 +151,21 @@ struct oss_list_multipart_uploads_request_s {
 };
 
 /**
- * oss_list_multipart_uploads_request_t¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @return ·µ»ØÒ»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_list_multipart_uploads_request_tæ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @return è¿”å›ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_list_multipart_uploads_request_t *
 list_multipart_uploads_request_initialize(const char *bucket_name);
 
 /**
- * oss_list_multipart_uploads_request_tÎö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_list_multipart_uploads_request_t½á¹¹Ö¸Õë
+ * oss_list_multipart_uploads_request_tææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_multipart_uploads_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃlist_multipart_uploads_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨list_multipart_uploads_request_initializeçš„è¿”å›å€¼
  */
 extern void
 list_multipart_uploads_request_finalize(

@@ -33,74 +33,74 @@
  */
 
 /**
- * struct oss_upload_part_result_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_upload_part_result_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_upload_part_result_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_upload_part_result_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_upload_part_result_s oss_upload_part_result_t;
 
 /**
- * °üº¬ÏòOSSÉÏ´«Multipart·Ö¿é£¨Part£©µÄ½á¹ûĞÅÏ¢
+ * åŒ…å«å‘OSSä¸Šä¼ Multipartåˆ†å—ï¼ˆPartï¼‰çš„ç»“æœä¿¡æ¯
  */
 struct oss_upload_part_result_s {
-	char *etag;      /**< OSSÉú³ÉµÄETagÖµ*/
-	int part_number; /**< °üº¬Part±êÊ¶ºÅÂëºÍETagÖµµÄPartETag¶ÔÏó*/
+	char *etag;      /**< OSSç”Ÿæˆçš„ETagå€¼*/
+	int part_number; /**< åŒ…å«Partæ ‡è¯†å·ç å’ŒETagå€¼çš„PartETagå¯¹è±¡*/
 
 	/**
-	 * »ñµÃOSSÉú³ÉµÄETagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_upload_part_result_t½á¹¹Ö¸Õë
+	 * è·å¾—OSSç”Ÿæˆçš„ETagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_result_tç»“æ„æŒ‡é’ˆ
 	 * @retval const char *
-	 * @return OSSÉú³ÉµÄETagÖµ
+	 * @return OSSç”Ÿæˆçš„ETagå€¼
 	 */
 	const char * (*get_etag)(oss_upload_part_result_t *result);
 
 	/**
-	 * ÉèÖÃOSSÉú³ÉµÄETagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_upload_part_result_t½á¹¹Ö¸Õë
-	 * @param etag [in] OSSÉú³ÉµÄETagÖµ
+	 * è®¾ç½®OSSç”Ÿæˆçš„ETagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_result_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] OSSç”Ÿæˆçš„ETagå€¼
 	 * @retval void
 	 */
 	void (*set_etag)(oss_upload_part_result_t *result, const char *etag);
 
 	/**
-	 * ·µ»Ø·Ö¿é£¨Part£©±êÊ¶ºÅ
-	 * @param [in] ±êÊ¶Ò»¸öoss_upload_part_result_t½á¹¹Ö¸Õë
-	 * @return ·Ö¿é£¨Part£©±êÊ¶ºÅ
+	 * è¿”å›åˆ†å—ï¼ˆPartï¼‰æ ‡è¯†å·
+	 * @param [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_result_tç»“æ„æŒ‡é’ˆ
+	 * @return åˆ†å—ï¼ˆPartï¼‰æ ‡è¯†å·
 	 * @retval int
 	 */
 	int(*get_part_number)(oss_upload_part_result_t *result);
 
 	/**
-	 * ÉèÖÃ·Ö¿é£¨Part£©±êÊ¶ºÅ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_upload_part_result_t½á¹¹Ö¸Õë
-	 * @param part_number [in] ·Ö¿éºÅ
+	 * è®¾ç½®åˆ†å—ï¼ˆPartï¼‰æ ‡è¯†å·
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_result_tç»“æ„æŒ‡é’ˆ
+	 * @param part_number [in] åˆ†å—å·
 	 * @retval void
 	 */
 	void (*set_part_number)(oss_upload_part_result_t *result, int part_number);
 
 	/**
-	 * »ñµÃ°üº¬Part±êÊ¶ºÅÂëºÍETagÖµµÄPartETag¶ÔÏó
-	 * @param result [in] ±êÊ¶Ò»¸öoss_upload_part_result_t½á¹¹Ö¸Õë
-	 * @return °üº¬Part±êÊ¶ºÅÂëºÍETagÖµµÄPartETag¶ÔÏó
+	 * è·å¾—åŒ…å«Partæ ‡è¯†å·ç å’ŒETagå€¼çš„PartETagå¯¹è±¡
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_result_tç»“æ„æŒ‡é’ˆ
+	 * @return åŒ…å«Partæ ‡è¯†å·ç å’ŒETagå€¼çš„PartETagå¯¹è±¡
 	 * @retval oss_part_etag_t *
 	 */
 	oss_part_etag_t * (*get_part_etag)(oss_upload_part_result_t * result);
 };
 
 /**
- * oss_upload_part_result_t ¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_upload_part_result_t ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_upload_part_result_t æ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_upload_part_result_t ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_upload_part_result_t *
 upload_part_result_initialize();
 
 /**
- * oss_upload_part_result_t Îö¹¹º¯Êı
- * @param result [in] ±êÊ¶Ò»¸öoss_upload_part_result_t½á¹¹Ö¸Õë
+ * oss_upload_part_result_t ææ„å‡½æ•°
+ * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_result_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre result ±ØĞëÊ¹ÓÃupload_part_result_initializeµÄ·µ»ØÖµ
+ * @pre result å¿…é¡»ä½¿ç”¨upload_part_result_initializeçš„è¿”å›å€¼
  */
 extern void 
 upload_part_result_finalize(oss_upload_part_result_t *result);

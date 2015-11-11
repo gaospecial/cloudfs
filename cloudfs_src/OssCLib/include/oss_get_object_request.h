@@ -34,162 +34,162 @@
  */
 
 /**
- * struct oss_get_object_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_get_object_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_get_object_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_get_object_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_get_object_request_s oss_get_object_request_t;
 
 /**
- * Ö¸¶¨´ÓOSSÏÂÔØObjectµÄÇëÇó²ÎÊı
+ * æŒ‡å®šä»OSSä¸‹è½½Objectçš„è¯·æ±‚å‚æ•°
  */
 struct oss_get_object_request_s {
-	char *bucket_name;                   /**< BucketÃû³Æ */
-	char *key;                           /**< ObjectÃû³Æ */
-	char *modified_since_constraint;     /**< Ò»¸öÊ±¼ä£¬Èç¹ûÔ´Object×Ô´Ó¸ÃÊ±¼äÒÔºó±»ĞŞ¸Ä¹ı£¬ÔòÖ´ĞĞ¿½±´²Ù×÷£» ·ñÔòÅ×³öÒì³£ */
-	long start;                         /**< ObjectÄÚÈİµÄÆğÊ¼Î»ÖÃ */
-	long length;                        /**< ObjectÄÚÈİµÄ³¤¶È */
-	oss_response_header_overrides_t *response_headers;  /**< ÒªÖØÔØµÄ·µ»ØÇëÇóÍ· */
-	char *unmodified_since_constraint;    /**< Ò»¸öÊ±¼ä£¬Èç¹û¸ÃÊ±¼äµÈÓÚ»òÕßÍíÓÚÎÄ¼şÊµ¼ÊĞŞ¸ÄÊ±¼ä£¬ÔòÕı³£´«ÊäÎÄ¼ş£» ·ñÔòÅ×³öÒì³£ */
-	char **matching_etag_constraints;     /**< ETagÏŞ¶¨ÖµµÄÁĞ±í */
-	char **no_matching_etag_constraints;  /**< ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í */
+	char *bucket_name;                   /**< Bucketåç§° */
+	char *key;                           /**< Objectåç§° */
+	char *modified_since_constraint;     /**< ä¸€ä¸ªæ—¶é—´ï¼Œå¦‚æœæºObjectè‡ªä»è¯¥æ—¶é—´ä»¥åè¢«ä¿®æ”¹è¿‡ï¼Œåˆ™æ‰§è¡Œæ‹·è´æ“ä½œï¼› å¦åˆ™æŠ›å‡ºå¼‚å¸¸ */
+	long start;                         /**< Objectå†…å®¹çš„èµ·å§‹ä½ç½® */
+	long length;                        /**< Objectå†…å®¹çš„é•¿åº¦ */
+	oss_response_header_overrides_t *response_headers;  /**< è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´ */
+	char *unmodified_since_constraint;    /**< ä¸€ä¸ªæ—¶é—´ï¼Œå¦‚æœè¯¥æ—¶é—´ç­‰äºæˆ–è€…æ™šäºæ–‡ä»¶å®é™…ä¿®æ”¹æ—¶é—´ï¼Œåˆ™æ­£å¸¸ä¼ è¾“æ–‡ä»¶ï¼› å¦åˆ™æŠ›å‡ºå¼‚å¸¸ */
+	char **matching_etag_constraints;     /**< ETagé™å®šå€¼çš„åˆ—è¡¨ */
+	char **no_matching_etag_constraints;  /**< é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨ */
 
-	unsigned int _counts_matching_etag_constraints;  /**< ETagÏŞ¶¨ÖµµÄÁĞ±íµÄ¸öÊı */
-	unsigned int _counts_no_matching_etag_constraints; /**< ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±íµÄ¸öÊı */
+	unsigned int _counts_matching_etag_constraints;  /**< ETagé™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•° */
+	unsigned int _counts_no_matching_etag_constraints; /**< é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•° */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_get_object_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_get_object_request_t *request, const char *bucket_name);
 
 	/**
-	 * »ñµÃObjectÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @return ObjectÃû³Æ
+	 * è·å¾—Objectåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_get_object_request_t *request);
 
 	/**
-	 * ÉèÖÃObjectÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectÃû³Æ
+	 * è®¾ç½®Objectåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectåç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_get_object_request_t *request, const char *key);
 
 	/**
-	 * »ñµÃmodified_since_constraintÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @return modified_since_constraintÊ±¼ä
+	 * è·å¾—modified_since_constraintæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return modified_since_constraintæ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_modified_since_constraint)(oss_get_object_request_t *request);
 
 	/**
-	 * ÉèÖÃmodified_since_constraintÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param modified_since_constraint [in] modified_since_constraintÊ±¼ä
+	 * è®¾ç½®modified_since_constraintæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param modified_since_constraint [in] modified_since_constraintæ—¶é—´
 	 * @retval void
 	 */
 	void (*set_modified_since_constraint)(oss_get_object_request_t *request, const char *modified_since_constraint);
 
 	/**
-	 * »ñµÃObjectÄÚÈİµÄstartºÍlength
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param start [out] ObjectÄÚÈİµÄÆğÊ¼Î»ÖÃ
-	 * @param length [out] ObjectÄÚÈİµÄ³¤¶È
+	 * è·å¾—Objectå†…å®¹çš„startå’Œlength
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param start [out] Objectå†…å®¹çš„èµ·å§‹ä½ç½®
+	 * @param length [out] Objectå†…å®¹çš„é•¿åº¦
 	 * @retval void
 	 */
 	void (*get_range)(oss_get_object_request_t *request, long *start, long *length);
 
 	/**
-	 * ÉèÖÃObjectÄÚÈİµÄstartºÍlength
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param start [in] ObjectÄÚÈİµÄÆğÊ¼Î»ÖÃ
-	 * @param length [in] ObjectÄÚÈİµÄ³¤¶È
+	 * è®¾ç½®Objectå†…å®¹çš„startå’Œlength
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param start [in] Objectå†…å®¹çš„èµ·å§‹ä½ç½®
+	 * @param length [in] Objectå†…å®¹çš„é•¿åº¦
 	 * @retval void
 	 */
 	void (*set_range)(oss_get_object_request_t *request, long start, long length);
 
 	/**
-	 * »ñµÃÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @return ÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_response_header_overrides_t * (*get_response_headers)(oss_get_object_request_t *request);
 
 	/**
-	 * ÉèÖÃÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param response_headers [in] ÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
+	 * è®¾ç½®è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param response_headers [in] è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_response_headers)(oss_get_object_request_t *request, oss_response_header_overrides_t *response_headers);
 
 	/**
-	 * »ñµÃunmodified_since_constraintÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @return unmodified_since_constraintÊ±¼ä
+	 * è·å¾—unmodified_since_constraintæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return unmodified_since_constraintæ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_unmodified_since_constraint)(oss_get_object_request_t *request);
 
 	/**
-	 * ÉèÖÃunmodified_since_constraintÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param unmodified_since_constraint[in] unmodified_since_constraintÊ±¼ä
+	 * è®¾ç½®unmodified_since_constraintæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param unmodified_since_constraint[in] unmodified_since_constraintæ—¶é—´
 	 * @retval void
 	 */
 	void (*set_unmodified_since_constraint)(oss_get_object_request_t *request, const char *unmodified_since_constraint);
 
 	/**
-	 * »ñµÃETagÏŞ¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param counts [out] ETagÏŞ¶¨ÖµµÄÁĞ±íµÄ¸öÊı
-	 * @return ETagÏŞ¶¨ÖµµÄÁĞ±í
+	 * è·å¾—ETagé™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param counts [out] ETagé™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•°
+	 * @return ETagé™å®šå€¼çš„åˆ—è¡¨
 	 * @retval const char **
 	 */
 	const char ** (*get_matching_etag_constraints)(oss_get_object_request_t *object,
 			unsigned int *counts);
 
 	/**
-	 * ÉèÖÃETagÏŞ¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param matching_etag_constraints [in] ÉèÖÃETagÏŞ¶¨ÖµµÄÁĞ±í
-	 * @param counts [in] ETagÏŞ¶¨ÖµµÄÁĞ±íµÄ¸öÊı
+	 * è®¾ç½®ETagé™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param matching_etag_constraints [in] è®¾ç½®ETagé™å®šå€¼çš„åˆ—è¡¨
+	 * @param counts [in] ETagé™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_matching_etag_constraints)(oss_get_object_request_t *object,
 			const char **matching_etag_constraints, unsigned int counts);
 
 	/**
-	 * »ñµÃÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param counts [out] ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±íµÄ¸öÊı
-	 * @return ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
+	 * è·å¾—é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param counts [out] é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•°
+	 * @return é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
 	 * @retval const char **
 	 */
 	const char ** (*get_no_matching_etag_constraints)(oss_get_object_request_t *object,
 			unsigned int *counts);
 
 	/**
-	 * ÉèÖÃÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
-	 * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
-	 * @param no_matching_etag_constraints [in] ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±í
-	 * @param counts [in] ÏŞ¶¨ObjectµÄETagÏŞ¶¨±ØĞë²»Æ¥Åä¸ø¶¨ÖµµÄÁĞ±íµÄ¸öÊı
+	 * è®¾ç½®é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param no_matching_etag_constraints [in] é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨
+	 * @param counts [in] é™å®šObjectçš„ETagé™å®šå¿…é¡»ä¸åŒ¹é…ç»™å®šå€¼çš„åˆ—è¡¨çš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_no_matching_etag_constraints)(oss_get_object_request_t *object,
@@ -197,22 +197,22 @@ struct oss_get_object_request_s {
 };
 
 /**
- * oss_get_object_request_t¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @param key [in] ObjectÃû³Æ
- * @return ·µ»Øoss_get_object_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_get_object_request_tæ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @param key [in] Objectåç§°
+ * @return è¿”å›oss_get_object_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_get_object_request_t *
 get_object_request_initialize(const char *bucket_name, const char *key);
 
 /**
- * oss_get_object_request_tÎö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_get_object_request_t½á¹¹Ö¸Õë
+ * oss_get_object_request_tææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_get_object_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃget_object_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨get_object_request_initializeçš„è¿”å›å€¼
  */
 extern void 
 get_object_request_finalize(oss_get_object_request_t *request);

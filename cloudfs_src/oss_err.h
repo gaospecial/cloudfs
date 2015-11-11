@@ -32,7 +32,7 @@ typedef unsigned int oss_result_t;
 #define OSS_REQUEST_TIMEOUT             36
 #define OSS_SIGNATURE_DOES_NOT_MATCH    37
 #define OSS_TOO_MANY_BUCKETS            38
-#define OSS_XML_PARSE_ERROR				101
+#define OSS_XML_PARSE_ERROR             101
 #define OSS_CURL_ERROR                  201
 #define OSS_UNKNOW_ERROR                999
 

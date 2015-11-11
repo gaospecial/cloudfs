@@ -30,49 +30,49 @@
  */
 
 /**
- * struct oss_put_object_result_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_put_object_result_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_put_object_result_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_put_object_result_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_put_object_result_s oss_put_object_result_t;
 
 /**
- * ÉÏ´«object²Ù×÷µÄ·µ»Ø½á¹û
+ * ä¸Šä¼ objectæ“ä½œçš„è¿”å›ç»“æœ
  */
 struct oss_put_object_result_s {
-	char *etag; /**< ĞÂ´´½¨µÄOSSObjectµÄETagÖµ*/
+	char *etag; /**< æ–°åˆ›å»ºçš„OSSObjectçš„ETagå€¼*/
 
 	/**
-	 * »ñµÃĞÂ´´½¨µÄOSSObjectµÄETagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_put_object_result_t½á¹¹Ö¸Õë
-	 * @return ĞÂ´´½¨µÄOSSObjectµÄETagÖµ
+	 * è·å¾—æ–°åˆ›å»ºçš„OSSObjectçš„ETagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_put_object_result_tç»“æ„æŒ‡é’ˆ
+	 * @return æ–°åˆ›å»ºçš„OSSObjectçš„ETagå€¼
 	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_put_object_result_t *result);
 
 	/**
-	 * ÉèÖÃĞÂ´´½¨µÄOSSObjectµÄETagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_put_object_result_t½á¹¹Ö¸Õë
-	 * @param etag [in] ĞÂ´´½¨µÄOSSObjectµÄETagÖµ
+	 * è®¾ç½®æ–°åˆ›å»ºçš„OSSObjectçš„ETagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_put_object_result_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] æ–°åˆ›å»ºçš„OSSObjectçš„ETagå€¼
 	 * @retval void
 	 */
 	void (*set_etag)(oss_put_object_result_t *result, const char *etag);
 };
 
 /**
- * oss_put_object_result_t ¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_put_object_result_t ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_put_object_result_t æ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_put_object_result_t ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_put_object_result_t *
 put_object_result_initialize();
 
 /**
- * oss_put_object_result_t Îö¹¹º¯Êı
- * @param  result [in] ±êÊ¶Ò»¸öoss_put_object_result_t½á¹¹Ö¸Õë
+ * oss_put_object_result_t ææ„å‡½æ•°
+ * @param  result [in] æ ‡è¯†ä¸€ä¸ªoss_put_object_result_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre result ±ØĞëÊ¹ÓÃput_object_result_initializeµÄ·µ»ØÖµ
+ * @pre result å¿…é¡»ä½¿ç”¨put_object_result_initializeçš„è¿”å›å€¼
  */
 extern void 
 put_object_result_finalize(oss_put_object_result_t *result);

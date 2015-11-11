@@ -30,68 +30,68 @@
  */
 
 /**
- * struct oss_part_etag_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_part_etag_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_part_etag_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_part_etag_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_part_etag_s oss_part_etag_t;
 
 /**
- * °üº¬MultipartÉÏ´«µÄPartµÄ·µ»Ø½á¹ûĞÅÏ¢
+ * åŒ…å«Multipartä¸Šä¼ çš„Partçš„è¿”å›ç»“æœä¿¡æ¯
  */
 struct oss_part_etag_s {
-	char *etag;             /**< PartµÄETagÖµ */
-	int part_number;        /**< Part±êÊ¶ºÅÂë */
+	char *etag;             /**< Partçš„ETagå€¼ */
+	int part_number;        /**< Partæ ‡è¯†å·ç  */
 
 	/**
-	 * »ñµÃPartµÄETagÖµ
-	 * @param etag [in] ±êÊ¶Ò»¸öoss_part_etag_t½á¹¹Ö¸Õë
-	 * @return PartµÄETagÖµ
+	 * è·å¾—Partçš„ETagå€¼
+	 * @param etag [in] æ ‡è¯†ä¸€ä¸ªoss_part_etag_tç»“æ„æŒ‡é’ˆ
+	 * @return Partçš„ETagå€¼
 	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_part_etag_t *etag);
 
 	/**
-	 * ÉèÖÃPartµÄETagÖµ
-	 * @param pe [in] ±êÊ¶Ò»¸öoss_part_etag_t½á¹¹Ö¸Õë
-	 * @param etag [in] PartµÄETagÖµ
+	 * è®¾ç½®Partçš„ETagå€¼
+	 * @param pe [in] æ ‡è¯†ä¸€ä¸ªoss_part_etag_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] Partçš„ETagå€¼
 	 * @retval void
 	 */
 	void (*set_etag)(oss_part_etag_t *pe, const char *etag);
 
 	/**
-	 * »ñµÃPart±êÊ¶ºÅÂë
-	 * @param etag [in] ±êÊ¶Ò»¸öoss_part_etag_t½á¹¹Ö¸Õë
-	 * @return Part±êÊ¶ºÅÂë
+	 * è·å¾—Partæ ‡è¯†å·ç 
+	 * @param etag [in] æ ‡è¯†ä¸€ä¸ªoss_part_etag_tç»“æ„æŒ‡é’ˆ
+	 * @return Partæ ‡è¯†å·ç 
 	 * @retval int
 	 */
 	int (*get_part_number)(oss_part_etag_t *etag);
 
 	/**
-	 * ÉèÖÃPart±êÊ¶ºÅÂë
-	 * @param etag [in] ±êÊ¶Ò»¸öoss_part_etag_t½á¹¹Ö¸Õë
-	 * @param part_number [in] Part±êÊ¶ºÅÂë
+	 * è®¾ç½®Partæ ‡è¯†å·ç 
+	 * @param etag [in] æ ‡è¯†ä¸€ä¸ªoss_part_etag_tç»“æ„æŒ‡é’ˆ
+	 * @param part_number [in] Partæ ‡è¯†å·ç 
 	 * @retval void
 	 */
 	void (*set_part_number)(oss_part_etag_t *etag, int part_number);
 };
 
 /**
- * oss_part_etag_t¹¹Ôìº¯Êı
- * @param part_number [in] Part±êÊ¶ºÅÂë
- * @param etag [in] PartµÄETagÖµ
- * @return ·µ»ØÒ»¸öoss_part_etag_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_part_etag_tæ„é€ å‡½æ•°
+ * @param part_number [in] Partæ ‡è¯†å·ç 
+ * @param etag [in] Partçš„ETagå€¼
+ * @return è¿”å›ä¸€ä¸ªoss_part_etag_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_part_etag_t *
 part_etag_initialize(int part_number, const char *etag);
 
 /**
- * oss_part_etag_tÎö¹¹º¯Êı
- * @param etag [in] ±êÊ¶Ò»¸öoss_part_etag_t½á¹¹Ö¸Õë
+ * oss_part_etag_tææ„å‡½æ•°
+ * @param etag [in] æ ‡è¯†ä¸€ä¸ªoss_part_etag_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre etag ±ØĞëÊ¹ÓÃpart_etag_initializeµÄ·µ»ØÖµ
+ * @pre etag å¿…é¡»ä½¿ç”¨part_etag_initializeçš„è¿”å›å€¼
  */
 extern void 
 part_etag_finalize(oss_part_etag_t *etag);

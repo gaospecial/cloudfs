@@ -36,12 +36,12 @@ typedef struct multipart_upload_node_s
 	int type; //0:multipart_upload_copy 1:multipart_upload_complete
 	string bucket;
 	string object;
-	string s_object;		// multi_part_copy Ê±Ê¹ÓÃ
+	string s_object;		// multi_part_copy æ—¶ä½¿ç”¨
 	string uploadid;
 	int part_num;
 	size_t start_pos;
 	size_t end_pos;
-	CCond  *sync_cond;			//ÓÃÓÚmultipart_upload_completeÌá½»ºóµÄ½ø³Ì×´Ì¬Í¬²½
+	CCond  *sync_cond;			//ç”¨äºmultipart_upload_completeæäº¤åçš„è¿›ç¨‹çŠ¶æ€åŒæ­¥
 }multipart_upload_node_s;
 
 
@@ -81,7 +81,7 @@ protected:
     //the root object for this bucket, just '/'
     OssObject * m_root;
 
-    //uploadid ÎÄ¼ş¹ÜÀíÊµÀı
+    //uploadid æ–‡ä»¶ç®¡ç†å®ä¾‹
     UploadIdFile m_uploadid_file;
 
     unsigned long long m_file_count;

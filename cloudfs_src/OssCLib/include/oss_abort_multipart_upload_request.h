@@ -10,13 +10,13 @@
  * =============================================================================
  */
 
-/* ÄÚ²¿Ê¹ÓÃµÄÍ·ÎÄ¼ş£¬ÓÃ»§¿ª·¢Ó¦°üº¬<client.h> */
+/* å†…éƒ¨ä½¿ç”¨çš„å¤´æ–‡ä»¶ï¼Œç”¨æˆ·å¼€å‘åº”åŒ…å«<client.h> */
 #ifndef _OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
 # error Never include <oss_abort_multipart_upload_request.h> directly
 # error use <client.h> instead.
 #endif
 
-/* Í·ÎÄ¼ş±£»¤ */
+/* å¤´æ–‡ä»¶ä¿æŠ¤ */
 #ifndef OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H 
 #define OSS_ABORT_MULTIPART_UPLOAD_REQUEST_H
 
@@ -32,68 +32,68 @@
  */
 
 /** 
- *struct oss_abort_multipart_upload_request_s ÄÚ²¿Ê¹ÓÃ \n
- *oss_abort_multipart_upload_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ *struct oss_abort_multipart_upload_request_s å†…éƒ¨ä½¿ç”¨ \n
+ *oss_abort_multipart_upload_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_abort_multipart_upload_request_s oss_abort_multipart_upload_request_t;
 
 
 /**
- *oss_abort_multipart_upload_request_t °üº¬ÖÕÖ¹Ò»¸ö Multipart ÉÏ´«ÊÂ¼şµÄÇëÇó²ÎÊı
+ *oss_abort_multipart_upload_request_t åŒ…å«ç»ˆæ­¢ä¸€ä¸ª Multipart ä¸Šä¼ äº‹ä»¶çš„è¯·æ±‚å‚æ•°
  */
 struct oss_abort_multipart_upload_request_s {
-	char *bucket_name;       /**< Bucket Ãû³Æ */
-	char *key;               /**< Object Ãû³Æ */
-	char *upload_id;         /**< ±êÊ¶ Multipart ÉÏ´«ÊÂ¼şµÄUpload ID */
+	char *bucket_name;       /**< Bucket åç§° */
+	char *key;               /**< Object åç§° */
+	char *upload_id;         /**< æ ‡è¯† Multipart ä¸Šä¼ äº‹ä»¶çš„Upload ID */
 
 	/**
-	 * ·µ»Ø Bucket Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t Ö¸Õë
+	 * è¿”å› Bucket åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_t æŒ‡é’ˆ
 	 * @retval const char *
-	 * @return Bucket Ãû³Æ
+	 * @return Bucket åç§°
 	 */
 	const char * (*get_bucket_name)(oss_abort_multipart_upload_request_t
 			*request);
 
 	/**
-	 * ·µ»Ø Object Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t Ö¸Õë
+	 * è¿”å› Object åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_t æŒ‡é’ˆ
 	 * @retval const char *
-	 * @return Object Ãû³Æ
+	 * @return Object åç§°
 	 */
 	const char * (*get_key)(oss_abort_multipart_upload_request_t
 			*request);
 
 	/**
-	 * ·µ»Ø ±êÊ¶ Multipart ÉÏ´«ÊÂ¼şµÄUpload ID
-	 * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t Ö¸Õë
+	 * è¿”å› æ ‡è¯† Multipart ä¸Šä¼ äº‹ä»¶çš„Upload ID
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_t æŒ‡é’ˆ
 	 * @retval const char *
 	 * @return Upload ID
 	 */
 	const char * (*get_upload_id)(oss_abort_multipart_upload_request_t
 			*request);
 	/**
-	 * ÉèÖÃ Bucket Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t Ö¸Õë
-	 * @param bucket_name [in] Bucket Ãû³Æ
+	 * è®¾ç½® Bucket åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_t æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucket åç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_abort_multipart_upload_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * ÉèÖÃ Object Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t Ö¸Õë
-	 * @param key [in] Object Ãû³Æ
+	 * è®¾ç½® Object åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_t æŒ‡é’ˆ
+	 * @param key [in] Object åç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_abort_multipart_upload_request_t *request,
 			const char *key);
 
 	/**
-	 * ÉèÖÃ ±êÊ¶ Multipart ÉÏ´«ÊÂ¼şµÄUpload ID
-	 * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t Ö¸Õë
-	 * @param upload_id [in] Upload ID ÄÚÈİ
+	 * è®¾ç½® æ ‡è¯† Multipart ä¸Šä¼ äº‹ä»¶çš„Upload ID
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_t æŒ‡é’ˆ
+	 * @param upload_id [in] Upload ID å†…å®¹
 	 * @retval void
 	 */
 	void (*set_upload_id)(oss_abort_multipart_upload_request_t *request,
@@ -101,14 +101,14 @@ struct oss_abort_multipart_upload_request_s {
 };
 
 /**
- * abort_multipart_upload_request_t ¹¹Ôìº¯Êı
- * @param [in] bucket_name BucketÃû³Æ
- * @param [in] key objectÃû³Æ
- * @param [in] upload_id ±êÊ¶ Multipart ÉÏ´«ÊÂ¼şµÄUpload ID
- * @return ·µ»ØÒ»¸öoss_abort_multipart_upload_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * abort_multipart_upload_request_t æ„é€ å‡½æ•°
+ * @param [in] bucket_name Bucketåç§°
+ * @param [in] key objectåç§°
+ * @param [in] upload_id æ ‡è¯† Multipart ä¸Šä¼ äº‹ä»¶çš„Upload ID
+ * @return è¿”å›ä¸€ä¸ªoss_abort_multipart_upload_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_abort_multipart_upload_request_t *
 abort_multipart_upload_request_initialize(const char *bucket_name,
@@ -116,10 +116,10 @@ abort_multipart_upload_request_initialize(const char *bucket_name,
 		const char *upload_id);
 
 /**
- * abort_multipart_upload_request_t Îö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_abort_multipart_upload_request_t½á¹¹Ö¸Õë
+ * abort_multipart_upload_request_t ææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_abort_multipart_upload_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃabort_multipart_upload_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨abort_multipart_upload_request_initializeçš„è¿”å›å€¼
  */
 extern void
 abort_multipart_upload_request_finalize(

@@ -41,19 +41,19 @@ OssSubObject::~OssSubObject() {
 
 
 /*
-д�����߼�����:
-	д����ʱ��Ϊ�������: 
-	���1) ��ǰд��ʱ, ������������
-		   ����Ѿ���������, ����Ҫ�����е�����һ���Լ��ص��ڴ���, �ٽ���д��;
-		   д��ʱ���������: 
-		   ���1: д���offset <= ��ǰ��ʵ�ʴ�С, ��������ͨ��д��
-		   ���2: д���offset > ��ǰ��ʵ�ʴ�С, �ڵ�ǰ����offset֮�����0
+写数据逻辑分析:
+	写数据时分为两种情况: 
+	情况1) 当前写入时, 本块已有数据
+		   如果已经有了数据, 则需要将已有的数据一次性加载到内存中, 再进行写入;
+		   写入时有两种情况: 
+		   情况1: 写入的offset <= 当前块实际大小, 这种是普通的写入
+		   情况2: 写入的offset > 当前块实际大小, 在当前块与offset之间填充0
 	
-	���2) ��ǰд��ʱ, ���鲢������
-			����������, �������OSS��������, ֱ��д��
-			д��ʱҲ���������:
-		   ���1: д���offset ��0��ʼ, ��������ͨ��д��
-		   ���2: д���offset > ����0, ��0��offset֮�����0	
+	情况2) 当前写入时, 本块并无数据
+			本块无数据, 则无需从OSS加载数据, 直接写入
+			写入时也分两种情况:
+		   情况1: 写入的offset 从0开始, 这种是普通的写入
+		   情况2: 写入的offset > 大于0, 在0与offset之间填充0	
 
 */
 int OssSubObject::write_data(off_t offset, size_t size, const char *buf) 
@@ -61,17 +61,17 @@ int OssSubObject::write_data(off_t offset, size_t size, const char *buf)
 	log_debug("offset:%Zd, size:%Zd", offset, size);
     int written = (int) size;
 
-    //ע�� �����ȡ���С��Ҫ��������, �������pthread_mutex_lock(&m_mutex) ֮ǰ
+    //注意 这里获取块大小需要父对象锁, 必须放在pthread_mutex_lock(&m_mutex) 之前
 	size_t subobject_size = m_group->get_subobject_size(m_part_num);
 
     pthread_mutex_lock(&m_mutex);
     m_synced = false;
 	m_readonly = false;			
 
-	//��ȡ��ǰ��Ĵ�С
+	//获取当前块的大小
 	if ((subobject_size > 0) && (m_buf_size == 0))
 	{
-		//��OSS�����������ݵ�cloudfs��
+		//从OSS加载数据数据到cloudfs中
 		RE_ALOCATE(m_data, m_buf_size, subobject_size, m_group->get_cloudfs())
 		int res = m_group->get_cloudfs()->get_oss()->get_object_data_with_range(AliConf::BUCKET.c_str(), 
 										  m_group->get_path_name(), 
@@ -91,11 +91,11 @@ int OssSubObject::write_data(off_t offset, size_t size, const char *buf)
 		
 	}
 
-	//offset С���ļ���С, ��������д��, ���ݱ���д��Ľ�β�����ڴ�
+	//offset 小于文件大小, 属于正常写入, 根据本次写入的结尾分配内存
     if (((size_t) offset) <= subobject_size) {
         RE_ALOCATE(m_data, m_buf_size, (offset+size), m_group->get_cloudfs())
     }
-    //offset �����ļ���С, subobject��ǰβ��-offset֮����д0
+    //offset 大于文件大小, subobject当前尾部-offset之间填写0
     else 
 	{
 		log_error("file[%s] offset [%Zd] is bigger than fileSize [%Zd]", 
@@ -103,15 +103,15 @@ int OssSubObject::write_data(off_t offset, size_t size, const char *buf)
 		log_error("subObject buff info: [m_read_pos: %Zd m_write_pos = %Zd m_buf_size: %Zd m_stats->size: %Zd]", 
 									m_read_pos, m_write_pos, m_buf_size, subobject_size);
 
-		//�ȷ����ڴ�
+		//先分配内存
         RE_ALOCATE(m_data, m_buf_size, (offset+size), m_group->get_cloudfs())
 
-        //subobject��ǰβ��-offset֮����д0
+        //subobject当前尾部-offset之间填写0
 		memset((m_data+subobject_size), 0, (offset -  subobject_size));
 
     }
 
-	//�ѱ�����Ҫд����������m_data
+	//把本次需要写的数据填入m_data
     memcpy(m_data + offset, buf, size);
     m_write_pos = std::max(m_write_pos, (size_t)(offset + size));
     pthread_mutex_unlock(&m_mutex);
@@ -121,27 +121,27 @@ int OssSubObject::write_data(off_t offset, size_t size, const char *buf)
 
 int OssSubObject::read_data(off_t offset, size_t size, char *buf) {
 
-    //ע�� �����ȡ���С��Ҫ��������, �������pthread_mutex_lock(&m_mutex) ֮ǰ
+    //注意 这里获取块大小需要父对象锁, 必须放在pthread_mutex_lock(&m_mutex) 之前
 	size_t subobj_size = m_group->get_subobject_size(m_part_num);
 
     pthread_mutex_lock(&m_mutex);
 
 	log_debug("offset:%d, size:%d", (int)offset, (int)size);
 
-	// �����ʼƫ�Ƴ������ļ��ܳ��ȣ������ٶ�ȡ��ֱ�ӷ���
+	// 如果起始偏移超过了文件总长度，不需再读取，直接返回
     if (subobj_size <= (size_t) offset) 
 	{
     	pthread_mutex_unlock(&m_mutex);
         return 0;
     }    
 
-	// ����������ݵ����ƫ�Ƴ����ļ����ȣ������ļ����ֶ���
+	// 如果请求数据的最大偏移超过文件长度，超过文件部分丢弃
     if (subobj_size < (offset + size)) {
         size = subobj_size - offset;
 	}
 
 
-	//��һ�μ���, һ���԰��ڴ�����, OSS object����ȫ�����ص�cloudfs��
+	//第一次加载, 一次性把内存分配好, OSS object数据全部加载到cloudfs中
 	if ((subobj_size > 0) && (m_buf_size == 0))
 	{
 		RE_ALOCATE(m_data, m_buf_size, subobj_size, m_group->get_cloudfs())
@@ -181,12 +181,12 @@ int OssSubObject::drop_cache(bool lock) {
 }
 
 /*sync will include the drop cache*/
-//pub_obj  true: ʹ��put_object�ϴ�����
-//		   false: ʹ��upload part�ϴ�����
+//pub_obj  true: 使用put_object上传本块
+//		   false: 使用upload part上传本块
 int OssSubObject::sync(bool put_obj) 
 {
 
-	//ע�� �����ȡ���С��Ҫ��������, �������pthread_mutex_lock(&m_mutex) ֮ǰ
+	//注意 这里获取块大小需要父对象锁, 必须放在pthread_mutex_lock(&m_mutex) 之前
 	size_t subobj_size = m_group->get_subobject_size(m_part_num);
     pthread_mutex_lock(&m_mutex);
 	log_debug("enter ...");
@@ -198,7 +198,7 @@ int OssSubObject::sync(bool put_obj)
         m_synced = true;
 
 
-		// �ύ Multipart ���ݵ��ڴ�
+		// 提交 Multipart 数据到内存
 		if (put_obj)
 		{
 			OSS_FILE_META meta;
@@ -239,7 +239,7 @@ int OssSubObject::sync(bool put_obj)
     }
 
 
-	//�ڴ��������ͷ�
+	//内存无条件释放
 	SAFE_DELETE_ARRAY(m_data);
 	res = m_buf_size;
 	m_group->get_cloudfs()->decrease_cache(m_buf_size);
@@ -256,11 +256,11 @@ int OssSubObject::destory() {
     return 0;
 }
 
-//��������������ִ��upload part copy����, ���ڸò����ȽϷ�ʱ, д������߳��첽����
+//本函数并不真正执行upload part copy操作, 由于该操作比较费时, 写入操作线程异步进行
 int OssSubObject::upload_part_copy()
 {
 
-	//ע�� �����ȡ���С��Ҫ��������, �������pthread_mutex_lock(&m_mutex) ֮ǰ
+	//注意 这里获取块大小需要父对象锁, 必须放在pthread_mutex_lock(&m_mutex) 之前
 	size_t subobj_size = m_group->get_subobject_size(m_part_num);
 
 	pthread_mutex_lock(&m_mutex);
@@ -287,7 +287,7 @@ int OssSubObject::upload_part_copy()
 void OssSubObject::on_write_check_block()
 {
 	pthread_mutex_lock(&m_mutex);
-	//���ж�write_pos�Ƿ�����, ���write_pos�Ѿ�����, ֱ������upload part
+	//先判断write_pos是否满块, 如果write_pos已经满块, 直接启动upload part
 	if (m_write_pos == AliConf::BLOCK_SIZE)
 	{
 		smart_upload_part();
@@ -306,7 +306,7 @@ void OssSubObject::on_read_check_block()
 {
 	pthread_mutex_lock(&m_mutex);
 
-	//�ж�read_pos�Ƿ�����, ͬʱwrite_pos�Ƿ�Ϊ0, �����������, ֱ���ͷ��ڴ�
+	//判断read_pos是否满块, 同时write_pos是否为0, 如果满足条件, 直接释放内存
 	if ((m_read_pos == AliConf::BLOCK_SIZE) && (m_write_pos == 0))
 	{
 		drop_cache(true);
@@ -314,16 +314,16 @@ void OssSubObject::on_read_check_block()
 		return;
 	}
 
-	//����������ڱ���������
+	//其他情况不在本函数处理
 	pthread_mutex_unlock(&m_mutex);
 	return;
 
 }
 
-//������
+//本函数
 void OssSubObject::on_fclose_check_block(bool bGroupReadOnly)
 {
-	//Groupֻ��, ��ֱ�ӷ���
+	//Group只读, 则直接返回
 	pthread_mutex_lock(&m_mutex);
 	if (bGroupReadOnly)
 	{
@@ -335,7 +335,7 @@ void OssSubObject::on_fclose_check_block(bool bGroupReadOnly)
 	
 	if (m_readonly)
 	{
-		//�鴦��ֻ��״̬, copyһ��
+		//块处于只读状态, copy一份
 		upload_part_copy();
 	}
 	m_readonly = true;
@@ -346,7 +346,7 @@ void OssSubObject::on_fclose_check_block(bool bGroupReadOnly)
 
 void OssSubObject::smart_upload_part()
 {
-	//����ÿ�ֻ��, ʲôҲ����, ֱ�ӷ���
+	//如果该块只读, 什么也不做, 直接返回
 	pthread_mutex_lock(&m_mutex);
 	if (m_readonly)
 	{
@@ -356,12 +356,12 @@ void OssSubObject::smart_upload_part()
 	
 	if (m_group->get_cloudfs()->threadpool_is_busy())
 	{
-		//thread pool�Ѿ�����, �˴��ڱ��߳̽���upload part����
+		//thread pool已经满载, 此处在本线程进行upload part操作
 		sync(false);
 	}
 	else
 	{
-		//thread poolδ����, ��upload part ���͸�thread pool���в���
+		//thread pool未满载, 将upload part 发送给thread pool进行操作
 		UploadPart *pNode = new UploadPart;
 		pNode->isDropCache = true;
 		pNode->subObj = this;

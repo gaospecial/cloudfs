@@ -30,100 +30,100 @@
  */
 
 /**
- * struct oss_part_summary_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_part_summary_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_part_summary_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_part_summary_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_part_summary_s oss_part_summary_t;
 
 /**
- * °üº¬Í¨¹ıMultipartÉÏ´«Ä£Ê½ÉÏ´«µÄPartµÄÕªÒªĞÅÏ¢
+ * åŒ…å«é€šè¿‡Multipartä¸Šä¼ æ¨¡å¼ä¸Šä¼ çš„Partçš„æ‘˜è¦ä¿¡æ¯
  */
 struct oss_part_summary_s {
-	char *etag;                   /**< PartµÄetagÖµ */
-	char *last_modified;          /**< PartÉÏ´ÎĞŞ¸ÄµÄÊ±¼ä */
-	int part_number;              /**< PartµÄĞòºÅnumber */
-	long size;                    /**< PartµÄ´óĞ¡ */
+	char *etag;                   /**< Partçš„etagå€¼ */
+	char *last_modified;          /**< Partä¸Šæ¬¡ä¿®æ”¹çš„æ—¶é—´ */
+	int part_number;              /**< Partçš„åºå·number */
+	long size;                    /**< Partçš„å¤§å° */
 
 	/**
-	 * »ñµÃPartµÄetagÖµ
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @return PartµÄetagÖµ
+	 * è·å¾—Partçš„etagå€¼
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @return Partçš„etagå€¼
 	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_part_summary_t *summary);
 
 	/**
-	 * ÉèÖÃPartµÄetagÖµ
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @param etag [in] PartµÄetagÖµ
+	 * è®¾ç½®Partçš„etagå€¼
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] Partçš„etagå€¼
 	 * @retval void
 	 */
 	void (*set_etag)(oss_part_summary_t *summary, const char *etag);
 
 	/**
-	 * »ñµÃPartÉÏ´ÎĞŞ¸ÄµÄÊ±¼ä
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @return PartÉÏ´ÎĞŞ¸ÄµÄÊ±¼ä
+	 * è·å¾—Partä¸Šæ¬¡ä¿®æ”¹çš„æ—¶é—´
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @return Partä¸Šæ¬¡ä¿®æ”¹çš„æ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_last_modified)(oss_part_summary_t *summary);
 
 	/**
-	 * ÉèÖÃPartÉÏ´ÎĞŞ¸ÄµÄÊ±¼ä
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @param lastmodified [in] PartÉÏ´ÎĞŞ¸ÄµÄÊ±¼ä
+	 * è®¾ç½®Partä¸Šæ¬¡ä¿®æ”¹çš„æ—¶é—´
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @param lastmodified [in] Partä¸Šæ¬¡ä¿®æ”¹çš„æ—¶é—´
 	 * @retval void
 	 */
 	void (*set_last_modified)(oss_part_summary_t *summary, const char *lastmodified);
 
 	/**
-	 * »ñµÃPartµÄĞòºÅnumber
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @return PartµÄĞòºÅnumber
+	 * è·å¾—Partçš„åºå·number
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @return Partçš„åºå·number
 	 * @retval int
 	 */
 	int (*get_part_number)(oss_part_summary_t *summary);
 
 	/**
-	 * ÉèÖÃPartµÄĞòºÅnumber
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @param part_number [in] PartµÄĞòºÅnumber
+	 * è®¾ç½®Partçš„åºå·number
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @param part_number [in] Partçš„åºå·number
 	 * @retval void
 	 */
 	void (*set_part_number)(oss_part_summary_t *summary, int part_number);
 
 	/**
-	 * »ñµÃPartµÄ´óĞ¡
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @return PartµÄ´óĞ¡
+	 * è·å¾—Partçš„å¤§å°
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @return Partçš„å¤§å°
 	 * @retval long
 	 */
 	long (*get_size)(oss_part_summary_t *summary);
 
 	/**
-	 * ÉèÖÃPartµÄ´óĞ¡
-	 * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @param size [in] PartµÄ´óĞ¡
+	 * è®¾ç½®Partçš„å¤§å°
+	 * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @param size [in] Partçš„å¤§å°
 	 * @retval void
 	 */
 	void (*set_size)(oss_part_summary_t *summary, long size);
 };
 
 /**
- * oss_part_summary_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_part_summary_t ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_part_summary_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_part_summary_t ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_part_summary_t *
 part_summary_initialize(void);
 
 /**
- * oss_part_summary_tÎö¹¹º¯Êı
- * @param summary [in] ±êÊ¶Ò»¸öoss_part_summary_t½á¹¹Ö¸Õë
+ * oss_part_summary_tææ„å‡½æ•°
+ * @param summary [in] æ ‡è¯†ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre summary ±ØĞëÊ¹ÓÃpart_summary_initializeµÄ·µ»ØÖµ
+ * @pre summary å¿…é¡»ä½¿ç”¨part_summary_initializeçš„è¿”å›å€¼
  */
 extern void 
 part_summary_finalize(oss_part_summary_t *summary);

@@ -25,15 +25,15 @@ oss_read_compression_header(FILE *fp);
 
 int
 oss_decompress_block(
-		char *inbuf, unsigned int inbuf_len, /** ÊäÈë²ÎÊı£¬±ØĞëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char *outbuf, unsigned int outbuf_len,/** Êä³ö²ÎÊı£¬±ØĞëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char algorithm /** Ñ¹ËõËã·¨ */
+		char *inbuf, unsigned int inbuf_len, /** è¾“å…¥å‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char *outbuf, unsigned int outbuf_len,/** è¾“å‡ºå‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char algorithm /** å‹ç¼©ç®—æ³• */
 		);
 
 int
 oss_decompress_block_2nd(
-		char *inbuf, unsigned int inbuf_len, /** ÊäÈë²ÎÊı£¬±ØĞëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char *outbuf, unsigned int outbuf_len/** Êä³ö²ÎÊı£¬±ØĞëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
+		char *inbuf, unsigned int inbuf_len, /** è¾“å…¥å‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char *outbuf, unsigned int outbuf_len/** è¾“å‡ºå‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
 		);
 
 void oss_decompress_file(

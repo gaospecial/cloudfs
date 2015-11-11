@@ -37,160 +37,160 @@
  */
 
 /**
- * struct oss_multipart_upload_listing_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_multipart_upload_listing_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_multipart_upload_listing_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_multipart_upload_listing_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_multipart_upload_listing_s oss_multipart_upload_listing_t;
 
 /**
- * °üº¬MultipartÉÏ´«ÊÂ¼şµÄÁĞ±í
+ * åŒ…å«Multipartä¸Šä¼ äº‹ä»¶çš„åˆ—è¡¨
  */
 struct oss_multipart_upload_listing_s {
-	char *bucket_name;               /**< BucketÃû³Æ */
-	char **common_prefixs;           /**< °üº¬Ö¸¶¨µÄÇ°×ºÇÒµÚÒ»´Î³öÏÖ delimiter ×Ö·ûÖ®¼äµÄobject */
-	unsigned int _counts_common_prefixs; /**< common_prefixsµÄ¸öÊı */
+	char *bucket_name;               /**< Bucketåç§° */
+	char **common_prefixs;           /**< åŒ…å«æŒ‡å®šçš„å‰ç¼€ä¸”ç¬¬ä¸€æ¬¡å‡ºç° delimiter å­—ç¬¦ä¹‹é—´çš„object */
+	unsigned int _counts_common_prefixs; /**< common_prefixsçš„ä¸ªæ•° */
 	
-	char *key_marker;             /**< ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í */
-	char *upload_id_marker;       /**< ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í */
-	char *next_key_marker;        /**< ±êÊ¶·µ»ØÁĞ±íµ½ÄÄÀïÖÕÖ¹ */
-	char *next_upload_id_marker;  /**< ±êÊ¶·µ»ØÁĞ±íµ½ÄÄÀïÖÕÖ¹ */
-	char *max_uploads;            /**< ·µ»Ø Multipart Uploads ÊÂ¼şµÄ×î´óÊıÄ¿ */
+	char *key_marker;             /**< æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨ */
+	char *upload_id_marker;       /**< æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨ */
+	char *next_key_marker;        /**< æ ‡è¯†è¿”å›åˆ—è¡¨åˆ°å“ªé‡Œç»ˆæ­¢ */
+	char *next_upload_id_marker;  /**< æ ‡è¯†è¿”å›åˆ—è¡¨åˆ°å“ªé‡Œç»ˆæ­¢ */
+	char *max_uploads;            /**< è¿”å› Multipart Uploads äº‹ä»¶çš„æœ€å¤§æ•°ç›® */
 
-	oss_multipart_upload_t **multipart_uploads;    /**< ¸÷¸ömultipart upload µÄĞÅÏ¢ */
-	unsigned int _counts_multipart_uploads;        /**< multipart upload µÄ¸öÊı*/
+	oss_multipart_upload_t **multipart_uploads;    /**< å„ä¸ªmultipart upload çš„ä¿¡æ¯ */
+	unsigned int _counts_multipart_uploads;        /**< multipart upload çš„ä¸ªæ•°*/
 	
-	bool is_truncated;            /**< ±êÊ¶ÊÇ·ñ»¹ÓĞÆäËûmultipart upload */
-	char *delimiter;              /**< ·Ö¸ô·û*/
-	char *prefix;                 /**< Ç°×º */
+	bool is_truncated;            /**< æ ‡è¯†æ˜¯å¦è¿˜æœ‰å…¶ä»–multipart upload */
+	char *delimiter;              /**< åˆ†éš”ç¬¦*/
+	char *prefix;                 /**< å‰ç¼€ */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_multipart_upload_listing_t *listing, const char *bucket_name);
 
 	/**
-	 * »ñµÃkey_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—key_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return key_marker
 	 * @retval const char *
 	 */
 	const char * (*get_key_marker)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃkey_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param key_marker [in] ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í
+	 * è®¾ç½®key_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param key_marker [in] æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨
 	 * @retval void
 	 */
 	void (*set_key_marker)(oss_multipart_upload_listing_t *listing, const char *key_marker);
 
 	/**
-	 * »ñµÃupload_id_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—upload_id_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return upload_id_marker
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id_marker)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃupload_id_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param upload_id_marker [in] ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í
+	 * è®¾ç½®upload_id_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param upload_id_marker [in] æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨
 	 * @retval void
 	 */
 	void (*set_upload_id_marker)(oss_multipart_upload_listing_t *listing, const char *upload_id_marker);
 
 	/**
-	 * »ñµÃnext_key_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—next_key_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return next_key_marker
 	 * @retval const char *
 	 */
 	const char * (*get_next_key_marker)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃnext_key_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param next_key_marker [in] ±êÊ¶·µ»ØÁĞ±íµ½ÄÄÀïÖÕÖ¹
+	 * è®¾ç½®next_key_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param next_key_marker [in] æ ‡è¯†è¿”å›åˆ—è¡¨åˆ°å“ªé‡Œç»ˆæ­¢
 	 * @retval void
 	 */
 	void (*set_next_key_marker)(oss_multipart_upload_listing_t *listing, const char *next_key_marker);
 
 	/**
-	 * »ñµÃnext_upload_id_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—next_upload_id_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return next_upload_id_marker
 	 * @retval const char *
 	 */
 	const char * (*get_next_upload_id_marker)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃnext_upload_id_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param next_upload_id_marker [in] ±êÊ¶·µ»ØÁĞ±íµ½ÄÄÀïÖÕÖ¹
+	 * è®¾ç½®next_upload_id_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param next_upload_id_marker [in] æ ‡è¯†è¿”å›åˆ—è¡¨åˆ°å“ªé‡Œç»ˆæ­¢
 	 * @retval void
 	 */
 	void (*set_next_upload_id_marker)(oss_multipart_upload_listing_t *listing, const char *next_upload_id_marker);
 
 	/**
-	 * »ñµÃmax_uploads
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @return Multipart Uploads ÊÂ¼şµÄ×î´óÊıÄ¿
+	 * è·å¾—max_uploads
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Multipart Uploads äº‹ä»¶çš„æœ€å¤§æ•°ç›®
 	 * @retval const char *
 	 */
 	const char * (*get_max_uploads)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃmax_uploads
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param max_uploads [in] Multipart Uploads ÊÂ¼şµÄ×î´óÊıÄ¿
+	 * è®¾ç½®max_uploads
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param max_uploads [in] Multipart Uploads äº‹ä»¶çš„æœ€å¤§æ•°ç›®
 	 * @retval void
 	 */
 	void (*set_max_uploads)(oss_multipart_upload_listing_t *listing, const char *max_uploads);
 
 	/**
-	 * »ñµÃis_truncated
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—is_truncated
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return is_truncated
 	 * @retval bool
 	 */
 	bool (*get_is_truncated)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃis_truncated
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param is_truncated [in] ±êÊ¶ÊÇ·ñ»¹ÓĞÆäËûmultipart upload
+	 * è®¾ç½®is_truncated
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param is_truncated [in] æ ‡è¯†æ˜¯å¦è¿˜æœ‰å…¶ä»–multipart upload
 	 * @retval void
 	 */
 	void (*set_is_truncated)(oss_multipart_upload_listing_t *listing, bool is_truncated);
 
 	/**
-	 * »ñµÃ¸÷¸ömultipart upload µÄĞÅÏ¢
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param counts [out] ËùÓĞmultipart upload µÄĞÅÏ¢µÄÊıÄ¿
-	 * @return ·µ»ØÒ»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±êÊ¶³É¹¦
-	 * @retval NULL ±êÊ¶Ê§°Ü
+	 * è·å¾—å„ä¸ªmultipart upload çš„ä¿¡æ¯
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param counts [out] æ‰€æœ‰multipart upload çš„ä¿¡æ¯çš„æ•°ç›®
+	 * @return è¿”å›ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º æ ‡è¯†æˆåŠŸ
+	 * @retval NULL æ ‡è¯†å¤±è´¥
 	 */
 	oss_multipart_upload_t ** (*get_multipart_uploads)(oss_multipart_upload_listing_t *listing,
 			unsigned int *counts);
 
 	/**
-	 * ÉèÖÃ¸÷¸ömultipart upload µÄĞÅÏ¢
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param multipart_uploads [in] ¸÷¸ömultipart upload µÄĞÅÏ¢
-	 * @param counts [in] ËùÓĞmultipart upload µÄĞÅÏ¢µÄÊıÄ¿
+	 * è®¾ç½®å„ä¸ªmultipart upload çš„ä¿¡æ¯
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param multipart_uploads [in] å„ä¸ªmultipart upload çš„ä¿¡æ¯
+	 * @param counts [in] æ‰€æœ‰multipart upload çš„ä¿¡æ¯çš„æ•°ç›®
 	 * @retval void
 	 */
 	void (*set_multipart_uploads)(oss_multipart_upload_listing_t *listing,
@@ -198,19 +198,19 @@ struct oss_multipart_upload_listing_s {
 			unsigned int counts);
 
 	/**
-	 * »ñµÃcommon_prefixs
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param counts [out] common_prefixsµÄ¸öÊı
+	 * è·å¾—common_prefixs
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param counts [out] common_prefixsçš„ä¸ªæ•°
 	 * @return const char **
 	 */
 	const char ** (*get_common_prefixs)(oss_multipart_upload_listing_t *listing,
 			unsigned int *counts);
 
 	/**
-	 * ÉèÖÃcommon_prefixs
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®common_prefixs
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param common_prefixs [in] common_prefixs
-	 * @param counts [in] common_prefixsµÄ¸öÊı
+	 * @param counts [in] common_prefixsçš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_common_prefixs)(oss_multipart_upload_listing_t *listing,
@@ -218,53 +218,53 @@ struct oss_multipart_upload_listing_s {
 			unsigned int counts);
 
 	/**
-	 * »ñµÃ·Ö¸ô·û
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @return ·Ö¸ô·û
+	 * è·å¾—åˆ†éš”ç¬¦
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return åˆ†éš”ç¬¦
 	 * @return const char *
 	 */
 	const char * (*get_delimiter)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃ·Ö¸ô·û
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param delimiter [in] ·Ö¸ô·û
+	 * è®¾ç½®åˆ†éš”ç¬¦
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param delimiter [in] åˆ†éš”ç¬¦
 	 * @retval void
 	 */
 	void (*set_delimiter)(oss_multipart_upload_listing_t *listing, const char *delimiter);
 
 	/**
-	 * »ñµÃÇ°×º
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @return Ç°×º
+	 * è·å¾—å‰ç¼€
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return å‰ç¼€
 	 * @return const char *
 	 */
 	const char * (*get_prefix)(oss_multipart_upload_listing_t *listing);
 
 	/**
-	 * ÉèÖÃÇ°×º
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
-	 * @param prefix [in] Ç°×º
+	 * è®¾ç½®å‰ç¼€
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param prefix [in] å‰ç¼€
 	 * @retval void
 	 */
 	void (*set_prefix)(oss_multipart_upload_listing_t *listing, const char *prefix);
 };
 
 /**
- * oss_multipart_upload_listing_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_multipart_upload_listing_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_multipart_upload_listing_t *
 multipart_upload_listing_initialize(void);
 
 /**
- * oss_multipart_upload_listing_tÎö¹¹º¯Êı
- * @param listing [in] ±êÊ¶Ò»¸öoss_multipart_upload_listing_t½á¹¹Ö¸Õë
+ * oss_multipart_upload_listing_tææ„å‡½æ•°
+ * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_listing_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre listing ±ØĞëÊ¹ÓÃmultipart_upload_listing_initializeµÄ·µ»ØÖµ
+ * @pre listing å¿…é¡»ä½¿ç”¨multipart_upload_listing_initializeçš„è¿”å›å€¼
  */
 extern void 
 multipart_upload_listing_finalize(oss_multipart_upload_listing_t *listing);

@@ -63,7 +63,7 @@ OssGroupObject::~OssGroupObject() {
 	// TODO Auto-generated destructor stub
 	this->destory();
 
-	//É¾³ı×Ó¶ÔÏó
+	//åˆ é™¤å­å¯¹è±¡
 	for (size_t i = 0; i < m_sub_objects.size(); i++) {
 		SAFE_DELETE(m_sub_objects[i]);
 	}
@@ -90,14 +90,14 @@ OssSubObject* OssGroupObject::add_subobject(size_t part_num, OssStats * stats, b
 OssSubObject* OssGroupObject::get_subobj_by_part_num(size_t part_num)
 {
 
-	//ËùÓĞµÄ¿éÔÚ´´½¨Ê±¶¼ÊÇ°²×°Ë³ĞòÍê³ÉµÄ, part_numµÄÖµ´Ó0¿ªÊ¼¼ÆÊı, part_num±ØĞëĞ¡ÓÚm_sub_objects.size()
+	//æ‰€æœ‰çš„å—åœ¨åˆ›å»ºæ—¶éƒ½æ˜¯å®‰è£…é¡ºåºå®Œæˆçš„, part_numçš„å€¼ä»0å¼€å§‹è®¡æ•°, part_numå¿…é¡»å°äºm_sub_objects.size()
 	if (part_num >= m_sub_objects.size())
 	{
 		log_debug("error part_num = %Zd, m_sub_objects.size() = %Zd", part_num, m_sub_objects.size());
 		return NULL;		
 	}
 
-	//´Ë´¦ÊÇÒ»¸ö¼ì²é, ¼ÇÂ¼ÈÕÖ¾
+	//æ­¤å¤„æ˜¯ä¸€ä¸ªæ£€æŸ¥, è®°å½•æ—¥å¿—
 	if (m_sub_objects[part_num]->get_part_num() != part_num)
 	{
 		log_error("error part_num = %Zd, m_sub_objects.size() = %Zd", part_num, m_sub_objects.size());
@@ -110,19 +110,19 @@ OssSubObject* OssGroupObject::get_subobj_by_part_num(size_t part_num)
 int OssGroupObject::write_data(off_t offset, size_t size, const char *buf) 
 {
 	log_debug("offset:%d, size:%d", (int)offset, (int)size);
-	size_t part_start = offset / AliConf::BLOCK_SIZE;		//±¾´ÎÒªĞ´ÈëÊı¾İµÄµÚÒ»¸öpart
-	size_t index_offset = offset % AliConf::BLOCK_SIZE;		//µÚÒ»¸ö¿éĞèÒªĞ´ÈëµÄÊı¾İÆ«ÒÆÎ»ÖÃ
-	size_t data_offset = 0;									//¼ÇÂ¼µ±Ç°ÒÑ¾­Ğ´µÄÊı¾İÊıÁ¿
-	size_t end = offset + size;								//±¾´ÎÒªĞ´ÈëµÄÊı¾İ½áÎ²
-	size_t part_end = (end - 1) / AliConf::BLOCK_SIZE;		//±¾´ÎÒªĞ´ÈëÊı¾İµÄ×îºóÒ»¸ö¿é
-	size_t index = part_start;								//¿éÑ­»·±éÀú±äÁ¿
-	size_t written = 0;										//¼ÇÂ¼µ±Ç°Êµ¼ÊÒÑ¾­Ğ´ÈëµÄÊı¾İÊıÁ¿
+	size_t part_start = offset / AliConf::BLOCK_SIZE;		//æœ¬æ¬¡è¦å†™å…¥æ•°æ®çš„ç¬¬ä¸€ä¸ªpart
+	size_t index_offset = offset % AliConf::BLOCK_SIZE;		//ç¬¬ä¸€ä¸ªå—éœ€è¦å†™å…¥çš„æ•°æ®åç§»ä½ç½®
+	size_t data_offset = 0;									//è®°å½•å½“å‰å·²ç»å†™çš„æ•°æ®æ•°é‡
+	size_t end = offset + size;								//æœ¬æ¬¡è¦å†™å…¥çš„æ•°æ®ç»“å°¾
+	size_t part_end = (end - 1) / AliConf::BLOCK_SIZE;		//æœ¬æ¬¡è¦å†™å…¥æ•°æ®çš„æœ€åä¸€ä¸ªå—
+	size_t index = part_start;								//å—å¾ªç¯éå†å˜é‡
+	size_t written = 0;										//è®°å½•å½“å‰å®é™…å·²ç»å†™å…¥çš„æ•°æ®æ•°é‡
 
 	pthread_mutex_lock(&m_open_mutex);
 	m_readonly = false;
-	//Á½ÖÖÇé¿öĞèÒª´´½¨multipart_upload²¢½øĞĞupload_part_copy
-	//1) ÎÄ¼şµ±Ç°×Ü´óĞ¡Ğ¡ÓÚ1¸ö¿é, ±¾´ÎĞ´Èëºó»á´óÓÚ»òµÈÓÚ1¸ö¿é;
-	//2) ÎÄ¼şµ±Ç°×Ü´óĞ¡´óÓÚ1¸ö¿é, ÎŞÂÛ±¾´ÎĞ´ÈëÔÚÄÄÀï
+	//ä¸¤ç§æƒ…å†µéœ€è¦åˆ›å»ºmultipart_uploadå¹¶è¿›è¡Œupload_part_copy
+	//1) æ–‡ä»¶å½“å‰æ€»å¤§å°å°äº1ä¸ªå—, æœ¬æ¬¡å†™å…¥åä¼šå¤§äºæˆ–ç­‰äº1ä¸ªå—;
+	//2) æ–‡ä»¶å½“å‰æ€»å¤§å°å¤§äº1ä¸ªå—, æ— è®ºæœ¬æ¬¡å†™å…¥åœ¨å“ªé‡Œ
 	if ((end >= AliConf::BLOCK_SIZE) || (m_stats->size > AliConf::BLOCK_SIZE))
 	{
 		if (m_uploadId.empty())
@@ -137,43 +137,43 @@ int OssGroupObject::write_data(off_t offset, size_t size, const char *buf)
 				return -1;
 			}
 
-			// ±£´æµ½ÄÚ´æÖĞ
+			// ä¿å­˜åˆ°å†…å­˜ä¸­
 			m_uploadId.assign(uploadId);
 
-			// ±£´æµ½ÎÄ¼şÖĞ
+			// ä¿å­˜åˆ°æ–‡ä»¶ä¸­
 			m_fs->AddUploadId(m_uploadId, m_pathname);		
 			log_debug("upload id:[%s]", m_uploadId.c_str());
 
 		}
 	}
 
-	//Ğ´ÈëÊ±·ÖÎªÁ½ÖÖÇé¿ö:
-	//±¾´ÎĞ´ÈëÊı¾İÔÚÍ¬Ò»¸ö¿éÄÚ: Ö±½ÓĞ´Èë¼´¿É
-	//±¾´ÎĞ´ÈëÊı¾İ¿çÁË¿é: ÏÈĞ´µÚÒ»¿é, È»ºóĞ´ÖĞ¼ä¿é, È»ºóĞ´×îºóÒ»¿é(ÖĞ¼ä¿é¿ÉÄÜÊÇ²»´æÔÚµÄ, ³ı·Ç°Ñ¿éµÄ´óĞ¡ÉèÖÃµ½ºÜĞ¡
-	//ÕâÀïÊµÏÖÏÈ²»¿¼ÂÇÖĞ¼ä¿éµÄ³¡¾°?
+	//å†™å…¥æ—¶åˆ†ä¸ºä¸¤ç§æƒ…å†µ:
+	//æœ¬æ¬¡å†™å…¥æ•°æ®åœ¨åŒä¸€ä¸ªå—å†…: ç›´æ¥å†™å…¥å³å¯
+	//æœ¬æ¬¡å†™å…¥æ•°æ®è·¨äº†å—: å…ˆå†™ç¬¬ä¸€å—, ç„¶åå†™ä¸­é—´å—, ç„¶åå†™æœ€åä¸€å—(ä¸­é—´å—å¯èƒ½æ˜¯ä¸å­˜åœ¨çš„, é™¤éæŠŠå—çš„å¤§å°è®¾ç½®åˆ°å¾ˆå°
+	//è¿™é‡Œå®ç°å…ˆä¸è€ƒè™‘ä¸­é—´å—çš„åœºæ™¯?
 	
 
 
-	//×¼±¸°ÑÊı¾İĞ´Èë¿é
+	//å‡†å¤‡æŠŠæ•°æ®å†™å…¥å—
 	while (index <= part_end) 
 	{
 		OssSubObject* obj = NULL;		
 		obj = get_subobj_by_part_num(index);
 		if (obj != NULL) 
-		{//subobjectÒÑ¾­´´½¨
+		{//subobjectå·²ç»åˆ›å»º
 			
 			size_t index_size = 0;
 			const char *index_data = NULL;
 			size_t part_offset = 0;
 			if (index == part_start)
 			{
-				//µÚÒ»¸ö¿éµÄĞ´Èë
+				//ç¬¬ä¸€ä¸ªå—çš„å†™å…¥
 				part_offset = index_offset;
 				index_size = std::min((AliConf::BLOCK_SIZE - part_offset), size);
 			}
 			else
 			{
-				//ºóÃæ¿éµÄĞ´Èë
+				//åé¢å—çš„å†™å…¥
 				part_offset = 0;
 				index_size = std::min(AliConf::BLOCK_SIZE, size);							
 			}
@@ -236,7 +236,7 @@ int OssGroupObject::write_data(off_t offset, size_t size, const char *buf)
 		}
 	}
 
-	//¸üĞÂĞŞ¸ÄÊ±¼ä
+	//æ›´æ–°ä¿®æ”¹æ—¶é—´
 	m_stats->mtime = time(0);
 	if (end > m_stats->size) {
 		m_stats->size = end;
@@ -251,7 +251,7 @@ int OssGroupObject::read_data(off_t offset, size_t size, char *buf)
 	log_debug("offset:%d, size:%d", (int)offset, (int)size);
 	pthread_mutex_lock(&m_open_mutex);
 
-	//ÏÈ¼ì²é±¾´Î¶ÁÈ¡Êı¾İÊÇ·ñÔÚÎÄ¼ş·¶Î§ÄÚ
+	//å…ˆæ£€æŸ¥æœ¬æ¬¡è¯»å–æ•°æ®æ˜¯å¦åœ¨æ–‡ä»¶èŒƒå›´å†…
 	if ((size_t)offset >= m_stats->size)
 	{
 		pthread_mutex_unlock(&m_open_mutex);
@@ -260,7 +260,7 @@ int OssGroupObject::read_data(off_t offset, size_t size, char *buf)
 
 	size_t end = offset + size;
 	
-	//¼ì²éoffset + size ÊÇ·ñ´óÓÚÎÄ¼şµÄ×î´ó³¤¶È, Èç¹û´óÓÚÎÄ¼şµÄ×î´ó³¤¶È, Ôò½ØÈ¡ÎªÎÄ¼şµÄµ±Ç°Êµ¼Ê³¤¶È
+	//æ£€æŸ¥offset + size æ˜¯å¦å¤§äºæ–‡ä»¶çš„æœ€å¤§é•¿åº¦, å¦‚æœå¤§äºæ–‡ä»¶çš„æœ€å¤§é•¿åº¦, åˆ™æˆªå–ä¸ºæ–‡ä»¶çš„å½“å‰å®é™…é•¿åº¦
 	if (end > m_stats->size)
 	{
 		end = m_stats->size;
@@ -274,13 +274,13 @@ int OssGroupObject::read_data(off_t offset, size_t size, char *buf)
 	OssSubObject* obj = NULL;
 	size_t data_offset = 0;
 	
-	/* ±¾´Î¶ÁÃ»ÓĞ¿ç¿é */
+	/* æœ¬æ¬¡è¯»æ²¡æœ‰è·¨å— */
 	if (part_start == part_end)
 	{
 		obj = get_subobj_by_part_num(part_start);
 		if (obj != NULL)
 		{
-			/* ¼ÇÂ¼±¾´Î¶ÁĞ´µÄÊı¾İ */
+			/* è®°å½•æœ¬æ¬¡è¯»å†™çš„æ•°æ® */
 			data_offset += obj->read_data(index_offset, size, (buf + data_offset));
 		}
 		else
@@ -291,8 +291,8 @@ int OssGroupObject::read_data(off_t offset, size_t size, char *buf)
 			
 		}
 	}
-	/* ±¾´Î¶Á¿çÁË¿é, ÏÈ¶ÁµÚÒ»¸ö¿éµÄºó°ë²¿·Ö, ÔÙ¶Á×îºóÒ»¸ö¿éµÄ¿ªÊ¼
-	   Èç¹ûÖĞ¼äÓĞÕû¸ö¿ç¿é, Ôò¶ÁÈ«²¿¿éÊı¾İ */
+	/* æœ¬æ¬¡è¯»è·¨äº†å—, å…ˆè¯»ç¬¬ä¸€ä¸ªå—çš„ååŠéƒ¨åˆ†, å†è¯»æœ€åä¸€ä¸ªå—çš„å¼€å§‹
+	   å¦‚æœä¸­é—´æœ‰æ•´ä¸ªè·¨å—, åˆ™è¯»å…¨éƒ¨å—æ•°æ® */
 	else if ((part_end - part_start) >= 1)
 	{
 		int read_size = 0;
@@ -310,7 +310,7 @@ int OssGroupObject::read_data(off_t offset, size_t size, char *buf)
 			return data_offset;			
 		}
 
-		/* Èç¹ûÖĞ¼äÓĞ¿é, Ã¿´Î¶ÁÕû¸ö¿é */
+		/* å¦‚æœä¸­é—´æœ‰å—, æ¯æ¬¡è¯»æ•´ä¸ªå— */
 		for (size_t part_index = part_start+1; part_index < part_end; part_index++)
 		{
 			obj = get_subobj_by_part_num(part_index);
@@ -329,7 +329,7 @@ int OssGroupObject::read_data(off_t offset, size_t size, char *buf)
 		}
 
 
-		/* ¶Á×îºóÒ»¸ö¿é */
+		/* è¯»æœ€åä¸€ä¸ªå— */
 		obj = get_subobj_by_part_num(part_end);
 		if (obj != NULL)
 		{			
@@ -354,7 +354,7 @@ int OssGroupObject::sync(bool dc)
 {
 	log_debug("object size:%zd, file size: %Zd", m_sub_objects.size(), m_stats->size);
 
-	//ÎÄ¼ş´óĞ¡Îª0, ÊôÓÚµÚÒ»´Î´´½¨µÄ³¡¾°
+	//æ–‡ä»¶å¤§å°ä¸º0, å±äºç¬¬ä¸€æ¬¡åˆ›å»ºçš„åœºæ™¯
 	if (m_stats->size == 0)
 	{
 		log_debug("file size 0, try put_object_data");
@@ -363,24 +363,24 @@ int OssGroupObject::sync(bool dc)
 	    m_fs->get_oss()->put_object_data(AliConf::BUCKET.c_str(), get_path_name(), meta);
 					
 	}
-	//Ö»ÓĞÒ»¸ö¿é, ÇÒĞ¡ÓÚBLOCK_SIZE
+	//åªæœ‰ä¸€ä¸ªå—, ä¸”å°äºBLOCK_SIZE
 	else if (m_stats->size < AliConf::BLOCK_SIZE)
 	{
-		//´Ë´¦µÄtrueÖ¸Ê¾syncµ÷ÓÃput_object½Ó¿ÚÉÏ´«¶ÔÏó
+		//æ­¤å¤„çš„trueæŒ‡ç¤ºsyncè°ƒç”¨put_objectæ¥å£ä¸Šä¼ å¯¹è±¡
 		m_sub_objects[0]->sync(true);
 	}
 	else
 	{
-		//´óÓÚ»òµÈÓÚ1¸ö¿é, ±éÀúËùÓĞµÄ¿é, ½«ÄÇĞ©¹ı³ÌÖĞÎ´ready¿ésync
+		//å¤§äºæˆ–ç­‰äº1ä¸ªå—, éå†æ‰€æœ‰çš„å—, å°†é‚£äº›è¿‡ç¨‹ä¸­æœªreadyå—sync
 		for (size_t i = 0; i < m_sub_objects.size(); i++)
 		{	
-			//¶ÔÓÚ±»¸ÄĞ´¹ıµÄsubobject, ÇÒsubobjectĞ´µÄÊıÁ¿³Ì¶ÈÎªnot_ready, ĞèÒªÔÚ½áÊøÊ±Íê³Éupload part²Ù×÷
+			//å¯¹äºè¢«æ”¹å†™è¿‡çš„subobject, ä¸”subobjectå†™çš„æ•°é‡ç¨‹åº¦ä¸ºnot_ready, éœ€è¦åœ¨ç»“æŸæ—¶å®Œæˆupload partæ“ä½œ
 			if ((!m_sub_objects[i]->is_readonly()) && (!m_sub_objects[i]->is_write_ready()))
 			{
 				m_sub_objects[i]->smart_upload_part();
 			}
 
-			//¶ÔÓÚÖ»¶ÁµÄsubobject, cloudfsÖĞÄ£¿éµÄÄÚ´æÒÑ¾­ÊÍ·Å, µ«ÊÇĞèÒª²¹ÉÏupload_part_copy
+			//å¯¹äºåªè¯»çš„subobject, cloudfsä¸­æ¨¡å—çš„å†…å­˜å·²ç»é‡Šæ”¾, ä½†æ˜¯éœ€è¦è¡¥ä¸Šupload_part_copy
 			m_sub_objects[i]->on_fclose_check_block(m_readonly);
 		}
 	}
@@ -414,12 +414,12 @@ int OssGroupObject::release_subobject()
 		return 0;
 	}
 
-	//É¾³ı×Ó¶ÔÏó
+	//åˆ é™¤å­å¯¹è±¡
 	for (size_t i = 0; i < m_sub_objects.size(); i++) {
 		SAFE_DELETE(m_sub_objects[i]);
 	}
 
-	//Çå³ım_sub_objects vectorÖĞµÄÔªËØ
+	//æ¸…é™¤m_sub_objects vectorä¸­çš„å…ƒç´ 
 	m_sub_objects.clear();
 	return 0;
 }
@@ -430,7 +430,7 @@ int OssGroupObject::fclose(struct fuse_file_info *fi)
 	
 	pthread_mutex_lock(&m_open_mutex);
 	
-	//ÎÄ¼şÎªÖ»¶Á×´Ì¬
+	//æ–‡ä»¶ä¸ºåªè¯»çŠ¶æ€
 	if (m_readonly)
 	{
 		m_refcount--;
@@ -439,7 +439,7 @@ int OssGroupObject::fclose(struct fuse_file_info *fi)
 		return 0;
 	}
 
-	//ÎÄ¼ş±»ĞŞ¸Ä¹ı	
+	//æ–‡ä»¶è¢«ä¿®æ”¹è¿‡	
 	sync();
 	m_readonly = true;
 	pthread_mutex_unlock(&m_open_mutex);
@@ -483,7 +483,7 @@ int OssGroupObject::fclose(struct fuse_file_info *fi)
 				
 				log_error("totalpart:%d, subobjects:%d, fclose count: %d", totalPart, m_sub_objects.size(), (1000 - count));
 
-				//  Íê³É complete²Ù×÷
+				//  å®Œæˆ completeæ“ä½œ
 				string ret = m_fs->get_oss()->complete_multipart_upload(AliConf::BUCKET.c_str(), 
 										 			   			 		m_pathname,
 											 		   			 		m_uploadId.c_str());
@@ -513,7 +513,7 @@ int OssGroupObject::fclose(struct fuse_file_info *fi)
 		m_fs->get_oss()->abort_multipart_upload(AliConf::BUCKET.c_str(), m_pathname, m_uploadId.c_str());
 	}
 	
-	//´Ë´¦ĞèÒª¸üĞÂmeta_db
+	//æ­¤å¤„éœ€è¦æ›´æ–°meta_db
 	string tmpPath = get_path_name();
 	stFileMetaRecord tmpMeta;
 	tmpMeta.mode = m_stats->mode;
@@ -522,7 +522,7 @@ int OssGroupObject::fclose(struct fuse_file_info *fi)
 	cloudfs_sqlite_set_file_meta(tmpPath,
 								 &tmpMeta);	
 
-	//±£»¤m_refcount
+	//ä¿æŠ¤m_refcount
 	pthread_mutex_lock(&m_open_mutex);
 	m_refcount--;
 	OssObject::fclose(fi);
@@ -568,7 +568,7 @@ int OssGroupObject::multi_copy(const char *new_path_name)
 		UploadPartCopy *pNode = NULL;
 		for (i = 0; i < count; ++i)
 		{
-			//·ÖÅäpart copy½ÚµãÄÚ´æ
+			//åˆ†é…part copyèŠ‚ç‚¹å†…å­˜
 			pNode = new UploadPartCopy;
 
 			start_pos = i * AliConf::BLOCK_SIZE;
@@ -634,7 +634,7 @@ int OssGroupObject::multi_copy(const char *new_path_name)
 			
 			log_debug("totalpart: %d, subobjects: %d, loop_count: %d", totalPart, count, (1000-loop_count));
 	
-			//	Íê³É complete²Ù×÷
+			//	å®Œæˆ completeæ“ä½œ
 			string ret = m_fs->get_oss()->complete_multipart_upload(AliConf::BUCKET.c_str(), 
 																	new_path_name,
 																	uploadId.c_str());
@@ -660,13 +660,13 @@ int OssGroupObject::multi_copy(const char *new_path_name)
 
 int OssGroupObject::truncate(off_t new_size)
 {
-	//truncate ÓĞÁ½ÖÖÂß¼­: 
-	//µÚ1ÖÖ: Èç¹ûnewSize < µ±Ç°¶ÔÏóµÄsize, Ôò°ÑnewSize-sizeµÄÊı¾İÇåµô
-	//µÚ2ÖÖ: Èç¹ûnewSize > µ±Ç°¶ÔÏóµÄsize, ÔòÖÆÔì³öÀ´Ò»¸ö¿Õ¶´ÎÄ¼ş, ÔİÊ±ÏÈ²»Ö§³ÖµÚ2ÖÖ²Ù×÷	
+	//truncate æœ‰ä¸¤ç§é€»è¾‘: 
+	//ç¬¬1ç§: å¦‚æœnewSize < å½“å‰å¯¹è±¡çš„size, åˆ™æŠŠnewSize-sizeçš„æ•°æ®æ¸…æ‰
+	//ç¬¬2ç§: å¦‚æœnewSize > å½“å‰å¯¹è±¡çš„size, åˆ™åˆ¶é€ å‡ºæ¥ä¸€ä¸ªç©ºæ´æ–‡ä»¶, æš‚æ—¶å…ˆä¸æ”¯æŒç¬¬2ç§æ“ä½œ	
 
-	//cloudfsÊµÏÖµ±Ç°Ö»¿¼ÂÇÖ§³ÖopenºóÖ±½Óµ÷ÓÃtruncateµÄ³¡¾°, open/write/truncateµÄ³¡¾°ÎŞ·¨Ö§³Ö
-	//ÒòÎªÒ»µ©´æÔÚwrite²Ù×÷, Ôò¿ÉÄÜ´æÔÚ²¿·ÖpartÒÑ¾­Ìá½»¸øoss, ÕâÖÖ³¡¾°ĞèÒªÏÈabortµôÔ­À´µÄmulti-part-upload
-	//ÔÚtruncateÖĞÖØĞÂ½øĞĞÉÏ´«²Ù×÷
+	//cloudfså®ç°å½“å‰åªè€ƒè™‘æ”¯æŒopenåç›´æ¥è°ƒç”¨truncateçš„åœºæ™¯, open/write/truncateçš„åœºæ™¯æ— æ³•æ”¯æŒ
+	//å› ä¸ºä¸€æ—¦å­˜åœ¨writeæ“ä½œ, åˆ™å¯èƒ½å­˜åœ¨éƒ¨åˆ†partå·²ç»æäº¤ç»™oss, è¿™ç§åœºæ™¯éœ€è¦å…ˆabortæ‰åŸæ¥çš„multi-part-upload
+	//åœ¨truncateä¸­é‡æ–°è¿›è¡Œä¸Šä¼ æ“ä½œ
 
 	pthread_mutex_lock(&m_open_mutex);
 	if (new_size > (off_t)this->get_stats()->size)
@@ -676,14 +676,14 @@ int OssGroupObject::truncate(off_t new_size)
 		return -1;
 	}
 
-	//truncate²Ù×÷Î´¸Ä±äÎÄ¼ş´óĞ¡, Ö±½Ó·µ»Ø
+	//truncateæ“ä½œæœªæ”¹å˜æ–‡ä»¶å¤§å°, ç›´æ¥è¿”å›
 	if (new_size == (off_t)this->get_stats()->size)
 	{
 		pthread_mutex_unlock(&m_open_mutex);
 		return 0;
 	}
 
-	// ¼ÆËãnew_sizeĞèÒªµÄsub_objectµÄÊıÁ¿
+	// è®¡ç®—new_sizeéœ€è¦çš„sub_objectçš„æ•°é‡
 	unsigned int part_num = new_size / AliConf::BLOCK_SIZE;
 	unsigned int last_part_size = new_size % AliConf::BLOCK_SIZE;
 
@@ -696,18 +696,18 @@ int OssGroupObject::truncate(off_t new_size)
 	unsigned int origin_size = (unsigned int)m_sub_objects.size();
 	for (unsigned int i = part_num; i < origin_size; i++)
 	{
-		//É¾³ıÊÍ·Å¶ÔÓ¦µÄsub_object¶ÔÏó	
+		//åˆ é™¤é‡Šæ”¾å¯¹åº”çš„sub_objectå¯¹è±¡	
 		SAFE_DELETE(m_sub_objects[i]);
 	}
 
-	//Ñ­»·É¾³ım_sub_objectsµÄÔªËØ, ÒòÎªÎÒÃÇÒª±£ÁôµÄÊÇÇ°ÃæµÄpart_num¸öÔªËØ, Òò´Ë
-	//½«part_numÔªËØºóÃæµÄÔªËØÈ«²¿pop_back¿ÉÒÔ´ïµ½É¾³ıµÄÄ¿µÄ
+	//å¾ªç¯åˆ é™¤m_sub_objectsçš„å…ƒç´ , å› ä¸ºæˆ‘ä»¬è¦ä¿ç•™çš„æ˜¯å‰é¢çš„part_numä¸ªå…ƒç´ , å› æ­¤
+	//å°†part_numå…ƒç´ åé¢çš„å…ƒç´ å…¨éƒ¨pop_backå¯ä»¥è¾¾åˆ°åˆ é™¤çš„ç›®çš„
 	for (unsigned int i = 0; i < (origin_size - part_num); i++)
 	{	
 		m_sub_objects.pop_back();
 	}
 
-	//ÖØĞÂÉèÖÃGroupObjectµÄsize
+	//é‡æ–°è®¾ç½®GroupObjectçš„size
 	OssStats *pTmpStat = const_cast<OssStats *>(this->get_stats());
 	pTmpStat->set_size((size_t)new_size);
 
@@ -761,7 +761,7 @@ bool OssGroupObject::is_open()
 		   res = true;
 	   }
 	   else
-	   {//m_refcount < 0 Òì³£, ´òÓ¡ÈÕÖ¾×÷Îª²Î¿¼, ·µ»Øfalse
+	   {//m_refcount < 0 å¼‚å¸¸, æ‰“å°æ—¥å¿—ä½œä¸ºå‚è€ƒ, è¿”å›false
 	       	res = false;
 	       	log_error("file[%s] m_refcount abnoral %d", m_pathname, m_refcount);
 	   }

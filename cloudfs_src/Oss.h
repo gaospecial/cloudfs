@@ -49,25 +49,25 @@ public:
 	int put_object_meta(const char *bucket, const char *name,
 			OSS_FILE_META & meta);
 
-	//³É¹¦·µ»ØÕı³£uploadId,Ê§°Ü·µ»Ø¿Õ("")uploadId
+	//æˆåŠŸè¿”å›æ­£å¸¸uploadId,å¤±è´¥è¿”å›ç©º("")uploadId
 	string initiate_multipart_upload(const char *bucket, const char *name);
 
-	//³É¹¦·µ»ØÕı³£etag,Ê§°Ü·µ»Ø¿Õ("")etag
+	//æˆåŠŸè¿”å›æ­£å¸¸etag,å¤±è´¥è¿”å›ç©º("")etag
 	string upload_part(const char *bucket, const char *name, const char *upload_id, 
 		int part_num, char *buf, size_t data_len);
 
-	//³É¹¦·µ»ØÕı³£etag,Ê§°Ü·µ»Ø¿Õ("")etag
-	//Èç¹ûend_posÎª0ÔòcopyÕû¸öobjectÎªÒ»¸öpart
+	//æˆåŠŸè¿”å›æ­£å¸¸etag,å¤±è´¥è¿”å›ç©º("")etag
+	//å¦‚æœend_posä¸º0åˆ™copyæ•´ä¸ªobjectä¸ºä¸€ä¸ªpart
 	string upload_part_copy(const char *bucket, const char *name, const char* s_name, 
 							const char *upload_id, int part_num, size_t start_pos, size_t end_pos);
 
-	//³É¹¦·µ»ØÕı³£etag,Ê§°Ü·µ»Ø¿Õ("")etag
+	//æˆåŠŸè¿”å›æ­£å¸¸etag,å¤±è´¥è¿”å›ç©º("")etag
 	string complete_multipart_upload(const char *bucket, const char *name, const char *upload_id);
 
-	//³É¹¦·µ»ØÕıÔÚmultiuploadµÄÈÎÎñ¸öÊı,uploadId±£´æÔÚupload_id_arrayÖĞ
+	//æˆåŠŸè¿”å›æ­£åœ¨multiuploadçš„ä»»åŠ¡ä¸ªæ•°,uploadIdä¿å­˜åœ¨upload_id_arrayä¸­
 	int list_multipart_upload(const char *bucket, const char *name, char *upload_id_array[]);
 
-	//³É¹¦·µ»ØpartµÄ¸öÊı,part_numºÍetag·Ö±ğ±£´æÔÚpart_num_arrayºÍpart_etagÖĞ
+	//æˆåŠŸè¿”å›partçš„ä¸ªæ•°,part_numå’Œetagåˆ†åˆ«ä¿å­˜åœ¨part_num_arrayå’Œpart_etagä¸­
 	int list_part(const char *bucket, const char *name, const char *upload_id, 
 				  map<int, string>& part_etag, map<int, long>& part_size);
 

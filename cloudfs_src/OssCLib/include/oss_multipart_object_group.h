@@ -28,80 +28,80 @@
  */
 
 /**
- * struct oss_multipart_object_group_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_multipart_object_group_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_multipart_object_group_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_multipart_object_group_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_multipart_object_group_s oss_multipart_object_group_t;
 
 /**
- * object groupÖĞÃ¿¸öobjectµÄĞÅÏ¢
+ * object groupä¸­æ¯ä¸ªobjectçš„ä¿¡æ¯
  */
 struct oss_multipart_object_group_s {
-	char *etag;              /**< ObjectµÄetag */
-	char *part_name;         /**< ObjectµÄname */
-	int part_number;         /**< ObjectµÄnumber */
-	unsigned int part_size;        /**< ObjectµÄsize */
+	char *etag;              /**< Objectçš„etag */
+	char *part_name;         /**< Objectçš„name */
+	int part_number;         /**< Objectçš„number */
+	unsigned int part_size;        /**< Objectçš„size */
 
 	/**
-	 * »ñµÃObjectµÄetag
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄetag
+	 * è·å¾—Objectçš„etag
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„etag
 	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_multipart_object_group_t *group);
 
 	/**
-	 * ÉèÖÃObjectµÄetag
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @param etag [in] ObjectµÄetag
+	 * è®¾ç½®Objectçš„etag
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] Objectçš„etag
 	 * @retval void
 	 */
 	void (*set_etag)(oss_multipart_object_group_t *group, const char *etag);
 
 	/**
-	 * »ñµÃObjectµÄname
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄname
+	 * è·å¾—Objectçš„name
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„name
 	 * @retval const char *
 	 */
 	const char * (*get_part_name)(oss_multipart_object_group_t *group);
 
 	/**
-	 * ÉèÖÃObjectµÄname
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @param part_name [in] ObjectµÄname
+	 * è®¾ç½®Objectçš„name
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @param part_name [in] Objectçš„name
 	 * @retval void
 	 */
 	void (*set_part_name)(oss_multipart_object_group_t *group, const char *part_name);
 
 	/**
-	 * »ñµÃObjectµÄnumber
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄnumber
+	 * è·å¾—Objectçš„number
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„number
 	 * @retval int
 	 */
 	int (*get_part_number)(oss_multipart_object_group_t *group);
 
 	/**
-	 * ÉèÖÃObjectµÄnumber
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @param part_number [in] ObjectµÄnumber
+	 * è®¾ç½®Objectçš„number
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @param part_number [in] Objectçš„number
 	 * @retval void
 	 */
 	void (*set_part_number)(oss_multipart_object_group_t *group, int part_number);
 
 	/**
-	 * »ñµÃObjectµÄsize
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄsize
+	 * è·å¾—Objectçš„size
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„size
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_part_size)(oss_multipart_object_group_t *group);
 
 	/**
-	 * ÉèÖÃObjectµÄsize
-	 * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
-	 * @param part_size [in] ObjectµÄsize
+	 * è®¾ç½®Objectçš„size
+	 * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+	 * @param part_size [in] Objectçš„size
 	 * @retval void
 	 */
 	void (*set_part_size)(oss_multipart_object_group_t *group, unsigned int part_size);
@@ -109,19 +109,19 @@ struct oss_multipart_object_group_s {
 };
 
 /**
- * oss_multipart_object_group_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_multipart_object_group_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_multipart_object_group_t * multipart_object_group_initialize();
 
 /**
- * oss_multipart_object_group_tÎö¹¹º¯Êı
- * @param group [in] ±êÊ¶Ò»¸öoss_multipart_object_group_t½á¹¹Ö¸Õë
+ * oss_multipart_object_group_tææ„å‡½æ•°
+ * @param group [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_object_group_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre group ±ØĞëÊ¹ÓÃmultipart_object_group_initializeµÄ·µ»ØÖµ
+ * @pre group å¿…é¡»ä½¿ç”¨multipart_object_group_initializeçš„è¿”å›å€¼
  */
 extern void multipart_object_group_finalize(oss_multipart_object_group_t *group);
 /**@}*/

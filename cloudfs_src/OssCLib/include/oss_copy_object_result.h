@@ -30,46 +30,46 @@
  */
 
 /**
- * struct oss_copy_object_result_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_copy_object_result_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_copy_object_result_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_copy_object_result_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_copy_object_result_s oss_copy_object_result_t;
 
 /**
- * ¿½±´Ò»¸öÔÚOSSÉÏÒÑ¾­´æÔÚµÄObject³ÉÁíÍâÒ»¸öObjectµÄÇëÇó½á¹û
+ * æ‹·è´ä¸€ä¸ªåœ¨OSSä¸Šå·²ç»å­˜åœ¨çš„Objectæˆå¦å¤–ä¸€ä¸ªObjectçš„è¯·æ±‚ç»“æœ
  */
 struct oss_copy_object_result_s {
-	char *etag;       /**< ĞÂObjectµÄETagÖµ */
-	char *last_modified;   /**< ĞÂObjectµÄ×îºóĞŞ¸ÄÊ±¼ä */
+	char *etag;       /**< æ–°Objectçš„ETagå€¼ */
+	char *last_modified;   /**< æ–°Objectçš„æœ€åä¿®æ”¹æ—¶é—´ */
 
 	/**
-	 * »ñµÃĞÂObjectµÄETagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_copy_object_result_tµÄ½á¹¹Ö¸Õë
-	 * @return ĞÂObjectµÄETagÖµ
+	 * è·å¾—æ–°Objectçš„ETagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_result_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return æ–°Objectçš„ETagå€¼
 	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_copy_object_result_t *result);
 
 	/**
-	 * ÉèÖÃĞÂObjectµÄETagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_copy_object_result_tµÄ½á¹¹Ö¸Õë
-	 * @param etag [in] ĞÂObjectµÄETagÖµ
+	 * è®¾ç½®æ–°Objectçš„ETagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_result_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] æ–°Objectçš„ETagå€¼
 	 * @retval void
 	 */
 	void (*set_etag)(oss_copy_object_result_t *result, const char * etag);
 
 	/**
-	 * »ñµÃĞÂObjectµÄ×îºóĞŞ¸ÄÊ±¼ä
-	 * @param result [in] ±êÊ¶Ò»¸öoss_copy_object_result_tµÄ½á¹¹Ö¸Õë
-	 * @return ĞÂObjectµÄ×îºóĞŞ¸ÄÊ±¼ä
+	 * è·å¾—æ–°Objectçš„æœ€åä¿®æ”¹æ—¶é—´
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_result_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @return æ–°Objectçš„æœ€åä¿®æ”¹æ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_last_modified)(oss_copy_object_result_t *result);
 
 	/**
-	 * ÉèÖÃĞÂObjectµÄ×îºóĞŞ¸ÄÊ±¼ä
-	 * @param result [in] ±êÊ¶Ò»¸öoss_copy_object_result_tµÄ½á¹¹Ö¸Õë
-	 * @param last_modified [in] ĞÂObjectµÄ×îºóĞŞ¸ÄÊ±¼ä
+	 * è®¾ç½®æ–°Objectçš„æœ€åä¿®æ”¹æ—¶é—´
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_result_tçš„ç»“æ„æŒ‡é’ˆ
+	 * @param last_modified [in] æ–°Objectçš„æœ€åä¿®æ”¹æ—¶é—´
 	 * @retval void
 	 */
 	void (*set_last_modified)(oss_copy_object_result_t *result, const char *last_modified);
@@ -77,20 +77,20 @@ struct oss_copy_object_result_s {
 };
 
 /**
- * oss_copy_object_result_t ¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_copy_object_result_tµÄ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_copy_object_result_t æ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_copy_object_result_tçš„ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_copy_object_result_t *
 copy_object_result_initialize(void);
 
 /**
- * oss_copy_object_result_t Îö¹¹º¯Êı
- * @param result [in] ±êÊ¶Ò»¸öoss_copy_object_result_tµÄ½á¹¹Ö¸Õë
+ * oss_copy_object_result_t ææ„å‡½æ•°
+ * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_copy_object_result_tçš„ç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre result ±ØĞëÊ¹ÓÃcopy_object_result_initializeµÄ·µ»ØÖµ
+ * @pre result å¿…é¡»ä½¿ç”¨copy_object_result_initializeçš„è¿”å›å€¼
  */
 extern void 
 copy_object_result_finalize(oss_copy_object_result_t *result);

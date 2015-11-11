@@ -30,47 +30,47 @@
  */
 
 /**
- * struct oss_grant_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_grant_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_grant_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_grant_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_grant_s oss_grant_t;
 
 /**
- * ·ÃÎÊ¿ØÖÆµÄÊÚÈ¨ĞÅÏ¢
+ * è®¿é—®æ§åˆ¶çš„æˆæƒä¿¡æ¯
  */
 struct oss_grant_s {
-	char *identifier;            /**< ±»ÊÚÈ¨ÕßĞÅÏ¢ */
-	char *permission;            /**< ±»ÊÚÈ¨ÕßÈ¨ÏŞ */
-	struct oss_grant_s *next;    /**< Á´±íÖ¸Õë    */
+	char *identifier;            /**< è¢«æˆæƒè€…ä¿¡æ¯ */
+	char *permission;            /**< è¢«æˆæƒè€…æƒé™ */
+	struct oss_grant_s *next;    /**< é“¾è¡¨æŒ‡é’ˆ    */
 
 	/**
-	 * »ñµÃ±»ÊÚÈ¨ÕßĞÅÏ¢
-	 * @param grant [in] ±êÊ¶Ò»¸öoss_grant_t½á¹¹Ö¸Õë
-	 * @return ±»ÊÚÈ¨ÕßĞÅÏ¢
+	 * è·å¾—è¢«æˆæƒè€…ä¿¡æ¯
+	 * @param grant [in] æ ‡è¯†ä¸€ä¸ªoss_grant_tç»“æ„æŒ‡é’ˆ
+	 * @return è¢«æˆæƒè€…ä¿¡æ¯
 	 * @retval const char *
 	 */
 	const char * (*get_identifier)(oss_grant_t *grant);
 
 	/**
-	 * ÉèÖÃ±»ÊÚÈ¨ÕßĞÅÏ¢
-	 * @param grant [in] ±êÊ¶Ò»¸öoss_grant_t½á¹¹Ö¸Õë
-	 * @param identifier [in] ±»ÊÚÈ¨ÕßĞÅÏ¢
+	 * è®¾ç½®è¢«æˆæƒè€…ä¿¡æ¯
+	 * @param grant [in] æ ‡è¯†ä¸€ä¸ªoss_grant_tç»“æ„æŒ‡é’ˆ
+	 * @param identifier [in] è¢«æˆæƒè€…ä¿¡æ¯
 	 * @retval void
 	 */
 	void (*set_identifier)(oss_grant_t *grant, const char * identifier);
 
 	/**
-	 * »ñµÃ±»ÊÚÈ¨ÕßÈ¨ÏŞ
-	 * @param grant [in] ±êÊ¶Ò»¸öoss_grant_t½á¹¹Ö¸Õë
-	 * @return ±»ÊÚÈ¨ÕßÈ¨ÏŞ
+	 * è·å¾—è¢«æˆæƒè€…æƒé™
+	 * @param grant [in] æ ‡è¯†ä¸€ä¸ªoss_grant_tç»“æ„æŒ‡é’ˆ
+	 * @return è¢«æˆæƒè€…æƒé™
 	 * @retval const char *
 	 */
 	const char * (*get_permission)(oss_grant_t *grant);
 
 	/**
-	 * ÉèÖÃ±»ÊÚÈ¨ÕßÈ¨ÏŞ
-	 * @param grant [in] ±êÊ¶Ò»¸öoss_grant_t½á¹¹Ö¸Õë
-	 * @param permission [in] ±»ÊÚÈ¨ÕßÈ¨ÏŞ
+	 * è®¾ç½®è¢«æˆæƒè€…æƒé™
+	 * @param grant [in] æ ‡è¯†ä¸€ä¸ªoss_grant_tç»“æ„æŒ‡é’ˆ
+	 * @param permission [in] è¢«æˆæƒè€…æƒé™
 	 * @retval void
 	 */
 	void (*set_permission)(oss_grant_t *grant, const char *permission);
@@ -78,22 +78,22 @@ struct oss_grant_s {
 };
 
 /**
- * oss_grant_t¹¹Ôìº¯Êı
- * @param identifier [in] ±»ÊÚÈ¨ÕßĞÅÏ¢
- * @param permission [in] ±»ÊÚÈ¨ÕßÈ¨ÏŞ
- * @return ·µ»ØÒ»¸öoss_grant_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_grant_tæ„é€ å‡½æ•°
+ * @param identifier [in] è¢«æˆæƒè€…ä¿¡æ¯
+ * @param permission [in] è¢«æˆæƒè€…æƒé™
+ * @return è¿”å›ä¸€ä¸ªoss_grant_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_grant_t *
 grant_initialize(const char *identifier, const char *permission);
 
 /**
- * oss_grant_tÎö¹¹º¯Êı
- * @param grant [in] ±êÊ¶Ò»¸öoss_grant_t½á¹¹Ö¸Õë
+ * oss_grant_tææ„å‡½æ•°
+ * @param grant [in] æ ‡è¯†ä¸€ä¸ªoss_grant_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre grant ±ØĞëÊ¹ÓÃgrant_initializeµÄ·µ»ØÖµ
+ * @pre grant å¿…é¡»ä½¿ç”¨grant_initializeçš„è¿”å›å€¼
  */
 extern void 
 grant_finalize(oss_grant_t *grant);

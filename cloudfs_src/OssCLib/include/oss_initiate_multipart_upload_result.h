@@ -31,64 +31,64 @@
  */
 
 /**
- * struct oss_initiate_multipart_upload_result_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_initiate_multipart_upload_result_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_initiate_multipart_upload_result_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_initiate_multipart_upload_result_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_initiate_multipart_upload_result_s oss_initiate_multipart_upload_result_t;
 
 /**
- * °üº¬³õÊ¼»¯Ò»¸öMultipartÉÏ´«ÊÂ¼şµÄ½á¹û²ÎÊı
+ * åŒ…å«åˆå§‹åŒ–ä¸€ä¸ªMultipartä¸Šä¼ äº‹ä»¶çš„ç»“æœå‚æ•°
  */
 struct oss_initiate_multipart_upload_result_s {
-	char *bucket_name;        /**< BucketÃû³Æ */
-	char *key;                /**< ObjectÃû³Æ */
-	char *upload_id;          /** ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID */
+	char *bucket_name;        /**< Bucketåç§° */
+	char *key;                /**< Objectåç§° */
+	char *upload_id;          /** æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_initiate_multipart_upload_result_t *result);
 
 	/**
-	 * »ñµÃObjectÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
-	 * @return ObjectÃû³Æ
+	 * è·å¾—Objectåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_initiate_multipart_upload_result_t *result);
 
 	/**
-	 * »ñµÃUpload ID
-	 * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
+	 * è·å¾—Upload ID
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
 	 * @return Upload ID
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id)(oss_initiate_multipart_upload_result_t *result);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_initiate_multipart_upload_result_t *result,
 			const char *bucket_name);
 
 	/**
-	 * ÉèÖÃObjectÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectÃû³Æ
+	 * è®¾ç½®Objectåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectåç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_initiate_multipart_upload_result_t *result,
 			const char *key);
 
 	/**
-	 * ÉèÖÃUpload ID
-	 * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
+	 * è®¾ç½®Upload ID
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
 	 * @param upload_id [in] Upload ID
 	 * @retval void
 	 */
@@ -97,20 +97,20 @@ struct oss_initiate_multipart_upload_result_s {
 };
 
 /**
- * oss_initiate_multipart_upload_result_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_initiate_multipart_upload_result_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_initiate_multipart_upload_result_t *
 initiate_multipart_upload_result_initialize(void);
 
 /**
- * oss_initiate_multipart_upload_result_tÎö¹¹º¯Êı
- * @param result [in] ±êÊ¶Ò»¸öoss_initiate_multipart_upload_result_t½á¹¹Ö¸Õë
+ * oss_initiate_multipart_upload_result_tææ„å‡½æ•°
+ * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_initiate_multipart_upload_result_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre result ±ØĞëÊ¹ÓÃinitiate_multipart_upload_result_initializeµÄ·µ»ØÖµ
+ * @pre result å¿…é¡»ä½¿ç”¨initiate_multipart_upload_result_initializeçš„è¿”å›å€¼
  */
 extern void
 initiate_multipart_upload_result_finalize(

@@ -10,12 +10,12 @@
  * =============================================================================
  */
 
- /* ÄÚ²¿Ê¹ÓÃµÄÍ·ÎÄ¼ş£¬ÓÃ»§¿ª·¢Ó¦°üº¬<client.h> */
+ /* å†…éƒ¨ä½¿ç”¨çš„å¤´æ–‡ä»¶ï¼Œç”¨æˆ·å¼€å‘åº”åŒ…å«<client.h> */
 #ifndef _OSS_ACCESS_CONTROL_LIST_H
 # error Never include <oss_access_control_list.h> directly, use <client.h> instead.
 #endif
 
-/* Í·ÎÄ¼ş±£»¤ */
+/* å¤´æ–‡ä»¶ä¿æŠ¤ */
 #ifndef OSS_ACCESS_CONTROL_LIST_H
 #define OSS_ACCESS_CONTROL_LIST_H
 
@@ -38,53 +38,53 @@
  */
  
 /** 
- *struct oss_access_control_list_s ÄÚ²¿Ê¹ÓÃ \n
- *oss_access_control_list_t ¿ª·¢ÕßÊ¹ÓÃ
+ *struct oss_access_control_list_s å†…éƒ¨ä½¿ç”¨ \n
+ *oss_access_control_list_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_access_control_list_s oss_access_control_list_t;
 
 /**
- * ±íÊ¾OSSµÄ·ÃÎÊ¿ØÖÆÁĞ±í£¨Access Control List, ACL),
- * °üº¬ÁËÒ»×éÎªÖ¸¶¨±»ÊÚÈ¨Õß(Grantee)·ÖÅäÌØ¶¨È¨ÏŞ(Permission)µÄ¼¯ºÏ
+ * è¡¨ç¤ºOSSçš„è®¿é—®æ§åˆ¶åˆ—è¡¨ï¼ˆAccess Control List, ACL),
+ * åŒ…å«äº†ä¸€ç»„ä¸ºæŒ‡å®šè¢«æˆæƒè€…(Grantee)åˆ†é…ç‰¹å®šæƒé™(Permission)çš„é›†åˆ
  */
 struct oss_access_control_list_s {
-	oss_owner_t *owner;     /**< Bucket ËùÓĞÕß*/
+	oss_owner_t *owner;     /**< Bucket æ‰€æœ‰è€…*/
 	//oss_grant_t *grants;
 	//int grant_number_count;
-	char *grant;            /**< ÊÚÈ¨ĞÅÏ¢*/
+	char *grant;            /**< æˆæƒä¿¡æ¯*/
 
 	/**
-	 * ·µ»ØËùÓĞÕß Owner
-	 * @param acl [in] ±êÊ¶Ò»¸öoss_access_control_list_t Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
-	 * @return ·µ»ØÒ»¸öoss_owner_t½á¹¹Ö¸Õë
+	 * è¿”å›æ‰€æœ‰è€… Owner
+	 * @param acl [in] æ ‡è¯†ä¸€ä¸ªoss_access_control_list_t æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
+	 * @return è¿”å›ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
 	 */
 	oss_owner_t * (*get_owner)(oss_access_control_list_t 
 	        *acl);
 
 	/**
-	 * ÉèÖÃËùÓĞÕßOwner
-	 * @param acl [in] ±êÊ¶Ò»¸öoss_access_control_list_t Ö¸Õë
-	 * @param owner [in] ËùÓĞÕßOwner½á¹¹
+	 * è®¾ç½®æ‰€æœ‰è€…Owner
+	 * @param acl [in] æ ‡è¯†ä¸€ä¸ªoss_access_control_list_t æŒ‡é’ˆ
+	 * @param owner [in] æ‰€æœ‰è€…Ownerç»“æ„
 	 * @retval void
 	 */
 	void (*set_owner)(oss_access_control_list_t *acl,
 	        oss_owner_t * owner);
 
 	/**
-	 * ·µ»Ø¸ÃAccessControlListÖĞ°üº¬µÄËùÓĞÊÚÈ¨ĞÅÏ¢Grant
-	 * @param acl [in] ±êÊ¶Ò»¸öoss_access_control_list_t Ö¸Õë
+	 * è¿”å›è¯¥AccessControlListä¸­åŒ…å«çš„æ‰€æœ‰æˆæƒä¿¡æ¯Grant
+	 * @param acl [in] æ ‡è¯†ä¸€ä¸ªoss_access_control_list_t æŒ‡é’ˆ
 	 * @retval const char *
-	 * @return AccessControlListÖĞ°üº¬µÄËùÓĞÊÚÈ¨ĞÅÏ¢Grant
+	 * @return AccessControlListä¸­åŒ…å«çš„æ‰€æœ‰æˆæƒä¿¡æ¯Grant
 	 */
 	const char * (*get_grant)(oss_access_control_list_t 
 	        *acl);
 
 	/**
-	 * ÉèÖÃËùÓĞÊÚÈ¨ĞÅÏ¢Grant
-	 * @param acl [in] ±êÊ¶Ò»¸öoss_access_control_list_t Ö¸Õë
-	 * @param grant [in] ËùÓĞÊÚÈ¨ĞÅÏ¢ÄÚÈİ
+	 * è®¾ç½®æ‰€æœ‰æˆæƒä¿¡æ¯Grant
+	 * @param acl [in] æ ‡è¯†ä¸€ä¸ªoss_access_control_list_t æŒ‡é’ˆ
+	 * @param grant [in] æ‰€æœ‰æˆæƒä¿¡æ¯å†…å®¹
 	 * @retval void
 	 */
 	void (*set_grant)(oss_access_control_list_t *acl,
@@ -99,11 +99,11 @@ struct oss_access_control_list_s {
 };
 
 /**
- * oss_access_control_list_t ¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_access_control_list_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_access_control_list_t æ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_access_control_list_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  * @code
  * oss_owner_t *owner = owner_initialize();
  * oss_access_control_list_t * acl = access_control_list_initialize();
@@ -114,10 +114,10 @@ extern oss_access_control_list_t *
 access_control_list_initialize(void);
 
 /**
- * oss_access_control_list_t Îö¹¹º¯Êı
- * @param acl [in] ±êÊ¶Ò»¸öoss_access_control_list_tµÄ½á¹¹Ö¸Õë
+ * oss_access_control_list_t ææ„å‡½æ•°
+ * @param acl [in] æ ‡è¯†ä¸€ä¸ªoss_access_control_list_tçš„ç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre acl ±ØĞëÊ¹ÓÃaccess_control_list_initializeµÄ·µ»ØÖµ
+ * @pre acl å¿…é¡»ä½¿ç”¨access_control_list_initializeçš„è¿”å›å€¼
  */
 extern void 
 access_control_list_finalize(oss_access_control_list_t *acl);
