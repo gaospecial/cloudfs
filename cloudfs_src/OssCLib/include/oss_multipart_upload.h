@@ -29,100 +29,100 @@
  */
 
 /**
- * struct oss_multipart_upload_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_multipart_upload_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_multipart_upload_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_multipart_upload_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_multipart_upload_s oss_multipart_upload_t;
 
 /**
- * multipart uploadµÄĞÅÏ¢
+ * multipart uploadçš„ä¿¡æ¯
  */
 struct oss_multipart_upload_s {
-	char *initiated;           /**< ³õÊ¼»¯µÄÊ±¼ä */
-	char *storage_class;       /**< ObjectµÄÀàĞÍ */
+	char *initiated;           /**< åˆå§‹åŒ–çš„æ—¶é—´ */
+	char *storage_class;       /**< Objectçš„ç±»å‹ */
 	char *upload_id;           /**< Upload ID */
-	char *key;                 /**< ObjectÃû³Æ */
+	char *key;                 /**< Objectåç§° */
 
 	/**
-	 * »ñµÃ³õÊ¼»¯µÄÊ±¼ä
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @return ³õÊ¼»¯µÄÊ±¼ä
+	 * è·å¾—åˆå§‹åŒ–çš„æ—¶é—´
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @return åˆå§‹åŒ–çš„æ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_initiated)(oss_multipart_upload_t *uploads);
 
 	/**
-	 * ÉèÖÃ³õÊ¼»¯µÄÊ±¼ä
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @param initiated [in] ³õÊ¼»¯µÄÊ±¼ä
+	 * è®¾ç½®åˆå§‹åŒ–çš„æ—¶é—´
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @param initiated [in] åˆå§‹åŒ–çš„æ—¶é—´
 	 * @retval void
 	 */
 	void (*set_initiated)(oss_multipart_upload_t *uploads, const char *initiated);
 
 	/**
-	 * »ñµÃObjectµÄÀàĞÍ
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄÀàĞÍ
+	 * è·å¾—Objectçš„ç±»å‹
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„ç±»å‹
 	 * @retval const char *
 	 */
 	const char * (*get_storage_class)(oss_multipart_upload_t *uploads);
 
 	/**
-	 * ÉèÖÃObjectµÄÀàĞÍ
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @param storage_class [in] ObjectµÄÀàĞÍ
+	 * è®¾ç½®Objectçš„ç±»å‹
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @param storage_class [in] Objectçš„ç±»å‹
 	 * @retval void
 	 */
 	void (*set_storage_class)(oss_multipart_upload_t *uploads, const char *storage_class);
 
 	/**
-	 * »ñµÃUpload ID
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
+	 * è·å¾—Upload ID
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
 	 * @return Upload ID
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id)(oss_multipart_upload_t *uploads);
 
 	/**
-	 * ÉèÖÃUpload ID
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
+	 * è®¾ç½®Upload ID
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
 	 * @param upload_id [in]
 	 * @retval void
 	 */
 	void (*set_upload_id)(oss_multipart_upload_t *uploads, const char *upload_id);
 
 	/**
-	 * »ñµÃObjectÃû³Æ
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @return ObjectÃû³Æ
+	 * è·å¾—Objectåç§°
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_multipart_upload_t *uploads);
 
 	/**
-	 * ÉèÖÃObjectÃû³Æ
-	 * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
-	 * @param key ObjectÃû³Æ
+	 * è®¾ç½®Objectåç§°
+	 * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+	 * @param key Objectåç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_multipart_upload_t *uploads, const char *key);
 };
 
 /**
- * oss_multipart_upload_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_multipart_upload_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_multipart_upload_t *
 multipart_upload_initialize(void);
 
 /**
- * oss_multipart_upload_tÎö¹¹º¯Êı
- * @param uploads [in] ±êÊ¶Ò»¸öoss_multipart_upload_t½á¹¹Ö¸Õë
+ * oss_multipart_upload_tææ„å‡½æ•°
+ * @param uploads [in] æ ‡è¯†ä¸€ä¸ªoss_multipart_upload_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre uploads ±ØĞëÊ¹ÓÃmultipart_upload_initializeµÄ·µ»ØÖµ
+ * @pre uploads å¿…é¡»ä½¿ç”¨multipart_upload_initializeçš„è¿”å›å€¼
  */
 extern void 
 multipart_upload_finalize(oss_multipart_upload_t *uploads);

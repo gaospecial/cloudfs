@@ -64,7 +64,7 @@ oss_result_t list_bucket (
     string method = "GET";
     map<string, string> headers;
 
-    //×¢Òâ: sourceÄÚÈİÖ»ĞèÒªÊÇutf-8±àÂë¼´¿É, ²»ĞèÒª½øĞĞhttp url ×ªÒå²Ù×÷
+    //æ³¨æ„: sourceå†…å®¹åªéœ€è¦æ˜¯utf-8ç¼–ç å³å¯, ä¸éœ€è¦è¿›è¡Œhttp url è½¬ä¹‰æ“ä½œ
     string source = "/";
     auto_curl_slist curl_headers;
     curl_headers.append("Date: " + date_str);
@@ -121,7 +121,7 @@ oss_result_t list_object (
     string method = "GET";
     map<string, string> headers;
 
-    //×¢Òâ: sourceÄÚÈİÖ»ĞèÒªÊÇutf-8±àÂë¼´¿É, ²»ĞèÒª½øĞĞhttp url ×ªÒå²Ù×÷
+    //æ³¨æ„: sourceå†…å®¹åªéœ€è¦æ˜¯utf-8ç¼–ç å³å¯, ä¸éœ€è¦è¿›è¡Œhttp url è½¬ä¹‰æ“ä½œ
     string source = "/" + bucket_name + "/" ;
     string next_marker = "";
     oss_result_t xml_parse_ret;
@@ -183,7 +183,7 @@ oss_result_t list_object (
         destroy_curl_handle(curl);
         if (result == 0) 
         {   
-        	//´Ë´¦²»ÄÜÊ¹ÓÃlog_debugÀ´´òÓ¡body.text, ÒòÎªÕâ²¿·ÖÖ÷ÒªÊÇXML×Ö·û´®, ³¬¹ıÁËlog_debugÄ¿Ç°µÄ¼ÇÂ¼ÄÜÁ¦
+        	//æ­¤å¤„ä¸èƒ½ä½¿ç”¨log_debugæ¥æ‰“å°body.text, å› ä¸ºè¿™éƒ¨åˆ†ä¸»è¦æ˜¯XMLå­—ç¬¦ä¸², è¶…è¿‡äº†log_debugç›®å‰çš„è®°å½•èƒ½åŠ›
             //log_debug("body text is %s\n", body.text);
 		}
         else
@@ -228,7 +228,7 @@ oss_result_t put_object (
     string url = address.hostname;
     string method = "PUT";
     map<string, string> headers;
-    //×¢Òâ: sourceÄÚÈİÖ»ĞèÒªÊÇutf-8±àÂë¼´¿É, ²»ĞèÒª½øĞĞhttp url ×ªÒå²Ù×÷
+    //æ³¨æ„: sourceå†…å®¹åªéœ€è¦æ˜¯utf-8ç¼–ç å³å¯, ä¸éœ€è¦è¿›è¡Œhttp url è½¬ä¹‰æ“ä½œ
     string source = "/" + bucket_name + "/" + object.name;
 
     oss_result_t ret_val = OSS_OK;
@@ -305,7 +305,7 @@ oss_result_t get_object (
     string method = "GET";
     map<string, string> headers;
 
-    //×¢Òâ: sourceÄÚÈİÖ»ĞèÒªÊÇutf-8±àÂë¼´¿É, ²»ĞèÒª½øĞĞhttp url ×ªÒå²Ù×÷
+    //æ³¨æ„: sourceå†…å®¹åªéœ€è¦æ˜¯utf-8ç¼–ç å³å¯, ä¸éœ€è¦è¿›è¡Œhttp url è½¬ä¹‰æ“ä½œ
     string source = "/" + bucket_name + "/" + object_name ;
     string additional_source;
     composite_get_response_source(additional_source, params);
@@ -448,7 +448,7 @@ oss_result_t head_object (
     string method = "HEAD";
     map<string, string> headers;
 
-    //×¢Òâ: sourceÄÚÈİÖ»ĞèÒªÊÇutf-8±àÂë¼´¿É, ²»ĞèÒª½øĞĞhttp url ×ªÒå²Ù×÷
+    //æ³¨æ„: sourceå†…å®¹åªéœ€è¦æ˜¯utf-8ç¼–ç å³å¯, ä¸éœ€è¦è¿›è¡Œhttp url è½¬ä¹‰æ“ä½œ
     string source = "/" + bucket_name + "/" + object_name ;
 
     oss_result_t ret_val = OSS_OK;
@@ -527,7 +527,7 @@ oss_result_t delete_object (
     string method = "DELETE";
     map<string, string> headers;
 
-    //×¢Òâ: sourceÄÚÈİÖ»ĞèÒªÊÇutf-8±àÂë¼´¿É, ²»ĞèÒª½øĞĞhttp url ×ªÒå²Ù×÷
+    //æ³¨æ„: sourceå†…å®¹åªéœ€è¦æ˜¯utf-8ç¼–ç å³å¯, ä¸éœ€è¦è¿›è¡Œhttp url è½¬ä¹‰æ“ä½œ
     string source = "/" + bucket_name + "/" + object_name;
 
     oss_result_t ret_val = OSS_OK;

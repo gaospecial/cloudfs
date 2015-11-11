@@ -30,79 +30,79 @@
  */
 
 /**
- * struct oss_owner_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_owner_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_owner_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_owner_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_owner_s oss_owner_t;
 
 /**
- * ±íÊ¾OSS BucketµÄËùÓĞÕß
+ * è¡¨ç¤ºOSS Bucketçš„æ‰€æœ‰è€…
  */
 struct oss_owner_s {
-	char *id;                /**< ËùÓĞÕßµÄID */
-	char *display_name;      /**< ËùÓĞÕßµÄÏÔÊ¾Ãû³Æ */
+	char *id;                /**< æ‰€æœ‰è€…çš„ID */
+	char *display_name;      /**< æ‰€æœ‰è€…çš„æ˜¾ç¤ºåç§° */
 
 	/**
-	 * »ñµÃËùÓĞÕßµÄID
-	 * @param owner [in] ±êÊ¶Ò»¸öoss_owner_t½á¹¹Ö¸Õë
-	 * @return ËùÓĞÕßµÄID
+	 * è·å¾—æ‰€æœ‰è€…çš„ID
+	 * @param owner [in] æ ‡è¯†ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+	 * @return æ‰€æœ‰è€…çš„ID
 	 * @retval const char *
 	 */
 	const char * (*get_id)(oss_owner_t *owner);
 
 	/**
-	 * »ñµÃËùÓĞÕßµÄÏÔÊ¾Ãû³Æ
-	 * @param owner [in] ±êÊ¶Ò»¸öoss_owner_t½á¹¹Ö¸Õë
-	 * @return ËùÓĞÕßµÄÏÔÊ¾Ãû³Æ
+	 * è·å¾—æ‰€æœ‰è€…çš„æ˜¾ç¤ºåç§°
+	 * @param owner [in] æ ‡è¯†ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+	 * @return æ‰€æœ‰è€…çš„æ˜¾ç¤ºåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_display_name)(oss_owner_t *owner);
 
 	/**
-	 * ÉèÖÃËùÓĞÕßµÄID
-	 * @param owner [in] ±êÊ¶Ò»¸öoss_owner_t½á¹¹Ö¸Õë
-	 * @param id [in] ËùÓĞÕßµÄID
+	 * è®¾ç½®æ‰€æœ‰è€…çš„ID
+	 * @param owner [in] æ ‡è¯†ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+	 * @param id [in] æ‰€æœ‰è€…çš„ID
 	 * @retval void
 	 */
 	void (*set_id)(oss_owner_t *owner, const char *id);
 
 	/**
-	 * ÉèÖÃËùÓĞÕßµÄÏÔÊ¾Ãû³Æ
-	 * @param owner [in] ±êÊ¶Ò»¸öoss_owner_t½á¹¹Ö¸Õë
-	 * @param name [in] ËùÓĞÕßµÄÏÔÊ¾Ãû³Æ
+	 * è®¾ç½®æ‰€æœ‰è€…çš„æ˜¾ç¤ºåç§°
+	 * @param owner [in] æ ‡è¯†ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+	 * @param name [in] æ‰€æœ‰è€…çš„æ˜¾ç¤ºåç§°
 	 * @retval void
 	 */
 	void (*set_display_name)(oss_owner_t *owner, const char *name);
 };
 
 /**
- * oss_owner_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_owner_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_owner_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_owner_t *
 owner_initialize(void);
 
 /**
- * oss_owner_t´øID ºÍdisplay nameµÄ¹¹Ôìº¯Êı
- * @param id [in] ËùÓĞÕßµÄID
- * @param name [in] ËùÓĞÕßµÄÏÔÊ¾Ãû³Æ
- * @return ·µ»ØÒ»¸öoss_owner_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_owner_tå¸¦ID å’Œdisplay nameçš„æ„é€ å‡½æ•°
+ * @param id [in] æ‰€æœ‰è€…çš„ID
+ * @param name [in] æ‰€æœ‰è€…çš„æ˜¾ç¤ºåç§°
+ * @return è¿”å›ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_owner_t *
 owner_initialize_with_id(const char *id,
 		const char *name);
 
 /**
- * oss_owner_tÎö¹¹º¯Êı
- * @param owner [in] ±êÊ¶Ò»¸öoss_owner_t½á¹¹Ö¸Õë
+ * oss_owner_tææ„å‡½æ•°
+ * @param owner [in] æ ‡è¯†ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre owner ±ØĞëÊ¹ÓÃowner_initializeµÄ·µ»ØÖµ
+ * @pre owner å¿…é¡»ä½¿ç”¨owner_initializeçš„è¿”å›å€¼
  */
 extern void
 owner_finalize(oss_owner_t *owner);

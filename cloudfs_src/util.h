@@ -54,7 +54,7 @@ protected:
 private:
     string m_FilePath;
     list<string> m_uploadid_list;
-    pthread_mutex_t m_uploadid_mutex;		//¶àÏß³ÌÔö¼Ó»òÉ¾³ıuploadidÊ±µÄÏß³ÌËø
+    pthread_mutex_t m_uploadid_mutex;		//å¤šçº¿ç¨‹å¢åŠ æˆ–åˆ é™¤uploadidæ—¶çš„çº¿ç¨‹é”
 };
 
 

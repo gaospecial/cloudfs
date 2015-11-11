@@ -43,205 +43,205 @@
  */
 
 /**
- * struct oss_part_listing_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_part_listing_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_part_listing_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_part_listing_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_part_listing_s oss_part_listing_t;
 
 /**
- * °üº¬MultipartÉÏ´«PartµÄ±íÊ¾
+ * åŒ…å«Multipartä¸Šä¼ Partçš„è¡¨ç¤º
  */
 struct oss_part_listing_s {
-	char *bucket_name;                  /**< BucketÃû³Æ */
-	oss_owner_t *initiator;             /**< ObjectµÄµÄ³õÊ¼»¯Õß */
-	bool is_truncated;                  /**< ±êÊ¶½á¹ûÊÇ·ñ±»½ØÈ¡ */
-	char *key;                          /**< ObjectµÄÃû³Æ */
-	int max_parts;                      /**< ÇëÇóÖĞÖ¸¶¨·µ»ØPartµÄ×î´ó¸öÊı */
-	int next_part_number_marker;        /**< Èç¹û·µ»Ø½á¹û±»½ØÈ¡£¬ÄÇÃ´ÏÂÒ»¸öPartµÄºÅÂëÊÇ¶àÉÙ */
-	oss_owner_t *owner;                 /**< ObjectµÄËùÓĞÕß */
-	int part_number_marker;             /**< ±êÊ¶´ÓÄÄÀïÏÔÊ¾ */
-	oss_part_summary_t **parts;         /**< PartSummaryµÄÁĞ±í */
-	int parts_number;                   /**< PartSummaryµÄÁĞ±íµÄÊıÄ¿ */
-	char *storage_class;                /**< ObjectµÄ´æ´¢Àà±ğ */
-	char *upload_id;                    /**< ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID */
+	char *bucket_name;                  /**< Bucketåç§° */
+	oss_owner_t *initiator;             /**< Objectçš„çš„åˆå§‹åŒ–è€… */
+	bool is_truncated;                  /**< æ ‡è¯†ç»“æœæ˜¯å¦è¢«æˆªå– */
+	char *key;                          /**< Objectçš„åç§° */
+	int max_parts;                      /**< è¯·æ±‚ä¸­æŒ‡å®šè¿”å›Partçš„æœ€å¤§ä¸ªæ•° */
+	int next_part_number_marker;        /**< å¦‚æœè¿”å›ç»“æœè¢«æˆªå–ï¼Œé‚£ä¹ˆä¸‹ä¸€ä¸ªPartçš„å·ç æ˜¯å¤šå°‘ */
+	oss_owner_t *owner;                 /**< Objectçš„æ‰€æœ‰è€… */
+	int part_number_marker;             /**< æ ‡è¯†ä»å“ªé‡Œæ˜¾ç¤º */
+	oss_part_summary_t **parts;         /**< PartSummaryçš„åˆ—è¡¨ */
+	int parts_number;                   /**< PartSummaryçš„åˆ—è¡¨çš„æ•°ç›® */
+	char *storage_class;                /**< Objectçš„å­˜å‚¨ç±»åˆ« */
+	char *upload_id;                    /**< æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_part_listing_t *listing, const char *bucket_name);
 
 	/**
-	 * »ñµÃObjectµÄÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄÃû³Æ
+	 * è·å¾—Objectçš„åç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃObjectµÄÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectµÄÃû³Æ
+	 * è®¾ç½®Objectçš„åç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectçš„åç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_part_listing_t *listing, const char *key);
 
 	/**
-	 * »ñµÃUpload ID
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—Upload ID
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return Upload ID
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃUpload ID
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®Upload ID
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param upload_id [in] Upload ID
 	 * @retval void
 	 */
 	void (*set_upload_id)(oss_part_listing_t *listing, const char *upload_id);
 
 	/**
-	 * »ñµÃObjectµÄ´æ´¢Àà±ğ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄ´æ´¢Àà±ğ
+	 * è·å¾—Objectçš„å­˜å‚¨ç±»åˆ«
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„å­˜å‚¨ç±»åˆ«
 	 * @retval const char *
 	 */
 	const char * (*get_storage_class)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃObjectµÄ´æ´¢Àà±ğ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param storage_class [in] ObjectµÄ´æ´¢Àà±ğ
+	 * è®¾ç½®Objectçš„å­˜å‚¨ç±»åˆ«
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param storage_class [in] Objectçš„å­˜å‚¨ç±»åˆ«
 	 * @retval void
 	 */
 	void (*set_storage_class)(oss_part_listing_t *listing, const char *storage_class);
 
 	/**
-	 * »ñµÃObjectµÄµÄ³õÊ¼»¯Õß
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄµÄ³õÊ¼»¯Õß
-	 * @return ·µ»ØÒ»¸ö oss_owner_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—Objectçš„çš„åˆå§‹åŒ–è€…
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„çš„åˆå§‹åŒ–è€…
+	 * @return è¿”å›ä¸€ä¸ª oss_owner_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_owner_t * (*get_initiator)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃObjectµÄµÄ³õÊ¼»¯Õß
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param initiator [in] ObjectµÄµÄ³õÊ¼»¯Õß
+	 * è®¾ç½®Objectçš„çš„åˆå§‹åŒ–è€…
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param initiator [in] Objectçš„çš„åˆå§‹åŒ–è€…
 	 * @retval void
 	 */
 	void (*set_initiator)(oss_part_listing_t *listing, oss_owner_t *initiator);
 
 	/**
-	 * »ñµÃÇëÇóÖĞÖ¸¶¨·µ»ØPartµÄ×î´ó¸öÊı
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @return ÇëÇóÖĞÖ¸¶¨·µ»ØPartµÄ×î´ó¸öÊı
+	 * è·å¾—è¯·æ±‚ä¸­æŒ‡å®šè¿”å›Partçš„æœ€å¤§ä¸ªæ•°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return è¯·æ±‚ä¸­æŒ‡å®šè¿”å›Partçš„æœ€å¤§ä¸ªæ•°
 	 * @retval int
 	 */
 	int (*get_max_parts)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃÇëÇóÖĞÖ¸¶¨·µ»ØPartµÄ×î´ó¸öÊı
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param max_parts [in] ÇëÇóÖĞÖ¸¶¨·µ»ØPartµÄ×î´ó¸öÊı
+	 * è®¾ç½®è¯·æ±‚ä¸­æŒ‡å®šè¿”å›Partçš„æœ€å¤§ä¸ªæ•°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param max_parts [in] è¯·æ±‚ä¸­æŒ‡å®šè¿”å›Partçš„æœ€å¤§ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_max_parts)(oss_part_listing_t *listing, int max_parts);
 
 	/**
-	 * »ñµÃis_truncated
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—is_truncated
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return is_truncated
 	 * @retval bool
 	 */
 	bool (*get_is_truncated)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃis_truncated
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®is_truncated
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param is_truncated [in] is_truncated
 	 * @retval void
 	 */
 	void (*set_is_truncated)(oss_part_listing_t *listing, bool is_truncated);
 
 	/**
-	 * »ñµÃPartSummaryµÄÁĞ±í
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param parts_number [out] PartSummaryµÄÁĞ±íµÄ¸öÊı
-	 * @return ·µ»ØÒ»¸öoss_part_summary_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—PartSummaryçš„åˆ—è¡¨
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param parts_number [out] PartSummaryçš„åˆ—è¡¨çš„ä¸ªæ•°
+	 * @return è¿”å›ä¸€ä¸ªoss_part_summary_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_part_summary_t ** (*get_parts)(oss_part_listing_t *listing, int *parts_number);
 
 	/**
-	 * ÉèÖÃPartSummaryµÄÁĞ±í
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param parts [in] PartSummaryµÄÁĞ±í
-	 * @param parts_number [in] PartSummaryµÄÁĞ±íµÄ¸öÊı
+	 * è®¾ç½®PartSummaryçš„åˆ—è¡¨
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param parts [in] PartSummaryçš„åˆ—è¡¨
+	 * @param parts_number [in] PartSummaryçš„åˆ—è¡¨çš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_parts)(oss_part_listing_t *listing, oss_part_summary_t **parts, int parts_number);
 
 	/**
-	 * »ñµÃnext_part_number_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—next_part_number_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return next_part_number_marker
 	 * @retval int
 	 */
 	int (*get_next_part_number_marker)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃnext_part_number_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®next_part_number_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param next_part_number_marker [in] next_part_number_marker
 	 * @retval void
 	 */
 	void (*set_next_part_number_marker)(oss_part_listing_t *listing, int next_part_number_marker);
 
 	/**
-	 * »ñµÃObjectµÄËùÓĞÕß
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØÒ»¸öoss_owner_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—Objectçš„æ‰€æœ‰è€…
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›ä¸€ä¸ªoss_owner_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_owner_t * (*get_owner)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃObjectµÄËùÓĞÕß
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
-	 * @param owner [in] bjectµÄËùÓĞÕß
+	 * è®¾ç½®Objectçš„æ‰€æœ‰è€…
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param owner [in] bjectçš„æ‰€æœ‰è€…
 	 * @retval void
 	 */
 	void (*set_owner)(oss_part_listing_t *listing, oss_owner_t *owner);
 	
 	/**
-	 * »ñµÃpart_number_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—part_number_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return part_number_marker
 	 * @retval int
 	 */
 	int (*get_part_number_marker)(oss_part_listing_t *listing);
 
 	/**
-	 * ÉèÖÃpart_number_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®part_number_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param part_number_marker [in] part_number_marker
 	 * @retval void
 	 */
@@ -252,20 +252,20 @@ struct oss_part_listing_s {
 };
 
 /**
- * oss_part_listing_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_part_listing_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_part_listing_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_part_listing_t *
 part_listing_initialize(void);
 
 /**
- * oss_part_listing_tÎö¹¹º¯Êı
- * @param listing [in] ±êÊ¶Ò»¸öoss_part_listing_t½á¹¹Ö¸Õë
+ * oss_part_listing_tææ„å‡½æ•°
+ * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_part_listing_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre listing ±ØĞëÊ¹ÓÃpart_listing_initializeµÄ·µ»ØÖµ
+ * @pre listing å¿…é¡»ä½¿ç”¨part_listing_initializeçš„è¿”å›å€¼
  */
 extern void 
 part_listing_finalize(oss_part_listing_t *listing);

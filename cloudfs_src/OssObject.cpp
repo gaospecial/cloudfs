@@ -25,7 +25,7 @@ OssObject::OssObject(OssFS *fs,Oss *oss,const char *bucket,const char *pathname,
     	m_pathname = NULL;
     }
     
-	//´Ë´¦µÄfilename²»ÄÜ½ÚÊ¡
+	//æ­¤å¤„çš„filenameä¸èƒ½èŠ‚çœ
     if (filename != NULL)
     {
 	    int file_len = strlen(filename);
@@ -39,7 +39,7 @@ OssObject::OssObject(OssFS *fs,Oss *oss,const char *bucket,const char *pathname,
     
     m_stats=stats;
 
-	//Ôö¼ÓÎÄ¼þ³É¹¦, ´Ë´¦Íùmeta_dbÖÐÐ´ÈëÊý¾Ý
+	//å¢žåŠ æ–‡ä»¶æˆåŠŸ, æ­¤å¤„å¾€meta_dbä¸­å†™å…¥æ•°æ®
 	string tmpPath = m_pathname;
 	stFileMetaRecord tmpMeta;
 	tmpMeta.m_time = m_stats->mtime;
@@ -48,7 +48,7 @@ OssObject::OssObject(OssFS *fs,Oss *oss,const char *bucket,const char *pathname,
 	m_stats->mtime = tmpMeta.m_time;
 	m_stats->mode = tmpMeta.mode;
 
-	//Èç¹ûµ±Ç°¶ÔÏó²»ÊÇ¸ù¶ÔÏó, ÐèÒª½«¸Ã¶ÔÏóµÄÉÏÒ»¼¶Ä¿Â¼µÄm_sync_flag¸³¸øµ±Ç°¶ÔÏó
+	//å¦‚æžœå½“å‰å¯¹è±¡ä¸æ˜¯æ ¹å¯¹è±¡, éœ€è¦å°†è¯¥å¯¹è±¡çš„ä¸Šä¸€çº§ç›®å½•çš„m_sync_flagèµ‹ç»™å½“å‰å¯¹è±¡
 	if (strcmp(pathname, "/") != 0) 
 	{
 		m_sync_flag = m_fs->get_parent(pathname)->get_sync_flag();

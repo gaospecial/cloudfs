@@ -10,46 +10,46 @@
 
 
 /*
-Èç¹ûÎÄ¼þ±¾Éí´æÔÚ,write_dataµÚÒ»´ÎÐ´ÈëÊ±£¬½«ÎÄ¼þÈ«²¿¼ÓÔØ³öÀ´, ½«¶ÁPOSÖÃÎª¿é´óÐ¡
+å¦‚æžœæ–‡ä»¶æœ¬èº«å­˜åœ¨,write_dataç¬¬ä¸€æ¬¡å†™å…¥æ—¶ï¼Œå°†æ–‡ä»¶å…¨éƒ¨åŠ è½½å‡ºæ¥, å°†è¯»POSç½®ä¸ºå—å¤§å°
 
-Ð´pos   Âú          Âú              Âú    
-¶Ápos   Âú          Î´Âú            0
+å†™pos   æ»¡          æ»¡              æ»¡    
+è¯»pos   æ»¡          æœªæ»¡            0
 
-½á¹û   write_data   write_data      write_data
+ç»“æžœ   write_data   write_data      write_data
         upload      upload          upload         
 		
-Ð´pos   Î´Âú         Î´Âú            Î´Âú                       
-¶Ápos   Âú           Î´Âú            0             
-½á¹û   fclose        fclose          fclose       (uploadµÄ¿éÄÚÈÝÒÔposÖ¸½Ï´óµÄÎª×¼)
+å†™pos   æœªæ»¡         æœªæ»¡            æœªæ»¡                       
+è¯»pos   æ»¡           æœªæ»¡            0             
+ç»“æžœ   fclose        fclose          fclose       (uploadçš„å—å†…å®¹ä»¥posæŒ‡è¾ƒå¤§çš„ä¸ºå‡†)
        upload        upload          upload
 	   
 
-Ð´pos   0            0                0
-¶Ápos   Âú           Î´Âú             0 	   
-½á¹û:   read_data    fclose
-        ÊÍ·ÅÄÚ´æ     ÊÍ·ÅÄÚ´æ         Ê²Ã´¶¼²»×ö
+å†™pos   0            0                0
+è¯»pos   æ»¡           æœªæ»¡             0 	   
+ç»“æžœ:   read_data    fclose
+        é‡Šæ”¾å†…å­˜     é‡Šæ”¾å†…å­˜         ä»€ä¹ˆéƒ½ä¸åš
 
 
-    Ð´Êý¾ÝÂß¼­·ÖÎö:
-		Ð´Êý¾ÝÊ±·ÖÎªÁ½ÖÖÇé¿ö: 
-		Çé¿ö1) µ±Ç°Ð´ÈëÊ±, ±¾¿éÒÑÓÐÊý¾Ý
-			   Èç¹ûÒÑ¾­ÓÐÁËÊý¾Ý, ÔòÐèÒª½«ÒÑÓÐµÄÊý¾ÝÒ»´ÎÐÔ¼ÓÔØµ½ÄÚ´æÖÐ, ÔÙ½øÐÐÐ´Èë;
-			   Ð´ÈëÊ±ÓÐÁ½ÖÖÇé¿ö: 
-			   Çé¿ö1: Ð´ÈëµÄoffset <= µ±Ç°¿éÊµ¼Ê´óÐ¡, ÕâÖÖÊÇÆÕÍ¨µÄÐ´Èë
-			   Çé¿ö2: Ð´ÈëµÄoffset > µ±Ç°¿éÊµ¼Ê´óÐ¡, ÔÚµ±Ç°¿éÓëoffsetÖ®¼äÌî³ä0
+    å†™æ•°æ®é€»è¾‘åˆ†æž:
+		å†™æ•°æ®æ—¶åˆ†ä¸ºä¸¤ç§æƒ…å†µ: 
+		æƒ…å†µ1) å½“å‰å†™å…¥æ—¶, æœ¬å—å·²æœ‰æ•°æ®
+			   å¦‚æžœå·²ç»æœ‰äº†æ•°æ®, åˆ™éœ€è¦å°†å·²æœ‰çš„æ•°æ®ä¸€æ¬¡æ€§åŠ è½½åˆ°å†…å­˜ä¸­, å†è¿›è¡Œå†™å…¥;
+			   å†™å…¥æ—¶æœ‰ä¸¤ç§æƒ…å†µ: 
+			   æƒ…å†µ1: å†™å…¥çš„offset <= å½“å‰å—å®žé™…å¤§å°, è¿™ç§æ˜¯æ™®é€šçš„å†™å…¥
+			   æƒ…å†µ2: å†™å…¥çš„offset > å½“å‰å—å®žé™…å¤§å°, åœ¨å½“å‰å—ä¸Žoffsetä¹‹é—´å¡«å……0
 		
-		Çé¿ö2) µ±Ç°Ð´ÈëÊ±, ±¾¿é²¢ÎÞÊý¾Ý
-				±¾¿éÎÞÊý¾Ý, ÔòÎÞÐè´ÓOSS¼ÓÔØÊý¾Ý, Ö±½ÓÐ´Èë
-				Ð´ÈëÊ±Ò²·ÖÁ½ÖÖÇé¿ö:
-			   Çé¿ö1: Ð´ÈëµÄoffset ´Ó0¿ªÊ¼, ÕâÖÖÊÇÆÕÍ¨µÄÐ´Èë
-			   Çé¿ö2: Ð´ÈëµÄoffset > ´óÓÚ0, ÔÚ0ÓëoffsetÖ®¼äÌî³ä0	
+		æƒ…å†µ2) å½“å‰å†™å…¥æ—¶, æœ¬å—å¹¶æ— æ•°æ®
+				æœ¬å—æ— æ•°æ®, åˆ™æ— éœ€ä»ŽOSSåŠ è½½æ•°æ®, ç›´æŽ¥å†™å…¥
+				å†™å…¥æ—¶ä¹Ÿåˆ†ä¸¤ç§æƒ…å†µ:
+			   æƒ…å†µ1: å†™å…¥çš„offset ä»Ž0å¼€å§‹, è¿™ç§æ˜¯æ™®é€šçš„å†™å…¥
+			   æƒ…å†µ2: å†™å…¥çš„offset > å¤§äºŽ0, åœ¨0ä¸Žoffsetä¹‹é—´å¡«å……0	
     
 
-	//»ñÈ¡µ±Ç°¿éµÄ´óÐ¡
+	//èŽ·å–å½“å‰å—çš„å¤§å°
 	size_t subobject_size = get_size();
 	if ((subobject_size > 0) && (m_buf_size == 0))
 	{
-		//´ÓOSS¼ÓÔØÊý¾ÝÊý¾Ýµ½cloudfsÖÐ
+		//ä»ŽOSSåŠ è½½æ•°æ®æ•°æ®åˆ°cloudfsä¸­
 		RE_ALOCATE(m_data, m_buf_size, subobject_size, m_group->get_cloudfs())
 		int res = m_group->get_cloudfs()->get_oss()->get_object_data_with_range(AliConf::BUCKET.c_str(), 
 										  m_group->get_path_name(), 

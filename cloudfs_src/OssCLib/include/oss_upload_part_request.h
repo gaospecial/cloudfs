@@ -30,137 +30,137 @@
  */
 
 /**
- * struct oss_upload_part_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_upload_part_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_upload_part_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_upload_part_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_upload_part_request_s oss_upload_part_request_t;
 
 /**
- * °üº¬ÉÏ´«Multipart·Ö¿é£¨Part£©²ÎÊı
+ * åŒ…å«ä¸Šä¼ Multipartåˆ†å—ï¼ˆPartï¼‰å‚æ•°
  */
 struct oss_upload_part_request_s {
 
-	char *bucket_name; /**< BucketÃû³Æ*/
-	char *input_stream; /**< °üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷*/
-	size_t input_stream_len; /**< °üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷µÄ³¤¶È*/
+	char *bucket_name; /**< Bucketåç§°*/
+	char *input_stream; /**< åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµ*/
+	size_t input_stream_len; /**< åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµçš„é•¿åº¦*/
 	char *key; /**< OSSObject key*/
-	char *md5_digest; /**< ·Ö¿é£¨Part£©Êı¾İµÄMD5Ğ£ÑéÖµ*/
-	int part_number; /**< ÉÏ´«·Ö¿é£¨Part£©µÄ±êÊ¶ºÅÂë£¨Part Number£©*/
-	size_t part_size; /**< ·Ö¿é£¨Part£©Êı¾İµÄ×Ö½ÚÊı*/
-	char *upload_id; /**< ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID*/
+	char *md5_digest; /**< åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„MD5æ ¡éªŒå€¼*/
+	int part_number; /**< ä¸Šä¼ åˆ†å—ï¼ˆPartï¼‰çš„æ ‡è¯†å·ç ï¼ˆPart Numberï¼‰*/
+	size_t part_size; /**< åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„å­—èŠ‚æ•°*/
+	char *upload_id; /**< æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID*/
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØBucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_upload_part_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_upload_part_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * »ñµÃOSSObject key
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
+	 * è·å¾—OSSObject key
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
 	 * @return OSSObject key
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_upload_part_request_t *request);
 
 	/**
-	 * ÉèÖÃOSSObject key
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
+	 * è®¾ç½®OSSObject key
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
 	 * @param key [in] OSSObject key
 	 * @retval void
 	 */
 	void (*set_key)(oss_upload_part_request_t *request, const char *key);
 
 	/**
-	 * »ñµÃ·Ö¿é£¨Part£©Êı¾İµÄMD5Ğ£ÑéÖµ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @return  ·Ö¿é£¨Part£©Êı¾İµÄMD5Ğ£ÑéÖµ
+	 * è·å¾—åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„MD5æ ¡éªŒå€¼
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @return  åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„MD5æ ¡éªŒå€¼
 	 * @retval const char *
 	 */
 	const char * (*get_md5_digest)(oss_upload_part_request_t *request);
 
 	/**
-	 * ÉèÖÃ·Ö¿é£¨Part£©Êı¾İµÄMD5Ğ£ÑéÖµ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param md5_digest [in] ·Ö¿é£¨Part£©Êı¾İµÄMD5Ğ£ÑéÖµ
+	 * è®¾ç½®åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„MD5æ ¡éªŒå€¼
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param md5_digest [in] åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„MD5æ ¡éªŒå€¼
 	 * @retval void
 	 */
 	void (*set_md5_digest)(oss_upload_part_request_t *request, const char *md5_digest);
 
 	/**
-	 * »ñµÃ°üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param input_stream_len [out] ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷µÄ³¤¶È
-	 * @return °üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷
+	 * è·å¾—åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµ
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param input_stream_len [out] ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµçš„é•¿åº¦
+	 * @return åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµ
 	 * @retval const char *
 	 */
 	const char * (*get_input_stream)(oss_upload_part_request_t *request, size_t *input_stream_len);
 
 	/**
-	 * ÉèÖÃ°üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param input_stream [in] °üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷
-	 * @param input_stream_len [in] °üº¬ÉÏ´«·Ö¿éÄÚÈİµÄÊı¾İÁ÷µÄ³¤¶È
+	 * è®¾ç½®åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµ
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param input_stream [in] åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµ
+	 * @param input_stream_len [in] åŒ…å«ä¸Šä¼ åˆ†å—å†…å®¹çš„æ•°æ®æµçš„é•¿åº¦
 	 * @retval void
 	 */
 	void (*set_input_stream)(oss_upload_part_request_t *request,
 			const char *input_stream, size_t input_stream_len);
 
 	/**
-	 * »ñµÃ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @return ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID
+	 * è·å¾—æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @return æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id)(oss_upload_part_request_t *request);
 
 	/**
-	 * ÉèÖÃ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param upload_id [in] ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID
+	 * è®¾ç½®æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param upload_id [in] æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID
 	 * @retval void
 	 */
 	void (*set_upload_id)(oss_upload_part_request_t *request, const char *upload_id);
 
 	/**
-	 * »ñµÃÉÏ´«·Ö¿é£¨Part£©µÄ±êÊ¶ºÅÂë£¨Part Number£©
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @return ÉÏ´«·Ö¿é£¨Part£©µÄ±êÊ¶ºÅÂë£¨Part Number£©
+	 * è·å¾—ä¸Šä¼ åˆ†å—ï¼ˆPartï¼‰çš„æ ‡è¯†å·ç ï¼ˆPart Numberï¼‰
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @return ä¸Šä¼ åˆ†å—ï¼ˆPartï¼‰çš„æ ‡è¯†å·ç ï¼ˆPart Numberï¼‰
 	 * @retval const char *
 	 */
 	int (*get_part_number)(oss_upload_part_request_t *request);
 
 	/**
-	 * ÉèÖÃÉÏ´«·Ö¿é£¨Part£©µÄ±êÊ¶ºÅÂë£¨Part Number£©
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param part_number [in] ÉÏ´«·Ö¿é£¨Part£©µÄ±êÊ¶ºÅÂë£¨Part Number£©
+	 * è®¾ç½®ä¸Šä¼ åˆ†å—ï¼ˆPartï¼‰çš„æ ‡è¯†å·ç ï¼ˆPart Numberï¼‰
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param part_number [in] ä¸Šä¼ åˆ†å—ï¼ˆPartï¼‰çš„æ ‡è¯†å·ç ï¼ˆPart Numberï¼‰
 	 * @retval void
 	 */
 	void (*set_part_number)(oss_upload_part_request_t *request, int part_number);
 
 	/**
-	 * ·µ»Ø·Ö¿é£¨Part£©Êı¾İµÄ×Ö½ÚÊı
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @return ·Ö¿é£¨Part£©Êı¾İµÄ×Ö½ÚÊı
+	 * è¿”å›åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„å­—èŠ‚æ•°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @return åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„å­—èŠ‚æ•°
 	 * @retval long
 	 */
 	long (*get_part_size)(oss_upload_part_request_t *request);
 
 	/**
-	 * ÉèÖÃ·µ»Ø·Ö¿é£¨Part£©Êı¾İµÄ×Ö½ÚÊı
-	 * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
-	 * @param part_size [in] ·Ö¿é£¨Part£©Êı¾İµÄ×Ö½ÚÊı
+	 * è®¾ç½®è¿”å›åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„å­—èŠ‚æ•°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+	 * @param part_size [in] åˆ†å—ï¼ˆPartï¼‰æ•°æ®çš„å­—èŠ‚æ•°
 	 * @retval void
 	 */
 	void (*set_part_size)(oss_upload_part_request_t *request, size_t part_size);
@@ -168,20 +168,20 @@ struct oss_upload_part_request_s {
 
 
 /**
- * oss_upload_part_request_t ¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_upload_part_request_t æ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_upload_part_request_t *
 upload_part_request_initialize(void);
 
 /**
- * oss_upload_part_request_t Îö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_upload_part_request_t½á¹¹Ö¸Õë
+ * oss_upload_part_request_t ææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_upload_part_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃupload_part_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨upload_part_request_initializeçš„è¿”å›å€¼
  */
 extern void 
 upload_part_request_finalize(oss_upload_part_request_t *request);

@@ -32,83 +32,83 @@
  */
 
 /**
- * struct oss_object_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_object_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_object_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_object_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_object_s oss_object_t;
 
 /**
- * ±íÊ¾OSSÖĞµÄObject\n
+ * è¡¨ç¤ºOSSä¸­çš„Object\n
  *
- * ÔÚ OSS ÖĞ£¬ÓÃ»§µÄÃ¿¸öÎÄ¼ş¶¼ÊÇÒ»¸ö Object£¬Ã¿¸öÎÄ¼şĞèĞ¡ÓÚ 5G¡£ Object°üº¬key¡¢dataºÍuser meta¡£ÆäÖĞ£¬keyÊÇObject µÄÃû×Ö£» dataÊÇObject µÄÊı¾İ£»user metaÊÇÓÃ»§¶Ô¸ÃobjectµÄÃèÊö¡£
+ * åœ¨ OSS ä¸­ï¼Œç”¨æˆ·çš„æ¯ä¸ªæ–‡ä»¶éƒ½æ˜¯ä¸€ä¸ª Objectï¼Œæ¯ä¸ªæ–‡ä»¶éœ€å°äº 5Gã€‚ ObjectåŒ…å«keyã€dataå’Œuser metaã€‚å…¶ä¸­ï¼Œkeyæ˜¯Object çš„åå­—ï¼› dataæ˜¯Object çš„æ•°æ®ï¼›user metaæ˜¯ç”¨æˆ·å¯¹è¯¥objectçš„æè¿°ã€‚
  *
- * Object ÃüÃû¹æ·¶:
+ * Object å‘½åè§„èŒƒ:
  *
- * - Ê¹ÓÃUTF-8±àÂë
- * - ¹æÔò³¤¶È±ØĞëÔÚ 1-1023×Ö½ÚÖ®¼ä
+ * - ä½¿ç”¨UTF-8ç¼–ç 
+ * - è§„åˆ™é•¿åº¦å¿…é¡»åœ¨ 1-1023å­—èŠ‚ä¹‹é—´
  */
 struct oss_object_s {
-	char *bucket_name;                       /**< ObjectµÄËùÔÚBucketµÄÃû³Æ */
-	char *key;                               /**< ObjectµÄÃû³Æ */
-	char *object_content;                    /**< ObjectµÄÄÚÈİ */
-	oss_object_metadata_t *object_metadata;  /**< ObjectµÄÔªÊı¾İ */
-	unsigned int object_content_len;               /**< ObjectµÄÄÚÈİ³¤¶È */
+	char *bucket_name;                       /**< Objectçš„æ‰€åœ¨Bucketçš„åç§° */
+	char *key;                               /**< Objectçš„åç§° */
+	char *object_content;                    /**< Objectçš„å†…å®¹ */
+	oss_object_metadata_t *object_metadata;  /**< Objectçš„å…ƒæ•°æ® */
+	unsigned int object_content_len;               /**< Objectçš„å†…å®¹é•¿åº¦ */
 
 	/**
-	 * »ñµÃObjectµÄËùÔÚBucketµÄÃû³Æ
-	 * @param object [in]  ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄËùÔÚBucketµÄÃû³Æ
+	 * è·å¾—Objectçš„æ‰€åœ¨Bucketçš„åç§°
+	 * @param object [in]  æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„æ‰€åœ¨Bucketçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_object_t *object);
 
 	/**
-	 * »ñµÃObjectµÄÃû³Æ
-	 * @param object [in]  ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄÃû³Æ
+	 * è·å¾—Objectçš„åç§°
+	 * @param object [in]  æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_object_t *object);
 
 	/**
-	 * »ñµÃObjectµÄÄÚÈİ
-	 * @param object [in]  ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @param object_content_len [out] ObjectµÄÄÚÈİ³¤¶È
-	 * @return ObjectµÄÄÚÈİ
+	 * è·å¾—Objectçš„å†…å®¹
+	 * @param object [in]  æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @param object_content_len [out] Objectçš„å†…å®¹é•¿åº¦
+	 * @return Objectçš„å†…å®¹
 	 * @retval const char *
 	 */
 	const char * (*get_object_content)(oss_object_t *object, unsigned int *object_content_len);
 
 	/**
-	 * »ñµÃObjectµÄÔªÊı¾İ
-	 * @param object [in]  ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØÒ»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—Objectçš„å…ƒæ•°æ®
+	 * @param object [in]  æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_object_metadata_t * (*get_object_metadata)(oss_object_t *object);
 
 	/**
-	 * ÉèÖÃObjectµÄËùÔÚBucketµÄÃû³Æ
-	 * @param object [in] ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] ObjectµÄËùÔÚBucketµÄÃû³Æ
+	 * è®¾ç½®Objectçš„æ‰€åœ¨Bucketçš„åç§°
+	 * @param object [in] æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Objectçš„æ‰€åœ¨Bucketçš„åç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_object_t *object, const char *bucket_name);
 
 	/**
-	 * ÉèÖÃObjectµÄÃû³Æ
-	 * @param object [in] ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectµÄÃû³Æ
+	 * è®¾ç½®Objectçš„åç§°
+	 * @param object [in] æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectçš„åç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_object_t *object, const char *key);
 
 	/**
-	 * ÉèÖÃObjectµÄÄÚÈİ
-	 * @param object [in] ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @param object_content [in] ObjectµÄÄÚÈİ
-	 * @param object_content_len [in] ObjectµÄÄÚÈİ³¤¶È
+	 * è®¾ç½®Objectçš„å†…å®¹
+	 * @param object [in] æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @param object_content [in] Objectçš„å†…å®¹
+	 * @param object_content_len [in] Objectçš„å†…å®¹é•¿åº¦
 	 * @retval void
 	 */
 	void (*set_object_content)(oss_object_t *object,
@@ -116,9 +116,9 @@ struct oss_object_s {
 			unsigned int object_content_len);
 
 	/**
-	 * ÉèÖÃObjectµÄÔªÊı¾İ
-	 * @param object [in] ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
-	 * @param object_metadata [in] ObjectµÄÔªÊı¾İ
+	 * è®¾ç½®Objectçš„å…ƒæ•°æ®
+	 * @param object [in] æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+	 * @param object_metadata [in] Objectçš„å…ƒæ•°æ®
 	 * @retval void
 	 */
 	void (*set_object_metadata)(oss_object_t *object,
@@ -126,19 +126,19 @@ struct oss_object_s {
 };
 
 /**
- * oss_object_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_object_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_object_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_object_t * object_initialize();
 
 /**
- * oss_object_tÎö¹¹º¯Êı
- * @param object [in] ±êÊ¶Ò»¸öoss_object_t½á¹¹Ö¸Õë
+ * oss_object_tææ„å‡½æ•°
+ * @param object [in] æ ‡è¯†ä¸€ä¸ªoss_object_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre object ±ØĞëÊ¹ÓÃobject_initializeµÄ·µ»ØÖµ
+ * @pre object å¿…é¡»ä½¿ç”¨object_initializeçš„è¿”å›å€¼
  */
 extern void object_finalize(oss_object_t *object);
 /**@}*/

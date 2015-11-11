@@ -29,82 +29,82 @@
  */
 
 /**
- * struct oss_post_object_group_result_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_post_object_group_result_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_post_object_group_result_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_post_object_group_result_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_post_object_group_result_s oss_post_object_group_result_t;
 
 /**
- * ´´½¨¶ÔÏó×é£¨Object Group£©·µ»ØµÄ½á¹û
+ * åˆ›å»ºå¯¹è±¡ç»„ï¼ˆObject Groupï¼‰è¿”å›çš„ç»“æœ
  */
 struct oss_post_object_group_result_s {
-	char *bucket_name;      /**< BucketÃû³Æ */
-	char *key;              /**< ObjectÃû³Æ*/
-	char *etag;             /**< ObjectµÄetagÖµ*/
-	unsigned int size;            /**< ObjectµÄ´óĞ¡*/
+	char *bucket_name;      /**< Bucketåç§° */
+	char *key;              /**< Objectåç§°*/
+	char *etag;             /**< Objectçš„etagå€¼*/
+	unsigned int size;            /**< Objectçš„å¤§å°*/
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_post_object_group_result_t *result);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_post_object_group_result_t *result,
 			const char *bucket_name);
 
 	/**
-	 * »ñµÃObjectÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @return ObjectÃû³Æ
+	 * è·å¾—Objectåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_post_object_group_result_t *result);
 
 	/**
-	 * ÉèÖÃObjectÃû³Æ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectÃû³Æ
+	 * è®¾ç½®Objectåç§°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectåç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_post_object_group_result_t *result,
 			const char *key);
 
 	/**
-	 * »ñµÃObjectµÄetagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄetagÖµ
+	 * è·å¾—Objectçš„etagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„etagå€¼
 	 * @retval const char *
 	 */
 	const char * (*get_etag)(oss_post_object_group_result_t *result);
 
 	/**
-	 * ÉèÖÃObjectµÄetagÖµ
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @param etag [in] ObjectµÄetagÖµ
+	 * è®¾ç½®Objectçš„etagå€¼
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] Objectçš„etagå€¼
 	 * @retval void
 	 */
 	void (*set_etag)(oss_post_object_group_result_t *result, const char *etag);
 
 	/**
-	 * »ñµÃObjectµÄ´óĞ¡
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄ´óĞ¡
+	 * è·å¾—Objectçš„å¤§å°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„å¤§å°
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_size)(oss_post_object_group_result_t *result);
 
 	/**
-	 * ÉèÖÃObjectµÄ´óĞ¡
-	 * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
-	 * @param size [in] ObjectµÄ´óĞ¡
+	 * è®¾ç½®Objectçš„å¤§å°
+	 * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+	 * @param size [in] Objectçš„å¤§å°
 	 * @retval void
 	 */
 	void (*set_size)(oss_post_object_group_result_t *result, unsigned int size);
@@ -113,20 +113,20 @@ struct oss_post_object_group_result_s {
 
 
 /**
- * oss_post_object_group_result_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_post_object_group_result_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_post_object_group_result_t *
 post_object_group_result_initialize();
 
 /**
- * oss_post_object_group_result_tÎö¹¹º¯Êı
- * @param result [in] ±êÊ¶Ò»¸öoss_post_object_group_result_t½á¹¹Ö¸Õë
+ * oss_post_object_group_result_tææ„å‡½æ•°
+ * @param result [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_result_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre result ±ØĞëÊ¹ÓÃpost_object_group_result_initializeµÄ·µ»ØÖµ
+ * @pre result å¿…é¡»ä½¿ç”¨post_object_group_result_initializeçš„è¿”å›å€¼
  */
 extern void
 post_object_group_result_finalize(oss_post_object_group_result_t *result);

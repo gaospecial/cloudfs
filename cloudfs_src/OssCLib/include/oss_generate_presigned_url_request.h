@@ -36,126 +36,126 @@
  */
 
 /**
- * struct oss_generate_presigned_url_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_generate_presigned_url_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_generate_presigned_url_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_generate_presigned_url_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_generate_presigned_url_request_s oss_generate_presigned_url_request_t;
 
 /**
- * Éú³É´øÓĞÇ©ÃûĞÅÏ¢µÄURLµÄÇëÇó
+ * ç”Ÿæˆå¸¦æœ‰ç­¾åä¿¡æ¯çš„URLçš„è¯·æ±‚
  */
 struct oss_generate_presigned_url_request_s {
-	char *bucket_name;      /**< BucketÃû³Æ */
-	char *expiration;       /**< ¹ıÆÚÊ±¼ä */
-	char *key;              /**< ObjectÃû³Æ */
-	char *method;           /**< HTTP·½·¨ */
-	oss_response_header_overrides_t *response_headers;   /**< ÒªÖØÔØµÄ·µ»ØÇëÇóÍ· */
-	oss_map_t *user_metadata;      /**< ÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ */
+	char *bucket_name;      /**< Bucketåç§° */
+	char *expiration;       /**< è¿‡æœŸæ—¶é—´ */
+	char *key;              /**< Objectåç§° */
+	char *method;           /**< HTTPæ–¹æ³• */
+	oss_response_header_overrides_t *response_headers;   /**< è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´ */
+	oss_map_t *user_metadata;      /**< ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ® */
 
 	/**
-	 * Ôö¼ÓÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param key [in] ÔªÊı¾İµÄkey
-	 * @param value [in] ÔªÊı¾İµÄvalue
+	 * å¢åŠ ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] å…ƒæ•°æ®çš„key
+	 * @param value [in] å…ƒæ•°æ®çš„value
 	 * @retval void
 	 */
 	void (*add_user_metadata)(oss_generate_presigned_url_request_t *request,
 			const char *key, const char *value);
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_generate_presigned_url_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_generate_presigned_url_request_t *request, const char *bucket_name);
 	
 	/**
-	 * »ñµÃ¹ıÆÚÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @return ¹ıÆÚÊ±¼ä
+	 * è·å¾—è¿‡æœŸæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿‡æœŸæ—¶é—´
 	 * @retval const char *
 	 */
 	const char * (*get_expiration)(oss_generate_presigned_url_request_t *request);
 
 	/**
-	 * ÉèÖÃ¹ıÆÚÊ±¼ä
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param expiration [in] ¹ıÆÚÊ±¼ä
+	 * è®¾ç½®è¿‡æœŸæ—¶é—´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param expiration [in] è¿‡æœŸæ—¶é—´
 	 * @retval void
 	 */
 	void (*set_expiration)(oss_generate_presigned_url_request_t *request, const char *expiration);
 
 	/**
-	 * »ñµÃObjectÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @return ObjectÃû³Æ
+	 * è·å¾—Objectåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_generate_presigned_url_request_t *request);
 
 	/**
-	 * ÉèÖÃObjectÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectÃû³Æ
+	 * è®¾ç½®Objectåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectåç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_generate_presigned_url_request_t *request, const char *key);
 
 	/**
-	 * »ñµÃHTTP·½·¨
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @return HTTP·½·¨
+	 * è·å¾—HTTPæ–¹æ³•
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @return HTTPæ–¹æ³•
 	 * @retval const char *
 	 */
 	const char * (*get_method)(oss_generate_presigned_url_request_t *request);
 
 	/**
-	 * ÉèÖÃHTTP·½·¨
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param method [in] HTTP·½·¨
+	 * è®¾ç½®HTTPæ–¹æ³•
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param method [in] HTTPæ–¹æ³•
 	 * @retval void
 	 */
 	void (*set_method)(oss_generate_presigned_url_request_t *request, const char *method);
 
 	/**
-	 * »ñµÃÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @return ÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @return è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_response_header_overrides_t * (*get_response_headers)(oss_generate_presigned_url_request_t *request);
 
 	/**
-	 * ÉèÖÃÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param response_headers [in] ÒªÖØÔØµÄ·µ»ØÇëÇóÍ·
+	 * è®¾ç½®è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param response_headers [in] è¦é‡è½½çš„è¿”å›è¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_response_headers)(oss_generate_presigned_url_request_t *request, oss_response_header_overrides_t *response_headers);
 
 	/**
-	 * »ñµÃÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @return ÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @return ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_map_t * (*get_user_metadata)(oss_generate_presigned_url_request_t *request);
 
 	/**
-	 * ÉèÖÃÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
-	 * @param user_metadata [in] ÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ
+	 * è®¾ç½®ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+	 * @param user_metadata [in] ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®
 	 * @retval void
 	 */
 	void (*set_user_metadata)(oss_generate_presigned_url_request_t *request,
@@ -165,35 +165,35 @@ struct oss_generate_presigned_url_request_s {
 };
 
 /**
- * oss_generate_presigned_url_request_t ¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @param key [in] ObjectÃû³Æ
- * @return ·µ»ØÒ»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_generate_presigned_url_request_t æ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @param key [in] Objectåç§°
+ * @return è¿”å›ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_generate_presigned_url_request_t *
 generate_presigned_url_request_initialize(const char *bucket_name, const char *key);
 
 /**
- * oss_generate_presigned_url_request_t´øhttp·½·¨µÄ¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @param key [in] ObjectÃû³Æ
- * @param method [in] http·½·¨
- * @return ·µ»ØÒ»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_generate_presigned_url_request_tå¸¦httpæ–¹æ³•çš„æ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @param key [in] Objectåç§°
+ * @param method [in] httpæ–¹æ³•
+ * @return è¿”å›ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_generate_presigned_url_request_t *
 generate_presigned_url_request_initialize_with_method(const char *bucket_name, const char *key, const char *method);
 
 /**
- * oss_generate_presigned_url_request_tÎö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_generate_presigned_url_request_t½á¹¹Ö¸Õë
+ * oss_generate_presigned_url_request_tææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_generate_presigned_url_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃdelete_multiple_object_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨delete_multiple_object_request_initializeçš„è¿”å›å€¼
  */
 extern void 
 generate_presigned_url_request_finalize(oss_generate_presigned_url_request_t *request);

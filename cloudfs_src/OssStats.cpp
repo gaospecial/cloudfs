@@ -15,7 +15,7 @@ OssStats::OssStats(OSS_FILE_META &meta) {
 		if (key == "size") {
 			size = atoll(value.c_str());
 		} else if (key == "type") {
-			//ÕâÀïoss_obj_type_tÊÇÃ¶¾ÙÀàĞÍ, ±ØĞëÊ¹ÓÃatoi
+			//è¿™é‡Œoss_obj_type_tæ˜¯æšä¸¾ç±»å‹, å¿…é¡»ä½¿ç”¨atoi
 			type = (oss_obj_type_t) atoi(value.c_str());
 		} else if (key == "mtime") {
 			mtime = atol(value.c_str());

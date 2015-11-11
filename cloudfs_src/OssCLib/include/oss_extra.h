@@ -44,11 +44,11 @@ typedef struct extra_worker_monitor_param_s extra_worker_monitor_param_t;
 typedef struct extra_curl_request_param_s extra_curl_request_param_t;
 
 struct extra_buffer_s {
-	char *unmovable_buffer_ptr; /**<¼ÇÂ¼Ö÷Ïß³ÌÖÐ·ÖÅäµÄ»º³åÇøÊ×µØÖ·£¬ÓÃÓÚÔÚ×ÓÏß³ÌÖÐÊÍ·Å¸Ã¿Õ¼ä */
-	char *ptr; /**< »º³åÇøÊ×Ö¸Õë£¬·¢ËÍÊý¾ÝÊ±¸ÃÖ¸ÕëÐèÒªÏòºóÒÆ¶¯ */
-	unsigned int left; /** »º³åÇøÊ£Óà´óÐ¡ */
-	unsigned int allocated; /** »º³åÇø×Ü´óÐ¡ */
-	unsigned short code; /**·µ»ØÂë */
+	char *unmovable_buffer_ptr; /**<è®°å½•ä¸»çº¿ç¨‹ä¸­åˆ†é…çš„ç¼“å†²åŒºé¦–åœ°å€ï¼Œç”¨äºŽåœ¨å­çº¿ç¨‹ä¸­é‡Šæ”¾è¯¥ç©ºé—´ */
+	char *ptr; /**< ç¼“å†²åŒºé¦–æŒ‡é’ˆï¼Œå‘é€æ•°æ®æ—¶è¯¥æŒ‡é’ˆéœ€è¦å‘åŽç§»åŠ¨ */
+	unsigned int left; /** ç¼“å†²åŒºå‰©ä½™å¤§å° */
+	unsigned int allocated; /** ç¼“å†²åŒºæ€»å¤§å° */
+	unsigned short code; /**è¿”å›žç  */
 };
 
 struct extra_request_param_s {
@@ -71,8 +71,8 @@ struct extra_curl_request_param_s {
 };
 
 struct extra_worker_monitor_param_s {
-	char *metadir; /* ÉÏ´«ÐÅÏ¢´æ·ÅÄ¿Â¼ */
-	int parts; /* ÉÏ´«ÎÄ¼þ¿éÊý */
+	char *metadir; /* ä¸Šä¼ ä¿¡æ¯å­˜æ”¾ç›®å½• */
+	int parts; /* ä¸Šä¼ æ–‡ä»¶å—æ•° */
 };
 
 extern void

@@ -20,12 +20,12 @@
 #include <time.h>
 
 /**
- * 获取ANSI C格式时间
+ * 鑾峰彇ANSI C鏍煎紡鏃堕棿
  */
 extern const char * oss_get_asctime();
 
 /**
- * 获取符合 HTTP/1.1 格式时间
+ * 鑾峰彇绗﹀悎 HTTP/1.1 鏍煎紡鏃堕棿
  */
 extern const char * oss_get_gmt_time();
 

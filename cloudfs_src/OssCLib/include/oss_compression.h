@@ -20,7 +20,7 @@
 
 #define OSS_COMPRESSION_MAGIC "OSSC" /**< (OSS-C)ompression */
 #define OSS_COMPRESSION_MAGIC_LEN (strlen(OSS_COMPRESSION_MAGIC))
-#define OSS_COMPRESSION_VERSION 0x01 /**< Ä¿Ç°Ñ¹ËõÎÄ¼þ¸ñÊ½°æ±¾Îª 1  */
+#define OSS_COMPRESSION_VERSION 0x01 /**< ç›®å‰åŽ‹ç¼©æ–‡ä»¶æ ¼å¼ç‰ˆæœ¬ä¸º 1  */
 
 #define OSS_CHUNK_SIZE (8 * 1024 * 1024)
 
@@ -34,13 +34,13 @@ enum oss_compression_algorithm_e {
 typedef enum oss_compression_algorithm_e oss_compression_algorithm_t;
 
 struct oss_compression_header_s {
-	char magic[4];  /**< 4 Bytes£¬Ä§Êý£¬"OSSC"£º\117\123\123\103 */
-	char version;   /**< 1 Byte£¬Ñ¹ËõÎÄ¼þ¸ñÊ½°æ±¾£¬Ä¿Ç°Îª 1 */
-	char algorithm; /**< 1 Bytes£¬Ñ¹ËõËã·¨£¬1£ºLZ4£¬2£ºLZO£¬3£ºQLZ£¬4£ºSnappy */
-	char flag;      /**< 1 Bytes£¬±êÖ¾Î» */
-	char length;    /**< 1 Bytes£¬Ê×²¿³¤¶È£¬×î³¤255×Ö½Ú, ¸Ã×Ö¶Î±ãÓÚ½ñºóÀ©Õ¹Ê×²¿ */
-	char md5[16];   /**< 16 Bytes£¬Ô­Ê¼ÎÄ¼þµÄMD5Öµ */
-	void *optional; /**< 4 Bytes£¬¿ÉÑ¡Êý¾ÝÏî£¬½ñºó¿ÉÄÜ»áÀûÓÃ¸Ã×Ö¶Î */
+	char magic[4];  /**< 4 Bytesï¼Œé­”æ•°ï¼Œ"OSSC"ï¼š\117\123\123\103 */
+	char version;   /**< 1 Byteï¼ŒåŽ‹ç¼©æ–‡ä»¶æ ¼å¼ç‰ˆæœ¬ï¼Œç›®å‰ä¸º 1 */
+	char algorithm; /**< 1 Bytesï¼ŒåŽ‹ç¼©ç®—æ³•ï¼Œ1ï¼šLZ4ï¼Œ2ï¼šLZOï¼Œ3ï¼šQLZï¼Œ4ï¼šSnappy */
+	char flag;      /**< 1 Bytesï¼Œæ ‡å¿—ä½ */
+	char length;    /**< 1 Bytesï¼Œé¦–éƒ¨é•¿åº¦ï¼Œæœ€é•¿255å­—èŠ‚, è¯¥å­—æ®µä¾¿äºŽä»ŠåŽæ‰©å±•é¦–éƒ¨ */
+	char md5[16];   /**< 16 Bytesï¼ŒåŽŸå§‹æ–‡ä»¶çš„MD5å€¼ */
+	void *optional; /**< 4 Bytesï¼Œå¯é€‰æ•°æ®é¡¹ï¼Œä»ŠåŽå¯èƒ½ä¼šåˆ©ç”¨è¯¥å­—æ®µ */
 };
 
 typedef struct oss_compression_header_s oss_compression_header_t;
@@ -52,20 +52,20 @@ extern void oss_compress_file(
 		const char *infile,
 		const char *outfile,
 		char algorithm,
-		char flag,      /** 0: ²»Ð´ÈëÔ´ÎÄ¼þµÄÐ£ÑéÖµ£¬1:Ð´ÈëÔ´ÎÄ¼þµÄÐ£ÑéÖµ */
+		char flag,      /** 0: ä¸å†™å…¥æºæ–‡ä»¶çš„æ ¡éªŒå€¼ï¼Œ1:å†™å…¥æºæ–‡ä»¶çš„æ ¡éªŒå€¼ */
 		int level);
 
 extern int oss_compress_block(
-		char *inbuf, unsigned int inbuf_len, /** ÊäÈë²ÎÊý£¬±ØÐëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char *outbuf, unsigned int outbuf_len,/** Êä³ö²ÎÊý£¬±ØÐëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char algorithm, /**< Ñ¹ËõËã·¨  */
-		int level /**< ¸ÃÑ¹ËõËã·¨µÄÑ¹ËõµÈ¼¶*/);
+		char *inbuf, unsigned int inbuf_len, /** è¾“å…¥å‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char *outbuf, unsigned int outbuf_len,/** è¾“å‡ºå‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char algorithm, /**< åŽ‹ç¼©ç®—æ³•  */
+		int level /**< è¯¥åŽ‹ç¼©ç®—æ³•çš„åŽ‹ç¼©ç­‰çº§*/);
 
 extern int oss_compress_block_2nd(
-		char *inbuf, unsigned int inbuf_len, /** ÊäÈë²ÎÊý£¬±ØÐëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char *outbuf, unsigned int outbuf_len,/** Êä³ö²ÎÊý£¬±ØÐëÔ¤ÏÈ·ÖÅä¿Õ¼ä */
-		char algorithm, /**< Ñ¹ËõËã·¨  */
-		char flag, /**< ±êÊ¶Î»£¬0 ²»¼ì²éÔ­ÎÄ¼þMD5£¬1 ¼ì²éÔ­ÎÄ¼þMD5Öµ */
-		int level /**< ¸ÃÑ¹ËõËã·¨µÄÑ¹ËõµÈ¼¶*/);
+		char *inbuf, unsigned int inbuf_len, /** è¾“å…¥å‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char *outbuf, unsigned int outbuf_len,/** è¾“å‡ºå‚æ•°ï¼Œå¿…é¡»é¢„å…ˆåˆ†é…ç©ºé—´ */
+		char algorithm, /**< åŽ‹ç¼©ç®—æ³•  */
+		char flag, /**< æ ‡è¯†ä½ï¼Œ0 ä¸æ£€æŸ¥åŽŸæ–‡ä»¶MD5ï¼Œ1 æ£€æŸ¥åŽŸæ–‡ä»¶MD5å€¼ */
+		int level /**< è¯¥åŽ‹ç¼©ç®—æ³•çš„åŽ‹ç¼©ç­‰çº§*/);
 
 #endif // OSS_COMPRESSION_H

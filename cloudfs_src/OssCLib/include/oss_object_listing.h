@@ -38,145 +38,145 @@
  */
 
 /**
- * struct oss_object_listing_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_object_listing_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_object_listing_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_object_listing_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_object_listing_s oss_object_listing_t;
 
 /**
- * Ò»¸öBucketÖĞËùÓĞµÄObjectĞÅÏ¢
+ * ä¸€ä¸ªBucketä¸­æ‰€æœ‰çš„Objectä¿¡æ¯
  */
 struct oss_object_listing_s {
-	char *bucket_name;       /**< BucketÃû³Æ */
-	char *next_marker;       /**< Èç¹ûÒòÎª max-keys µÄÉè¶¨ÎŞ·¨Ò»´ÎÍê³É listing,·µ»Ø½á¹û»á¸½¼ÓÒ»¸öNextMarker */
-	char *prefix;            /**< Ç°×º */
-	char *marker;            /**< ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í */
-	int max_keys;            /**< ·µ»Ø object µÄ×î´óÊı */
-	char * delimiter;        /**< ·Ö¸ô·û */
-	bool is_truncated;       /**< ±êÊ¶ÊÇ·ñÓĞÎ´ÏÔÊ¾µÄObject */
+	char *bucket_name;       /**< Bucketåç§° */
+	char *next_marker;       /**< å¦‚æœå› ä¸º max-keys çš„è®¾å®šæ— æ³•ä¸€æ¬¡å®Œæˆ listing,è¿”å›ç»“æœä¼šé™„åŠ ä¸€ä¸ªNextMarker */
+	char *prefix;            /**< å‰ç¼€ */
+	char *marker;            /**< æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨ */
+	int max_keys;            /**< è¿”å› object çš„æœ€å¤§æ•° */
+	char * delimiter;        /**< åˆ†éš”ç¬¦ */
+	bool is_truncated;       /**< æ ‡è¯†æ˜¯å¦æœ‰æœªæ˜¾ç¤ºçš„Object */
 
-	oss_object_summary_t **summaries;      /**< ËùÓĞµÄObjectĞÅÏ¢ */
-	unsigned int _counts_summaries;        /**< ObjectµÄÊıÄ¿ */
+	oss_object_summary_t **summaries;      /**< æ‰€æœ‰çš„Objectä¿¡æ¯ */
+	unsigned int _counts_summaries;        /**< Objectçš„æ•°ç›® */
 
-	char **common_prefixes;                 /**< Ãû×Ö°üº¬Ö¸¶¨µÄÇ°×ºÇÒµÚÒ»´Î³öÏÖ delimiter ×Ö·ûÖ®¼äµÄ object */
-	unsigned int _counts_common_prefixes;   /**< common_prefixesµÄÊıÄ¿ */
+	char **common_prefixes;                 /**< åå­—åŒ…å«æŒ‡å®šçš„å‰ç¼€ä¸”ç¬¬ä¸€æ¬¡å‡ºç° delimiter å­—ç¬¦ä¹‹é—´çš„ object */
+	unsigned int _counts_common_prefixes;   /**< common_prefixesçš„æ•°ç›® */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_object_listing_t *listing, const char *bucket_name);
 
 	/**
-	 * »ñµÃnext_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—next_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return next_marker
 	 * @retval const char *
 	 */
 	const char * (*get_next_marker)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃnext_marker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®next_marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param next_marker [in] next_marker
 	 * @retval void
 	 */
 	void (*set_next_marker)(oss_object_listing_t *listing, const char *next_marker);
 
 	/**
-	 * »ñµÃÇ°×º
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @return Ç°×º
+	 * è·å¾—å‰ç¼€
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return å‰ç¼€
 	 * @retval const char *
 	 */
 	const char * (*get_prefix)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃÇ°×º
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @param prefix [in] Ç°×º
+	 * è®¾ç½®å‰ç¼€
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param prefix [in] å‰ç¼€
 	 * @retval void
 	 */
 	void (*set_prefix)(oss_object_listing_t *listing, const char *prefix);
 
 	/**
-	 * »ñµÃmarker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return marker
 	 * @retval const char *
 	 */
 	const char * (*get_marker)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃmarker
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®marker
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param marker [in] marker
 	 * @retval void
 	 */
 	void (*set_marker)(oss_object_listing_t *listing, const char *marker);
 
 	/**
-	 * »ñµÃmax_keys
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—max_keys
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return max_keys
 	 * @retval int
 	 */
 	int (*get_max_keys)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃmax_keys
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®max_keys
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param max_keys [in] max_keys
 	 * @retval void
 	 */
 	void (*set_max_keys)(oss_object_listing_t *listing, int max_keys);
 
 	/**
-	 * »ñµÃ·Ö¸ô·û
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @return ·Ö¸ô·û
+	 * è·å¾—åˆ†éš”ç¬¦
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @return åˆ†éš”ç¬¦
 	 * @retval const char *
 	 */
 	const char * (*get_delimiter)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃ·Ö¸ô·û
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @param delimiter [in] ·Ö¸ô·û
+	 * è®¾ç½®åˆ†éš”ç¬¦
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param delimiter [in] åˆ†éš”ç¬¦
 	 * @retval void
 	 */
 	void (*set_delimiter)(oss_object_listing_t *listing, const char *delimiter);
 
 	/**
-	 * »ñµÃis_truncated
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è·å¾—is_truncated
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @return is_truncated
 	 * @retval bool
 	 */
 	bool (*get_is_truncated)(oss_object_listing_t *listing);
 
 	/**
-	 * ÉèÖÃis_truncated
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®is_truncated
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param is_truncated [in] is_truncated
 	 * @retval void
 	 */
 	void (*set_is_truncated)(oss_object_listing_t *listing, bool is_truncated);
 
 	/**
-	 * »ñµÃcommon_prefixes
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @param counts [out] common_prefixesµÄÊıÄ¿
+	 * è·å¾—common_prefixes
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param counts [out] common_prefixesçš„æ•°ç›®
 	 * @return common_prefixes
 	 * @retval const char **
 	 */
@@ -184,10 +184,10 @@ struct oss_object_listing_s {
 			unsigned int *counts);
 
 	/**
-	 * ÉèÖÃcommon_prefixes
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+	 * è®¾ç½®common_prefixes
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
 	 * @param common_prefixes [in] common_prefixes
-	 * @param counts [in] common_prefixesµÄÊıÄ¿
+	 * @param counts [in] common_prefixesçš„æ•°ç›®
 	 * @retval void
 	 */
 	void (*set_common_prefixes)(oss_object_listing_t *listing,
@@ -195,32 +195,32 @@ struct oss_object_listing_s {
 			unsigned int counts);
 
 	/**
-	 * »ñµÃËùÓĞµÄObjectĞÅÏ¢
-	 * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
-	 * @param counts [out] ËùÓĞµÄObjectĞÅÏ¢µÄÊıÄ¿
-	 * @return ·µ»ØÒ»¸öoss_object_summary_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—æ‰€æœ‰çš„Objectä¿¡æ¯
+	 * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+	 * @param counts [out] æ‰€æœ‰çš„Objectä¿¡æ¯çš„æ•°ç›®
+	 * @return è¿”å›ä¸€ä¸ªoss_object_summary_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_object_summary_t ** (*get_summaries)(oss_object_listing_t *listing,
 			unsigned int *counts);
 };
 
 /**
- * oss_object_listing_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_object_listing_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_object_listing_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_object_listing_t *
 object_listing_initialize(void);
 
 /**
- * oss_object_listing_tÎö¹¹º¯Êı
- * @param listing [in] ±êÊ¶Ò»¸öoss_object_listing_t½á¹¹Ö¸Õë
+ * oss_object_listing_tææ„å‡½æ•°
+ * @param listing [in] æ ‡è¯†ä¸€ä¸ªoss_object_listing_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre listing ±ØĞëÊ¹ÓÃobject_listing_initializeµÄ·µ»ØÖµ
+ * @pre listing å¿…é¡»ä½¿ç”¨object_listing_initializeçš„è¿”å›å€¼
  */
 extern void 
 object_listing_finalize(oss_object_listing_t *listing);

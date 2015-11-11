@@ -102,7 +102,7 @@ int cloudfs_sqlite_get_file_meta(void *pDbHandle, string &filePath, stFileMetaRe
 	
 	}
 
-	//ÒÔÖ÷¼ü²éÑ¯, Ö»¿ÉÄÜÓĞÒ»¸ö·µ»Ø¼ÇÂ¼
+	//ä»¥ä¸»é”®æŸ¥è¯¢, åªå¯èƒ½æœ‰ä¸€ä¸ªè¿”å›è®°å½•
 	int s = sqlite3_step(pStmt);
 	if (s != SQLITE_ROW)
 	{
@@ -111,7 +111,7 @@ int cloudfs_sqlite_get_file_meta(void *pDbHandle, string &filePath, stFileMetaRe
 		return -1;
 	}
 
-	//»ñÈ¡·µ»Ø½á¹û, ´æÔÚ
+	//è·å–è¿”å›ç»“æœ, å­˜åœ¨
 	pMeta->m_time = sqlite3_column_int(pStmt, 0);
 	pMeta->mode = sqlite3_column_int(pStmt, 1);
 	sqlite3_finalize(pStmt);
@@ -132,7 +132,7 @@ int cloudfs_sqlite_set_file_meta_ex(void *pDbHandle, string &filePath, stFileMet
 	int rc = 0;
 	sqlite3_stmt *pStmt = NULL;
 
-	//²åÈë, ´Ë´¦Ê¹ÓÃreplaceÓï·¨
+	//æ’å…¥, æ­¤å¤„ä½¿ç”¨replaceè¯­æ³•
 	char pStatement[256];
 	sprintf(pStatement, "replace into t_fs_file_meta values (?, 0, %Zd, 0, %Zd)", pMeta->m_time, pMeta->mode);
 	
@@ -195,7 +195,7 @@ int cloudfs_sqlite_remove_file_meta_ex(void *pDbHandle, string &filePath)
 	
 	}
 
-	//ÒÔÖ÷¼ü²éÑ¯, Ö»¿ÉÄÜÓĞÒ»¸ö·µ»Ø¼ÇÂ¼
+	//ä»¥ä¸»é”®æŸ¥è¯¢, åªå¯èƒ½æœ‰ä¸€ä¸ªè¿”å›è®°å½•
 	int s = sqlite3_step(pStmt);
 	if (s != SQLITE_DONE)
 	{
@@ -212,8 +212,8 @@ int cloudfs_sqlite_remove_file_meta_ex(void *pDbHandle, string &filePath)
 }
 
 
-//addµÄÂß¼­ÊÇÏÈ²éÑ¯ÊÇ·ñ´æÔÚ, Èç¹û´æÔÚÖ±½Ó°ÑÏà¹Ø×Ö¶Î·µ»Ø¸øµ÷ÓÃÕß
-//Èç¹û²»´æÔÚ, Ôò²åÈëÊäÈëµÄÊı¾İ
+//addçš„é€»è¾‘æ˜¯å…ˆæŸ¥è¯¢æ˜¯å¦å­˜åœ¨, å¦‚æœå­˜åœ¨ç›´æ¥æŠŠç›¸å…³å­—æ®µè¿”å›ç»™è°ƒç”¨è€…
+//å¦‚æœä¸å­˜åœ¨, åˆ™æ’å…¥è¾“å…¥çš„æ•°æ®
 int cloudfs_sqlite_add_file_meta_ex(void *pDbHandle, string &filePath, stFileMetaRecord *pMeta)
 {
 	int rc = 0;
@@ -226,7 +226,7 @@ int cloudfs_sqlite_add_file_meta_ex(void *pDbHandle, string &filePath, stFileMet
 	rc = cloudfs_sqlite_get_file_meta(pDbHandle, filePath, pMeta);
 	if (rc == 0)
 	{
-		//¼ÇÂ¼ÒÑ¾­´æÔÚ, Ö±½Óreturn;
+		//è®°å½•å·²ç»å­˜åœ¨, ç›´æ¥return;
 		return 0;
 	}
 
@@ -235,7 +235,7 @@ int cloudfs_sqlite_add_file_meta_ex(void *pDbHandle, string &filePath, stFileMet
 }
 
 
-//³ÌĞòÆô¶¯Ê±, ´ò¿ªÊı¾İ¿âÎÄ¼ş, »ñµÃÊı¾İ¿â·ÃÎÊ¾ä±ú
+//ç¨‹åºå¯åŠ¨æ—¶, æ‰“å¼€æ•°æ®åº“æ–‡ä»¶, è·å¾—æ•°æ®åº“è®¿é—®å¥æŸ„
 int cloudfs_sqlite_init(const char *pDbFilePath)
 {
 
@@ -255,7 +255,7 @@ int cloudfs_sqlite_init(const char *pDbFilePath)
 		return -1;
 	}
 
-	//´´½¨±í, Èç¹û±íÒÑ¾­´æÔÚ, ÔòÎŞĞè¹ØĞÄ	
+	//åˆ›å»ºè¡¨, å¦‚æœè¡¨å·²ç»å­˜åœ¨, åˆ™æ— éœ€å…³å¿ƒ	
 	cloudfs_sqlite_create_file_meta_table(db);
 
 	gDbHanle.Init(db);

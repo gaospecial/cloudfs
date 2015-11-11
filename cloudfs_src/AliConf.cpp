@@ -11,7 +11,7 @@ using namespace std;
 //#define ALI_CONF_FILE "/etc/cloudfs/cloudfs.conf"
 #define ALI_CONF_FILE "./conf/cloudfs.conf"
 
-//½«HOST/ID/KEY/BUCKETµÄÖµÉèÖÃÎª¿Õ, Èç¹ûÅäÖÃÎÄ¼şÖĞÎ´ÅäÖÃ, ÔòÖ±½ÓÔÚÔËĞĞ½çÃæ±¨´í
+//å°†HOST/ID/KEY/BUCKETçš„å€¼è®¾ç½®ä¸ºç©º, å¦‚æœé…ç½®æ–‡ä»¶ä¸­æœªé…ç½®, åˆ™ç›´æ¥åœ¨è¿è¡Œç•Œé¢æŠ¥é”™
 string AliConf::HOST = "";
 string AliConf::ID = "";
 string AliConf::KEY = "";
@@ -31,7 +31,7 @@ size_t AliConf::USE_SQLITE = 0;
 
 void cloudfs_print_version_info()
 {
-	//´òÓ¡²úÆ·ĞÅÏ¢
+	//æ‰“å°äº§å“ä¿¡æ¯
 	cout << "---------------------------------------------------------------------------------" << endl;
     cout << "Welcome to use cloudfs. Cloudfs is developped and maintaind by Yunyu Technology" << endl;
     cout << "Version :" << CLOUDFS_VERSION_INFO << endl;
@@ -93,7 +93,7 @@ void AliConf::INIT() {
             }
             vector<string> results;
             //split(line, results, "=");
-			//ÕâÀïĞèÒªÊ¹ÓÃsplit_to_key_value, Èç¹ûvalueÀïÃæ´øÓĞ=·ûºÅ£¬Ô­À´µÄsplit²»ÄÜ´¦Àí
+			//è¿™é‡Œéœ€è¦ä½¿ç”¨split_to_key_value, å¦‚æœvalueé‡Œé¢å¸¦æœ‰=ç¬¦å·ï¼ŒåŸæ¥çš„splitä¸èƒ½å¤„ç†
 			split_to_key_value(line, results, "=");
             //remove all the lines not in a=b format
             if (results.size() != 2) {

@@ -36,23 +36,23 @@
  */
 
 /**
- * struct oss_object_metadata_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_object_metadata_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_object_metadata_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_object_metadata_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_object_metadata_s oss_object_metadata_t;
 
 /**
- * OSSÖĞObjectµÄÔªÊı¾İ.°üº¬ÁËÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ,Ò²°üº¬ÁËOSS·¢ËÍµÄ±ê×¼HTTPÍ·(ÈçContent-Length, ETagµÈ£©
+ * OSSä¸­Objectçš„å…ƒæ•°æ®.åŒ…å«äº†ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®,ä¹ŸåŒ…å«äº†OSSå‘é€çš„æ ‡å‡†HTTPå¤´(å¦‚Content-Length, ETagç­‰ï¼‰
  */
 struct oss_object_metadata_s {
-	oss_map_t *metadata;             /**< Http ±ê×¼Í·²¿ */
-	oss_map_t *user_metadata;        /**< Http ÓÃ»§×Ô¶¨ÒåÍ·²¿ */
+	oss_map_t *metadata;             /**< Http æ ‡å‡†å¤´éƒ¨ */
+	oss_map_t *user_metadata;        /**< Http ç”¨æˆ·è‡ªå®šä¹‰å¤´éƒ¨ */
 
 	/**
-	 * Ôö¼ÓÒ»¸öÓÃ»§×Ô¶¨ÒåÍ·²¿¼üÖµ¶Ô
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param key [in] ÓÃ»§×Ô¶¨ÒåÍ·²¿¼ü
-	 * @param value [in] ÓÃ»§×Ô¶¨ÒåÍ·²¿Öµ
+	 * å¢åŠ ä¸€ä¸ªç”¨æˆ·è‡ªå®šä¹‰å¤´éƒ¨é”®å€¼å¯¹
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] ç”¨æˆ·è‡ªå®šä¹‰å¤´éƒ¨é”®
+	 * @param value [in] ç”¨æˆ·è‡ªå®šä¹‰å¤´éƒ¨å€¼
 	 * @retval void
 	 */
 	void (*add_user_metadata)(oss_object_metadata_t *metadata,
@@ -60,10 +60,10 @@ struct oss_object_metadata_s {
 			const char *value);
 
 	/**
-	 * Ôö¼ÓÒ»¸ö±ê×¼Í·²¿¼üÖµ¶Ô
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param key [in] ±ê×¼Í·²¿µÄ¼ü
-	 * @param value [in] ±ê×¼Í·²¿µÄÖµ
+	 * å¢åŠ ä¸€ä¸ªæ ‡å‡†å¤´éƒ¨é”®å€¼å¯¹
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] æ ‡å‡†å¤´éƒ¨çš„é”®
+	 * @param value [in] æ ‡å‡†å¤´éƒ¨çš„å€¼
 	 * @retval void
 	 */
 	void (*add_default_metadata)(oss_object_metadata_t *metadata,
@@ -71,155 +71,155 @@ struct oss_object_metadata_s {
 			const char *value);
 
 	/**
-	 * »ñÈ¡Cache-ControlÇëÇóÍ·£¬±íÊ¾ÓÃ»§Ö¸¶¨µÄHTTPÇëÇó/»Ø¸´Á´µÄ»º´æĞĞÎª
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return Cache-ControlÇëÇóÍ·
+	 * è·å–Cache-Controlè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºç”¨æˆ·æŒ‡å®šçš„HTTPè¯·æ±‚/å›å¤é“¾çš„ç¼“å­˜è¡Œä¸º
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Cache-Controlè¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_cache_control)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡Content-DispositionÇëÇóÍ·£¬±íÊ¾MIMEÓÃ»§´úÀíÈçºÎÏÔÊ¾¸½¼ÓµÄÎÄ¼ş
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return Content-DispositionÇëÇóÍ·
+	 * è·å–Content-Dispositionè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºMIMEç”¨æˆ·ä»£ç†å¦‚ä½•æ˜¾ç¤ºé™„åŠ çš„æ–‡ä»¶
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Content-Dispositionè¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_disposition)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡Content-EncodingÇëÇóÍ·£¬±íÊ¾ObjectÄÚÈİµÄ±àÂë·½Ê½
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return Content-EncodingÇëÇóÍ·
+	 * è·å–Content-Encodingè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºObjectå†…å®¹çš„ç¼–ç æ–¹å¼
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Content-Encodingè¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_encoding)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡Content-LengthÇëÇóÍ·£¬±íÊ¾ObjectÄÚÈİµÄ´óĞ¡
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return Content-LengthÇëÇóÍ·
+	 * è·å–Content-Lengthè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºObjectå†…å®¹çš„å¤§å°
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Content-Lengthè¯·æ±‚å¤´
 	 * @retval long
 	 */
 	long (*get_content_length)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡Content-TypeÇëÇóÍ·£¬±íÊ¾ObjectÄÚÈİµÄÀàĞÍ£¬Îª±ê×¼µÄMIMEÀàĞÍ
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return Content-TypeÇëÇóÍ·
+	 * è·å–Content-Typeè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºObjectå†…å®¹çš„ç±»å‹ï¼Œä¸ºæ ‡å‡†çš„MIMEç±»å‹
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Content-Typeè¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_content_type)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡Ò»¸öÖµ±íÊ¾ÓëObjectÏà¹ØµÄhex±àÂëµÄ128Î»MD5ÕªÒª
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return ObjectµÄetagÖµ
+	 * è·å–ä¸€ä¸ªå€¼è¡¨ç¤ºä¸Objectç›¸å…³çš„hexç¼–ç çš„128ä½MD5æ‘˜è¦
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectçš„etagå€¼
 	 * @retval const char *
 	 */
 
 	const char * (*get_etag)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡ExpiresÇëÇóÍ·
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return ExpiresÇëÇóÍ·
+	 * è·å–Expiresè¯·æ±‚å¤´
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Expiresè¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_expiration_time)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡Last-ModifiedÇëÇóÍ·µÄÖµ£¬±íÊ¾Object×îºóÒ»´ÎĞŞ¸ÄµÄÊ±¼ä
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return Last-ModifiedÇëÇóÍ·
+	 * è·å–Last-Modifiedè¯·æ±‚å¤´çš„å€¼ï¼Œè¡¨ç¤ºObjectæœ€åä¸€æ¬¡ä¿®æ”¹çš„æ—¶é—´
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return Last-Modifiedè¯·æ±‚å¤´
 	 * @retval const char *
 	 */
 	const char * (*get_last_modified)(oss_object_metadata_t *metadata);
 
 	/**
-	 * ·µ»ØÄÚ²¿±£´æµÄÇëÇóÍ·µÄÔªÊı¾İ£¨ÄÚ²¿Ê¹ÓÃ£©
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØÒ»¸öoss_map_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è¿”å›å†…éƒ¨ä¿å­˜çš„è¯·æ±‚å¤´çš„å…ƒæ•°æ®ï¼ˆå†…éƒ¨ä½¿ç”¨ï¼‰
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›ä¸€ä¸ªoss_map_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_map_t * (*get_raw_metadata)(oss_object_metadata_t *metadata);
 
 	/**
-	 * »ñÈ¡ÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @return ·µ»ØÒ»¸öoss_map_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å–ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @return è¿”å›ä¸€ä¸ªoss_map_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_map_t * (*get_user_metadata)(oss_object_metadata_t *metadata);
 
 	/**
-	 * ÉèÖÃCache-ControlÇëÇóÍ·£¬±íÊ¾ÓÃ»§Ö¸¶¨µÄHTTPÇëÇó/»Ø¸´Á´µÄ»º´æĞĞÎª
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param cache_control [in] Cache-ControlÇëÇóÍ·
+	 * è®¾ç½®Cache-Controlè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºç”¨æˆ·æŒ‡å®šçš„HTTPè¯·æ±‚/å›å¤é“¾çš„ç¼“å­˜è¡Œä¸º
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param cache_control [in] Cache-Controlè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_cache_control)(oss_object_metadata_t *metadata, 
 			const char *cache_control);
 
 	/**
-	 * ÉèÖÃContent-DispositionÇëÇóÍ·£¬±íÊ¾MIMEÓÃ»§´úÀíÈçºÎÏÔÊ¾¸½¼ÓµÄÎÄ¼ş
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param disposition [in] Content-DispositionÇëÇóÍ·
+	 * è®¾ç½®Content-Dispositionè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºMIMEç”¨æˆ·ä»£ç†å¦‚ä½•æ˜¾ç¤ºé™„åŠ çš„æ–‡ä»¶
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param disposition [in] Content-Dispositionè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_disposition)(oss_object_metadata_t *metadata,
 			const char *disposition);
 
 	/**
-	 * ÉèÖÃContent-EncodingÇëÇóÍ·£¬±íÊ¾ObjectÄÚÈİµÄ±àÂë·½Ê½
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param encoding [in]Content-EncodingÇëÇóÍ·
+	 * è®¾ç½®Content-Encodingè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºObjectå†…å®¹çš„ç¼–ç æ–¹å¼
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param encoding [in]Content-Encodingè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_encoding)(oss_object_metadata_t *metadata,
 			const char *encoding);
 
 	/**
-	 * ÉèÖÃContent-LengthÇëÇóÍ·£¬±íÊ¾ObjectÄÚÈİµÄ´óĞ¡
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param content_length [in] Content-LengthÇëÇóÍ·
+	 * è®¾ç½®Content-Lengthè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºObjectå†…å®¹çš„å¤§å°
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param content_length [in] Content-Lengthè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_length)(oss_object_metadata_t *metadata,
 			long content_length);
 
 	/**
-	 * »ñÈ¡Content-TypeÇëÇóÍ·£¬±íÊ¾ObjectÄÚÈİµÄÀàĞÍ£¬Îª±ê×¼µÄMIMEÀàĞÍ
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param content_type [in] Content-TypeÇëÇóÍ·
+	 * è·å–Content-Typeè¯·æ±‚å¤´ï¼Œè¡¨ç¤ºObjectå†…å®¹çš„ç±»å‹ï¼Œä¸ºæ ‡å‡†çš„MIMEç±»å‹
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param content_type [in] Content-Typeè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_content_type)(oss_object_metadata_t *metadata,
 			const char *content_type);
 
 	/**
-	 * ÉèÖÃExpiresÇëÇóÍ·
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param expiration_time [in]ExpiresÇëÇóÍ·
+	 * è®¾ç½®Expiresè¯·æ±‚å¤´
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param expiration_time [in]Expiresè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_expiration_time)(oss_object_metadata_t *metadata,
 			const char *expiration_time);
 
 	/**
-	 * ÉèÖÃObjectµÄetag
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param etag [in] ObjectµÄetag
+	 * è®¾ç½®Objectçš„etag
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param etag [in] Objectçš„etag
 	 * @retval void
 	 */
 	void (*set_etag)(oss_object_metadata_t *metadata, const char *etag);
 
 	/**
-	 * ÉèÖÃÇëÇóÍ·£¨ÄÚ²¿Ê¹ÓÃ£©
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param key [in] ÇëÇóÍ·µÄ¼ü
-	 * @param value [in] ÇëÇóÍ·µÄÖµ
+	 * è®¾ç½®è¯·æ±‚å¤´ï¼ˆå†…éƒ¨ä½¿ç”¨ï¼‰
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] è¯·æ±‚å¤´çš„é”®
+	 * @param value [in] è¯·æ±‚å¤´çš„å€¼
 	 * @retval void
 	 */
 	void (*set_header)(oss_object_metadata_t *metadata,
@@ -227,18 +227,18 @@ struct oss_object_metadata_s {
 			const char *value);
 
 	/**
-	 * ÉèÖÃLast-ModifiedÇëÇóÍ·µÄÖµ£¬±íÊ¾Object×îºóÒ»´ÎĞŞ¸ÄµÄÊ±¼ä£¨ÄÚ²¿Ê¹ÓÃ£©
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param last_modified [in] Last-ModifiedÇëÇóÍ·
+	 * è®¾ç½®Last-Modifiedè¯·æ±‚å¤´çš„å€¼ï¼Œè¡¨ç¤ºObjectæœ€åä¸€æ¬¡ä¿®æ”¹çš„æ—¶é—´ï¼ˆå†…éƒ¨ä½¿ç”¨ï¼‰
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param last_modified [in] Last-Modifiedè¯·æ±‚å¤´
 	 * @retval void
 	 */
 	void (*set_last_modified)(oss_object_metadata_t *metadata,
 			const char *last_modified);
 
 	/**
-	 * ÉèÖÃÓÃ»§×Ô¶¨ÒåµÄÔªÊı¾İ£¬±íÊ¾ÒÔx-oss-meta-ÎªÇ°×ºµÄÇëÇóÍ·
-	 * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
-	 * @param user_metadata ±êÊ¶Ò»¸öoss_map_t½á¹¹Ö¸Õë
+	 * è®¾ç½®ç”¨æˆ·è‡ªå®šä¹‰çš„å…ƒæ•°æ®ï¼Œè¡¨ç¤ºä»¥x-oss-meta-ä¸ºå‰ç¼€çš„è¯·æ±‚å¤´
+	 * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+	 * @param user_metadata æ ‡è¯†ä¸€ä¸ªoss_map_tç»“æ„æŒ‡é’ˆ
 	 * @retval void
 	 */
 	void (*set_user_metadata)(oss_object_metadata_t *metadata,
@@ -246,20 +246,20 @@ struct oss_object_metadata_s {
 };
 
 /**
- * oss_object_metadata_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_object_metadata_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_object_metadata_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_object_metadata_t *
 object_metadata_initialize();
 
 /**
- * oss_object_metadata_tÎö¹¹º¯Êı
- * @param metadata [in] ±êÊ¶Ò»¸öoss_object_metadata_t½á¹¹Ö¸Õë
+ * oss_object_metadata_tææ„å‡½æ•°
+ * @param metadata [in] æ ‡è¯†ä¸€ä¸ªoss_object_metadata_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre metadata ±ØĞëÊ¹ÓÃobject_metadata_initializeµÄ·µ»ØÖµ
+ * @pre metadata å¿…é¡»ä½¿ç”¨object_metadata_initializeçš„è¿”å›å€¼
  */
 extern void
 object_metadata_finalize(oss_object_metadata_t *metadata);

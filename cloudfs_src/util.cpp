@@ -62,8 +62,8 @@ string trim(const string &s, const string &t /* = SPACES */) {
 }
 
 string url_encode(const string &s) {
-//ÔÚµ÷ÊÔ°üº¬ÖĞÎÄ×Ö·ûµÄobject nameÊ±·¢ÏÖ´Ë´¦²»ĞèÒª½øĞĞURL±àÂë
-//ĞèÒª¼ÌĞø¸ú½ø·ÖÎö
+//åœ¨è°ƒè¯•åŒ…å«ä¸­æ–‡å­—ç¬¦çš„object nameæ—¶å‘ç°æ­¤å¤„ä¸éœ€è¦è¿›è¡ŒURLç¼–ç 
+//éœ€è¦ç»§ç»­è·Ÿè¿›åˆ†æ
 
 	string result;
 	for (unsigned i = 0; i < s.length(); ++i) {
@@ -311,7 +311,7 @@ string getFileSuffix(const char* name)
 UploadIdFile::UploadIdFile(const char *path)
 {
 
-	/* ³õÊ¼»¯²Ù×÷Ëø */
+	/* åˆå§‹åŒ–æ“ä½œé” */
 	pthread_mutexattr_t mutexattr;
 	pthread_mutexattr_init(&mutexattr);
 	pthread_mutexattr_settype(&mutexattr, PTHREAD_MUTEX_RECURSIVE);
@@ -321,7 +321,7 @@ UploadIdFile::UploadIdFile(const char *path)
 
     m_FilePath.assign(path);
 
-    /* ´ò¿ªÎÄ¼ş, ²¢loadÎÄ¼şÖĞµÄÊı¾İ */
+    /* æ‰“å¼€æ–‡ä»¶, å¹¶loadæ–‡ä»¶ä¸­çš„æ•°æ® */
     FILE *tmpFile  = fopen(path, "r");
     if (NULL == tmpFile)
     {
@@ -329,21 +329,21 @@ UploadIdFile::UploadIdFile(const char *path)
         return;
     }
 
-    /* ¼ÓÔØÊı¾İ */
+    /* åŠ è½½æ•°æ® */
     char TmpBuf[1024];
     while(fgets(TmpBuf, 1024, tmpFile) != NULL)
     {
         m_uploadid_list.push_back(string(TmpBuf, 0, (strlen(TmpBuf)-1)));
     }
 
-    /* ¹Ø±ÕÎÄ¼ş */
+    /* å…³é—­æ–‡ä»¶ */
     fclose(tmpFile);
 }
 
 
 UploadIdFile::~UploadIdFile()
 {
-	/* É¾³ıÏß³ÌËø×ÊÔ´ */
+	/* åˆ é™¤çº¿ç¨‹é”èµ„æº */
 	pthread_mutex_destroy(&m_uploadid_mutex);
 	
     m_uploadid_list.clear();
@@ -386,7 +386,7 @@ void UploadIdFile::ClearUploadList()
 
 void UploadIdFile::sync2file()
 {
-    /* ´ò¿ªÎÄ¼ş, ²¢loadÎÄ¼şÖĞµÄÊı¾İ, Ê¹ÓÃ"w"Ñ¡Ïî´ò¿ª, »áÇå¿ÕÔ­ÓĞÊı¾İ */
+    /* æ‰“å¼€æ–‡ä»¶, å¹¶loadæ–‡ä»¶ä¸­çš„æ•°æ®, ä½¿ç”¨"w"é€‰é¡¹æ‰“å¼€, ä¼šæ¸…ç©ºåŸæœ‰æ•°æ® */
     FILE *tmpFile = fopen(m_FilePath.c_str(), "w");
     if (NULL == tmpFile)
     {
@@ -408,7 +408,7 @@ void UploadIdFile::sync2file()
 }
 
 /*
-Ê¹ÓÃ´úÂë·¶Àı
+ä½¿ç”¨ä»£ç èŒƒä¾‹
 int main()
 {
         UploadIdFile test;

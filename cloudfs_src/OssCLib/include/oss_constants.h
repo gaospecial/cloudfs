@@ -20,79 +20,79 @@
 #define OSS_CONSTANTS_H
 
 typedef enum _OSS_ERROR_CODE {
-	/* 0 ·µ»Ø³É¹¦ */
+	/* 0 è¿”å›žæˆåŠŸ */
 	OK,
-	/* 1 É¾³ý³É¹¦ */
+	/* 1 åˆ é™¤æˆåŠŸ */
 	NO_CONTENT,
-	/* ¾Ü¾ø·ÃÎÊ */
+	/* æ‹’ç»è®¿é—® */
 	ACCESS_DENIED,
-	/* Bucket ÒÑ¾­´æÔÚ */
+	/* Bucket å·²ç»å­˜åœ¨ */
 	BUCKET_ALREADY_EXISTS,
-	/* Bucket ²»Îª¿Õ */
+	/* Bucket ä¸ä¸ºç©º */
 	BUCKET_NOT_EMPTY,
-	/* ÊµÌå¹ý´ó */
+	/* å®žä½“è¿‡å¤§ */
 	ENTITY_TOO_LARGE,
-	/* ÊµÌå¹ýÐ¡ */
+	/* å®žä½“è¿‡å° */
 	ENTITY_TOO_SMALL,
-	/* ÎÄ¼þ×é¹ý´ó */
+	/* æ–‡ä»¶ç»„è¿‡å¤§ */
 	FILE_GROUP_TOO_LARGE,
-	/* ÎÄ¼þpart²»´æÔÚ */
+	/* æ–‡ä»¶partä¸å­˜åœ¨ */
 	FILE_PART_NOT_EXIST,
-	/* ÎÄ¼þPart¹ýÊ± */
+	/* æ–‡ä»¶Partè¿‡æ—¶ */
 	FILE_PART_STALE,
-	/* OSS ÄÚ²¿·¢Éú´íÎó */
+	/* OSS å†…éƒ¨å‘ç”Ÿé”™è¯¯ */
 	INTERNAL_ERROR,
-	/* Access ID²»´æÔÚ */
+	/* Access IDä¸å­˜åœ¨ */
 	INVALID_ACCESS_KEY_ID,
-	/* ²ÎÊý¸ñÊ½´íÎó */
+	/* å‚æ•°æ ¼å¼é”™è¯¯ */
 	INVALID_ARGUMENT,
-	/* ÎÞÐ§µÄ Bucket Ãû×Ö */
+	/* æ— æ•ˆçš„ Bucket åå­— */
 	INVALID_BUCKET_NAME,
-	/* ÎÞÐ§µÄÕªÒª */
+	/* æ— æ•ˆçš„æ‘˜è¦ */
 	INVALID_DIGEST,
-	/* ÎÞÐ§µÄ Object Ãû×Ö */
+	/* æ— æ•ˆçš„ Object åå­— */
 	INVALID_OBJECT_NAME,
-	/* ÎÞÐ§µÄ Part */
+	/* æ— æ•ˆçš„ Part */
 	INVALID_PART,
-	/* ÎÞÐ§µÄ PartË³Ðò */
+	/* æ— æ•ˆçš„ Parté¡ºåº */
 	INVALID_PART_ORDER,
-	/* XML¸ñÊ½·Ç·¨ */
+	/* XMLæ ¼å¼éžæ³• */
 	MALFORMED_XML,
-	/* ²»Ö§³ÖµÄ·½·¨ */
+	/* ä¸æ”¯æŒçš„æ–¹æ³• */
 	METHOD_NOT_ALLOWED,
-	/* È±ÉÙ²ÎÊý */
+	/* ç¼ºå°‘å‚æ•° */
 	MISSING_ARGUMENT,
-	/* È±ÉÙÄÚÈÝ³¤¶È */
+	/* ç¼ºå°‘å†…å®¹é•¿åº¦ */
 	MISSING_CONTENT_LENGTH,
-	/* Bucket ²»´æÔÚ */
+	/* Bucket ä¸å­˜åœ¨ */
 	NO_SUCH_BUCKET,
-	/* ÎÄ¼þ²»´æÔÚ */
+	/* æ–‡ä»¶ä¸å­˜åœ¨ */
 	NO_SUCH_KEY,
-	/* Multipart Upload ID ²»´æÔÚ */
+	/* Multipart Upload ID ä¸å­˜åœ¨ */
 	NO_SUCH_UPLOAD,
-	/* ÎÞ·¨´¦ÀíµÄ·½·¨ */
+	/* æ— æ³•å¤„ç†çš„æ–¹æ³• */
 	NOT_IMPLEMENTED,
-	/* Ô¤´¦Àí´íÎó */
+	/* é¢„å¤„ç†é”™è¯¯ */
 	PRECONDITION_FAILED,
-	/* ·¢ÆðÇëÇóµÄÊ±¼äºÍ·þÎñÆ÷Ê±¼ä³¬³ö15·ÖÖÓ */
+	/* å‘èµ·è¯·æ±‚çš„æ—¶é—´å’ŒæœåŠ¡å™¨æ—¶é—´è¶…å‡º15åˆ†é’Ÿ */
 	REQUEST_TIME_TOO_SKEWED,
-	/* ÇëÇó³¬Ê± */
+	/* è¯·æ±‚è¶…æ—¶ */
 	REQUEST_TIMEOUT,
-	/* Ç©Ãû´íÎó */
+	/* ç­¾åé”™è¯¯ */
 	SIGNATURE_DOES_NOT_MATCH,
-	/* ÓÃ»§µÄ Bucket ÊýÄ¿³¬¹ýÏÞÖÆ */
+	/* ç”¨æˆ·çš„ Bucket æ•°ç›®è¶…è¿‡é™åˆ¶ */
 	TOO_MANY_BUCKETS,
-	/* ÎÄ¼þÍêÕûÐÔ */
+	/* æ–‡ä»¶å®Œæ•´æ€§ */
 	FILE_PART_INTERITY,
-	/* ÎÄ¼þÕÒ²»µ½ */
+	/* æ–‡ä»¶æ‰¾ä¸åˆ° */
 	FILE_NOT_FOUND,
-	/* Ã»ÓÐ±»ÐÞ¸Ä */
+	/* æ²¡æœ‰è¢«ä¿®æ”¹ */
 	NOT_MODIFIED,
-	/* ÎÄ¼þ¹ý´ó */
+	/* æ–‡ä»¶è¿‡å¤§ */
 	FILE_TOO_LARGE,
-	/* IO ´íÎó */
+	/* IO é”™è¯¯ */
 	IO_ERROR,
-	/* ÍøÂçÁ¬½Ó´íÎó */
+	/* ç½‘ç»œè¿žæŽ¥é”™è¯¯ */
 	NETWORK_NOT_AVAILABLE, 
 
 	OSSCLIB_INTERNAL_ERROR,
@@ -157,14 +157,14 @@ typedef enum _OSS_PERMISSION {
 #define OSS_URL_EXPIRES        "Expires"
 #define OSS_URL_SIGNATURE      "Signature"
 
-//HTTP·½·¨
+//HTTPæ–¹æ³•
 #define OSS_HTTP_GET     "GET"
 #define OSS_HTTP_PUT     "PUT"
 #define OSS_HTTP_HEAD    "HEAD"
 #define OSS_HTTP_POST    "POST"
 #define OSS_HTTP_DELETE  "DELETE"
 
-//ÆäËû³£Á¿
+//å…¶ä»–å¸¸é‡
 #define OSS_ACL                         "x-oss-acl"
 #define OSS_OBJECT_GROUP                "x-oss-file-group"
 #define OSS_COPY_SOURCE					"x-oss-copy-source"
@@ -183,7 +183,7 @@ typedef enum _OSS_PERMISSION {
 #define RESPONSE_HEADER_CONTENT_TYPE         "RESPONSE_HEADER_CONTENT_TYPE"
 #define RESPONSE_HEADER_EXPIRES              "RESPONSE_HEADER_EXPIRES"
 //
-//·¢ËÍ»º³åÇø£¬½ÓÊÕ»º³åÇø£¬Í·²¿»º³åÇø´óÐ¡
+//å‘é€ç¼“å†²åŒºï¼ŒæŽ¥æ”¶ç¼“å†²åŒºï¼Œå¤´éƒ¨ç¼“å†²åŒºå¤§å°
 #define MAX_SEND_BUFFER_SIZE			(2 * 1024 * 1024)
 #define MAX_RECV_BUFFER_SIZE			(2 * 1024 * 1024)
 #define MAX_HEADER_BUFFER_SIZE			(128 * 1024)

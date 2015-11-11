@@ -34,83 +34,83 @@
  */
 
 /**
- * struct oss_post_object_group_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_post_object_group_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_post_object_group_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_post_object_group_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_post_object_group_request_s oss_post_object_group_request_t;
 
 /**
- * Object Group ÊÇÓÉÒ»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏ,ËüµÄÊı¾İ³¤¶ÈÊÇÆä
- * ËùÊô Object µÄÊı¾İ³¤¶ÈµÄ×ÜºÍ¡£ÓÃ»§¿ÉÒÔÖ¸¶¨ÔÚÍ¬Ò»¸ö Bucket ÏÂµÄÒ»¸ö»ò¶à¸öObject,
- * ½«ÆäÔÚ OSS ·şÎñÆ÷ÉÏ´´½¨³öÒ»¸ö Object Group¡£Ò»µ© Object Group ´´½¨³É¹¦,
- * ÓÃ»§¿ÉÒÔÏñ²Ù×÷ÆÕÍ¨ Object Ò»ÑùÈ¥²Ù×÷ Object Group,ÕâĞ©²Ù×÷°üÀ¨ get,range query,
- * delete,list,µ« Object Group µÄÊı¾İºÍËù°üº¬ Object µÄÊı¾İ²»ÊÇ½ôÃÜÁªÏµµÄ¡£
- * Í¨¹ı Object Group,ÓÃ»§¿ÉÒÔÊµÏÖ Object µÄÈíÁ¬½Ó,³¬´óÎÄ¼şµÄ¶àÏß³Ì²Ù×÷,ÒÔ¼°¶ÏµãĞø´«µÈ¹¦ÄÜ¡£
+ * Object Group æ˜¯ç”±ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆ,å®ƒçš„æ•°æ®é•¿åº¦æ˜¯å…¶
+ * æ‰€å± Object çš„æ•°æ®é•¿åº¦çš„æ€»å’Œã€‚ç”¨æˆ·å¯ä»¥æŒ‡å®šåœ¨åŒä¸€ä¸ª Bucket ä¸‹çš„ä¸€ä¸ªæˆ–å¤šä¸ªObject,
+ * å°†å…¶åœ¨ OSS æœåŠ¡å™¨ä¸Šåˆ›å»ºå‡ºä¸€ä¸ª Object Groupã€‚ä¸€æ—¦ Object Group åˆ›å»ºæˆåŠŸ,
+ * ç”¨æˆ·å¯ä»¥åƒæ“ä½œæ™®é€š Object ä¸€æ ·å»æ“ä½œ Object Group,è¿™äº›æ“ä½œåŒ…æ‹¬ get,range query,
+ * delete,list,ä½† Object Group çš„æ•°æ®å’Œæ‰€åŒ…å« Object çš„æ•°æ®ä¸æ˜¯ç´§å¯†è”ç³»çš„ã€‚
+ * é€šè¿‡ Object Group,ç”¨æˆ·å¯ä»¥å®ç° Object çš„è½¯è¿æ¥,è¶…å¤§æ–‡ä»¶çš„å¤šçº¿ç¨‹æ“ä½œ,ä»¥åŠæ–­ç‚¹ç»­ä¼ ç­‰åŠŸèƒ½ã€‚
  *
  */
 
 /**
- * Post Object Group ²Ù×÷½«¸ù¾İÓÃ»§Ìá¹©µÄ Object ĞÅÏ¢,ÔÚ OSS ·şÎñÆ÷¶Ë´´
- * ½¨³öÒ»¸öĞÂµÄ Object Group¡£ÓÃ»§ĞèÒª½«´´½¨¸Ã Object Group ËùĞèµÄ Object Name,
- * E-tag ÒÔ¼°±êÊ¶¸Ã Object ÔÚÕû¸ö Group ÖĞÏà¶ÔÎ»ÖÃµÄ Part ID °´ÕÕ¹æ¶¨µÄ XML ¸ñÊ½·¢¸ø OSS¡£
+ * Post Object Group æ“ä½œå°†æ ¹æ®ç”¨æˆ·æä¾›çš„ Object ä¿¡æ¯,åœ¨ OSS æœåŠ¡å™¨ç«¯åˆ›
+ * å»ºå‡ºä¸€ä¸ªæ–°çš„ Object Groupã€‚ç”¨æˆ·éœ€è¦å°†åˆ›å»ºè¯¥ Object Group æ‰€éœ€çš„ Object Name,
+ * E-tag ä»¥åŠæ ‡è¯†è¯¥ Object åœ¨æ•´ä¸ª Group ä¸­ç›¸å¯¹ä½ç½®çš„ Part ID æŒ‰ç…§è§„å®šçš„ XML æ ¼å¼å‘ç»™ OSSã€‚
  *
  */
 struct oss_post_object_group_request_s {
-	char *bucket_name;      /**< Bucket Ãû³Æ*/
-	char *key;              /**< Oject Ãû³Æ*/
-	oss_object_group_item_t **items;  /**< Ò»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏ*/
-	unsigned int itemnums;        /**< Ò»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏµÄÊıÄ¿*/
+	char *bucket_name;      /**< Bucket åç§°*/
+	char *key;              /**< Oject åç§°*/
+	oss_object_group_item_t **items;  /**< ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆ*/
+	unsigned int itemnums;        /**< ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆçš„æ•°ç›®*/
 
 	/**
-	 * »ñµÃ Bucket Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
-	 * @return Bucket Ãû³Æ
+	 * è·å¾— Bucket åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucket åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_post_object_group_request_t *request);
 
 	/**
-	 * ÉèÖÃ Bucket Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] Bucket Ãû³Æ
+	 * è®¾ç½® Bucket åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucket åç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_post_object_group_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * »ñµÃ Object Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
-	 * @return Object Ãû³Æ
+	 * è·å¾— Object åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Object åç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_post_object_group_request_t *request);
 
 	/**
-	 * ÉèÖÃObject Ãû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
-	 * @param key [in] Object Ãû³Æ
+	 * è®¾ç½®Object åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Object åç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_post_object_group_request_t *request,
 			const char *key);
 
 	/**
-	 * »ñµÃÒ»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
-	 * @param itemnums [out]  Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏµÄ¸öÊı
-	 * @return ·µ»ØÒ»¸öoss_object_group_item_t½á¹¹Ö¸Õë
-	 * @retval ·Ç¿Õ ±íÊ¾³É¹¦
-	 * @retval NULL ±íÊ¾Ê§°Ü
+	 * è·å¾—ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆ
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
+	 * @param itemnums [out]  Object ç»„æˆçš„æ¾æ•£çš„é›†åˆçš„ä¸ªæ•°
+	 * @return è¿”å›ä¸€ä¸ªoss_object_group_item_tç»“æ„æŒ‡é’ˆ
+	 * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+	 * @retval NULL è¡¨ç¤ºå¤±è´¥
 	 */
 	oss_object_group_item_t ** (*get_items)(oss_post_object_group_request_t *request,
 			int *itemnums);
 
 	/**
-	 * ÉèÖÃÒ»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
-	 * @param item  [in] Ò»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏ
-	 * @param itemnums [in] Ò»¸ö»ò¶à¸ö Object ×é³ÉµÄËÉÉ¢µÄ¼¯ºÏÖĞÌõÄ¿µÄ¸öÊı
+	 * è®¾ç½®ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆ
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
+	 * @param item  [in] ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆ
+	 * @param itemnums [in] ä¸€ä¸ªæˆ–å¤šä¸ª Object ç»„æˆçš„æ¾æ•£çš„é›†åˆä¸­æ¡ç›®çš„ä¸ªæ•°
 	 */
 	void (*set_items)(oss_post_object_group_request_t *request,
 			oss_object_group_item_t **item, int itemnums);
@@ -118,21 +118,21 @@ struct oss_post_object_group_request_s {
 };
 
 /**
- * oss_post_object_group_request_t ¹¹Ôìº¯Êı
- * @return oss_post_object_group_request_t *Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_post_object_group_request_t æ„é€ å‡½æ•°
+ * @return oss_post_object_group_request_t *æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_post_object_group_request_t *
 post_object_group_request_initialize(const char *bucket_name, const char *key,
 		oss_object_group_item_t **items, int itemnums);
 
 /**
- * oss_post_object_group_request_t Îö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_post_object_group_request_t½á¹¹Ö¸Õë
+ * oss_post_object_group_request_t ææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_post_object_group_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃpost_object_group_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨post_object_group_request_initializeçš„è¿”å›å€¼
  */
 extern void post_object_group_request_finalize(oss_post_object_group_request_t *request);
 /**@}*/

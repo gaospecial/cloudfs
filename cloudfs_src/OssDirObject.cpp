@@ -6,7 +6,7 @@ OssDirObject::OssDirObject(OssFS *fs, Oss *oss, const char *bucket,
     OssObject(fs, oss, bucket, pathname, filename, stat) {
     // TODO Auto-generated constructor stub
 
-	// 初始化读写锁
+	// 鍒濆鍖栬鍐欓攣
 	if (AliConf::ONLINE_SYNC_CYCLE != 0)
 		pthread_rwlock_init(&m_rwlock, NULL);
 
@@ -17,7 +17,7 @@ OssDirObject::~OssDirObject() {
     destory();
 }
 int OssDirObject::destory() {
-	//根目录对象析构时, 不需要去OSS进行相关处理
+	//鏍圭洰褰曞璞℃瀽鏋勬椂, 涓嶉渶瑕佸幓OSS杩涜鐩稿叧澶勭悊
 	/*
 	if (0 == strcmp(m_pathname, "/"))
 	{

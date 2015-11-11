@@ -12,7 +12,7 @@ using namespace std;
 //using namespace afs;
 static struct fuse_operations g_afs_opers;
 extern OssFS *g_fs;
-pid_t g_pid;				// 获取当前进程PID
+pid_t g_pid;				// 鑾峰彇褰撳墠杩涚▼PID
 
 int main(int argc, char *argv[]) 
 {

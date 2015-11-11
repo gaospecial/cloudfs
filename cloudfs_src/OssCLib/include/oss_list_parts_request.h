@@ -31,83 +31,83 @@
  */
 
 /**
- * struct oss_list_parts_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_list_parts_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_list_parts_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_list_parts_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_list_parts_request_s oss_list_parts_request_t;
 
 
 /**
- * °üº¬ÁĞ³öPartµÄÇëÇó²ÎÊı
+ * åŒ…å«åˆ—å‡ºPartçš„è¯·æ±‚å‚æ•°
  */
 struct oss_list_parts_request_s {
-	char *bucket_name;         /**< BucketÃû³Æ */
-	char *key;                 /**< ObjectÃû³Æ */
-	unsigned int max_parts;    /**< ±íÊ¾×î´ó·µ»Ø¶àÉÙÌõ¼ÇÂ¼*/
-	unsigned int part_number_marker;    /**< ±íÊ¾´ÓÄÄ¸öPartºÅÂë¿ªÊ¼»ñÈ¡ÁĞ±í */
-	char *upload_id;           /** ±êÊ¶MultipartÉÏ´«ÊÂ¼şµÄUpload ID */
+	char *bucket_name;         /**< Bucketåç§° */
+	char *key;                 /**< Objectåç§° */
+	unsigned int max_parts;    /**< è¡¨ç¤ºæœ€å¤§è¿”å›å¤šå°‘æ¡è®°å½•*/
+	unsigned int part_number_marker;    /**< è¡¨ç¤ºä»å“ªä¸ªPartå·ç å¼€å§‹è·å–åˆ—è¡¨ */
+	char *upload_id;           /** æ ‡è¯†Multipartä¸Šä¼ äº‹ä»¶çš„Upload ID */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_list_parts_request_t *request);
 
 	/**
-	 * »ñµÃObjectÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
-	 * @return ObjectÃû³Æ
+	 * è·å¾—Objectåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Objectåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_key)(oss_list_parts_request_t *request);
 
 	/**
-	 * »ñµÃmax_parts
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+	 * è·å¾—max_parts
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
 	 * @return max_parts
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_max_parts)(oss_list_parts_request_t *request);
 
 	/**
-	 * »ñµÃpart_number_marker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+	 * è·å¾—part_number_marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
 	 * @return part_number_marker
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_part_number_marker)(oss_list_parts_request_t *request);
 
 	/**
-	 * »ñµÃUpload ID
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+	 * è·å¾—Upload ID
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
 	 * @return Upload ID
 	 * @retval const char *
 	 */
 	const char * (*get_upload_id)(oss_list_parts_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_list_parts_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * ÉèÖÃObjectÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
-	 * @param key [in] ObjectÃû³Æ
+	 * è®¾ç½®Objectåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
+	 * @param key [in] Objectåç§°
 	 * @retval void
 	 */
 	void (*set_key)(oss_list_parts_request_t *request,
 			const char *key);
 
 	/**
-	 * ÉèÖÃmax_parts
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+	 * è®¾ç½®max_parts
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
 	 * @param max_parts [in] max_parts
 	 * @retval void
 	 */
@@ -115,8 +115,8 @@ struct oss_list_parts_request_s {
 			unsigned int max_parts);
 
 	/**
-	 * ÉèÖÃpart_number_marker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+	 * è®¾ç½®part_number_marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
 	 * @param part_number_marker [in] part_number_marker
 	 * @retval void
 	 */
@@ -124,8 +124,8 @@ struct oss_list_parts_request_s {
 			unsigned int part_number_marker);
 
 	/**
-	 * ÉèÖÃUpload ID
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+	 * è®¾ç½®Upload ID
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
 	 * @param upload_id [in] Upload ID
 	 * @retval void
 	 */
@@ -134,24 +134,24 @@ struct oss_list_parts_request_s {
 };
 
 /**
- * oss_list_parts_request_t¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @param key [in] ObjectÃû³Æ
+ * oss_list_parts_request_tæ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @param key [in] Objectåç§°
  * @param upload_id [in] Upload ID
- * @return ·µ»ØÒ»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * @return è¿”å›ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_list_parts_request_t *
 list_parts_request_initialize(const char *bucket_name,
 		const char *key,
 		const char *upload_id);
 /**
- * oss_list_parts_request_tÎö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_list_parts_request_t½á¹¹Ö¸Õë
+ * oss_list_parts_request_tææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_parts_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃlist_parts_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨list_parts_request_initializeçš„è¿”å›å€¼
  */
 extern void
 list_parts_request_finalize(

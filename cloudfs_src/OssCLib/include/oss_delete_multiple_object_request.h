@@ -31,81 +31,81 @@
  */
 
 /**
- * struct oss_delete_multiple_object_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_delete_multiple_object_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_delete_multiple_object_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_delete_multiple_object_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_delete_multiple_object_request_s oss_delete_multiple_object_request_t;
 
 /**
- * É¾³ıÖ¸¶¨BucketµÄ¶à¸öObject
+ * åˆ é™¤æŒ‡å®šBucketçš„å¤šä¸ªObject
  */
 struct oss_delete_multiple_object_request_s{
-	char *bucket_name;   /**< BucketÃû³Æ */
-	char **keys;         /**< ¶à¸öObjectµÄÃû³Æ */
-	bool mode;           /**< ÉèÖÃÎª true ±íÊ¾ quiet Ä£Ê½£¬false ±êÊ¶ verbose Ä£Ê½ */
-	int keynums;         /**< ÒªÉ¾³ıobjectµÄ¸öÊı */
+	char *bucket_name;   /**< Bucketåç§° */
+	char **keys;         /**< å¤šä¸ªObjectçš„åç§° */
+	bool mode;           /**< è®¾ç½®ä¸º true è¡¨ç¤º quiet æ¨¡å¼ï¼Œfalse æ ‡è¯† verbose æ¨¡å¼ */
+	int keynums;         /**< è¦åˆ é™¤objectçš„ä¸ªæ•° */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_delete_multiple_object_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_delete_multiple_object_request_t *request, const char *bucket_name);
 
 	/**
-	 * »ñµÃ¶à¸öObjectµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
-	 * @param keynums [out] ÒªÉ¾³ıobjectµÄ¸öÊı
-	 * @return ¶à¸öObjectµÄÃû³Æ
+	 * è·å¾—å¤šä¸ªObjectçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param keynums [out] è¦åˆ é™¤objectçš„ä¸ªæ•°
+	 * @return å¤šä¸ªObjectçš„åç§°
 	 * @retval const char **
 	 */
 	const char ** (*get_keys)(oss_delete_multiple_object_request_t *request, int *keynums);
 
 	/**
-	 * ÉèÖÃ¶à¸öObjectµÄÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
-	 * @param keys [in] ¶à¸öObjectµÄÃû³Æ
-	 * @param keynums [in] ÒªÉ¾³ıobjectµÄ¸öÊı
+	 * è®¾ç½®å¤šä¸ªObjectçš„åç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param keys [in] å¤šä¸ªObjectçš„åç§°
+	 * @param keynums [in] è¦åˆ é™¤objectçš„ä¸ªæ•°
 	 * @retval void
 	 */
 	void (*set_keys)(oss_delete_multiple_object_request_t *request, const char **keys, int keynums);
 
 	/**
-	 * »ñµÃÄ£Ê½
-	 * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
-	 * @return Ä£Ê½
+	 * è·å¾—æ¨¡å¼
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @return æ¨¡å¼
 	 * @retval bool
 	 */
 	bool  (*get_mode)(oss_delete_multiple_object_request_t *request);
 
 	/**
-	 * ÉèÖÃÄ£Ê½
-	 * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
-	 * @param mode [in] Ä£Ê½
+	 * è®¾ç½®æ¨¡å¼
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
+	 * @param mode [in] æ¨¡å¼
 	 * @retval void
 	 */
 	void (*set_mode)(oss_delete_multiple_object_request_t *request, bool mode);
 };
 
 /**
- * oss_delete_multiple_object_request_t ¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @param key [in] ¶à¸öObjectµÄÃû³Æ
- * @param keynums [in] ÒªÉ¾³ıobjectµÄ¸öÊı
- * @param mode [in] Ä£Ê½
- * @return ·µ»ØÒ»¸öoss_delete_multiple_object_request_tµÄ½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_delete_multiple_object_request_t æ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @param key [in] å¤šä¸ªObjectçš„åç§°
+ * @param keynums [in] è¦åˆ é™¤objectçš„ä¸ªæ•°
+ * @param mode [in] æ¨¡å¼
+ * @return è¿”å›ä¸€ä¸ªoss_delete_multiple_object_request_tçš„ç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_delete_multiple_object_request_t *
 delete_multiple_object_request_initialize(
@@ -115,10 +115,10 @@ delete_multiple_object_request_initialize(
 		bool mode);
 
 /**
- * oss_delete_multiple_object_request_t Îö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_delete_multiple_object_request_t½á¹¹Ö¸Õë
+ * oss_delete_multiple_object_request_t ææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_delete_multiple_object_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃdelete_multiple_object_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨delete_multiple_object_request_initializeçš„è¿”å›å€¼
  */
 extern void 
 delete_multiple_object_request_finalize(

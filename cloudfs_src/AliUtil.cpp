@@ -87,7 +87,7 @@ size_t sys_read_link(const char *path, char *link, size_t size){
     return readlink(path,link,size);
 }
 
-// °ÑÒ»¸öÎŞ·ûºÅ°Ë½øÖÆÊı×Ö¹¹³ÉµÄ×Ö·û´®×ª»»ÎªÊ®½øÖÆÕûÊı
+// æŠŠä¸€ä¸ªæ— ç¬¦å·å…«è¿›åˆ¶æ•°å­—æ„æˆçš„å­—ç¬¦ä¸²è½¬æ¢ä¸ºåè¿›åˆ¶æ•´æ•°
 int atoo(const char* p)
 {
     int n = 0;

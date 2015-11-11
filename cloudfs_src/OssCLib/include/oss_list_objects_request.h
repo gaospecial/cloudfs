@@ -31,82 +31,82 @@
  */
 
 /**
- * struct oss_list_objects_request_s ÄÚ²¿Ê¹ÓÃ \n
- * oss_list_objects_request_t ¿ª·¢ÕßÊ¹ÓÃ
+ * struct oss_list_objects_request_s å†…éƒ¨ä½¿ç”¨ \n
+ * oss_list_objects_request_t å¼€å‘è€…ä½¿ç”¨
  */
 typedef struct oss_list_objects_request_s oss_list_objects_request_t;
 
 /**
- * °üº¬»ñÈ¡objectÁĞ±íµÄÇëÇóĞÅÏ¢
+ * åŒ…å«è·å–objectåˆ—è¡¨çš„è¯·æ±‚ä¿¡æ¯
  */
 struct oss_list_objects_request_s {
-	char *bucket_name;          /**< BucketÃû³Æ */
-	char *delimiter;            /**< ·Ö¸ô·û */
-	char *marker;               /**< ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í */
-	unsigned int max_keys;      /**< ÏŞÖÆµÄ×î´ó·µ»Ø¼ÇÂ¼Êı */
-	char *prefix;               /**< Ç°×º */
+	char *bucket_name;          /**< Bucketåç§° */
+	char *delimiter;            /**< åˆ†éš”ç¬¦ */
+	char *marker;               /**< æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨ */
+	unsigned int max_keys;      /**< é™åˆ¶çš„æœ€å¤§è¿”å›è®°å½•æ•° */
+	char *prefix;               /**< å‰ç¼€ */
 
 	/**
-	 * »ñµÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
-	 * @return BucketÃû³Æ
+	 * è·å¾—Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+	 * @return Bucketåç§°
 	 * @retval const char *
 	 */
 	const char * (*get_bucket_name)(oss_list_objects_request_t *request);
 
 	/**
-	 * »ñµÃ·Ö¸ô·û
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
+	 * è·å¾—åˆ†éš”ç¬¦
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
 	 * @return delimiter
 	 * @retval const char *
 	 */
 	const char * (*get_delimiter)(oss_list_objects_request_t *request);
 
 	/**
-	 * »ñµÃmarker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
+	 * è·å¾—marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
 	 * @return marker
 	 * @retval const char *
 	 */
 	const char * (*get_marker)(oss_list_objects_request_t *request);
 
 	/**
-	 * »ñµÃ×î´ó·µ»Ø¼ÇÂ¼Êı
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
+	 * è·å¾—æœ€å¤§è¿”å›è®°å½•æ•°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
 	 * @return max_keys
 	 * @retval unsigned int
 	 */
 	unsigned int (*get_max_keys)(oss_list_objects_request_t *request);
 
 	/**
-	 * »ñµÃÇ°×º
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
-	 * @return Ç°×º
+	 * è·å¾—å‰ç¼€
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+	 * @return å‰ç¼€
 	 * @retval const char *
 	 */
 	const char * (*get_prefix)(oss_list_objects_request_t *request);
 
 	/**
-	 * ÉèÖÃBucketÃû³Æ
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
-	 * @param bucket_name [in] BucketÃû³Æ
+	 * è®¾ç½®Bucketåç§°
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+	 * @param bucket_name [in] Bucketåç§°
 	 * @retval void
 	 */
 	void (*set_bucket_name)(oss_list_objects_request_t *request,
 			const char *bucket_name);
 
 	/**
-	 * ÉèÖÃ·Ö¸ô·û
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
-	 * @param delimiter [in] ·Ö¸ô·û
+	 * è®¾ç½®åˆ†éš”ç¬¦
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+	 * @param delimiter [in] åˆ†éš”ç¬¦
 	 * @retval void
 	 */
 	void (*set_delimiter)(oss_list_objects_request_t *request,
 			const char *delimiter);
 
 	/**
-	 * ÉèÖÃmarker
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
+	 * è®¾ç½®marker
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
 	 * @param marker [in] marker
 	 * @retval void
 	 */
@@ -114,8 +114,8 @@ struct oss_list_objects_request_s {
 			const char *marker);
 
 	/**
-	 * ÉèÖÃmax_keys
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
+	 * è®¾ç½®max_keys
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
 	 * @param max_keys [in] max_keys
 	 * @retval void
 	 */
@@ -123,9 +123,9 @@ struct oss_list_objects_request_s {
 			unsigned int max_keys);
 
 	/**
-	 * ÉèÖÃÇ°×º
-	 * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
-	 * @param prefix [in] Ç°×º
+	 * è®¾ç½®å‰ç¼€
+	 * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+	 * @param prefix [in] å‰ç¼€
 	 * @retval void
 	 */
 	void (*set_prefix)(oss_list_objects_request_t *request,
@@ -133,37 +133,37 @@ struct oss_list_objects_request_s {
 };
 
 /**
- * oss_list_objects_request_t¹¹Ôìº¯Êı
- * @return ·µ»ØÒ»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_list_objects_request_tæ„é€ å‡½æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_list_objects_request_t *
 list_objects_request_initialize(void);
 
 /**
- * oss_list_objects_request_t´øbucket_nameµÄ¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @return ·µ»ØÒ»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_list_objects_request_tå¸¦bucket_nameçš„æ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @return è¿”å›ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_list_objects_request_t *
 list_objects_request_initialize_with_bucket_name(const char *bucket_name);
 
 /**
- * oss_list_objects_request_t´ø¶à²ÎÊıµÄ¹¹Ôìº¯Êı
- * @param bucket_name [in] BucketÃû³Æ
- * @param prefix [in] Ç°×º
- * @param marker [in] ±êÊ¶±íÊ¾´ÓÄÄÀï·µ»ØÁĞ±í
- * @param delimiter [in] ·Ö¸ô·û
- * @param max_keys [in] ÏŞÖÆµÄ×î´ó·µ»Ø¼ÇÂ¼Êı
- * @return ·µ»ØÒ»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
- * @retval ·Ç¿Õ ±íÊ¾³É¹¦
- * @retval NULL ±íÊ¾Ê§°Ü
- * @note ÓÃ»§²»ĞèÒª¾ä±úºóÒªµ÷ÓÃÏàÓ¦µÄfinalizeº¯ÊıÊÍ·Å¿Õ¼ä
+ * oss_list_objects_request_tå¸¦å¤šå‚æ•°çš„æ„é€ å‡½æ•°
+ * @param bucket_name [in] Bucketåç§°
+ * @param prefix [in] å‰ç¼€
+ * @param marker [in] æ ‡è¯†è¡¨ç¤ºä»å“ªé‡Œè¿”å›åˆ—è¡¨
+ * @param delimiter [in] åˆ†éš”ç¬¦
+ * @param max_keys [in] é™åˆ¶çš„æœ€å¤§è¿”å›è®°å½•æ•°
+ * @return è¿”å›ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
+ * @retval éç©º è¡¨ç¤ºæˆåŠŸ
+ * @retval NULL è¡¨ç¤ºå¤±è´¥
+ * @note ç”¨æˆ·ä¸éœ€è¦å¥æŸ„åè¦è°ƒç”¨ç›¸åº”çš„finalizeå‡½æ•°é‡Šæ”¾ç©ºé—´
  */
 extern oss_list_objects_request_t *
 list_objects_request_initialize_with_args(const char *bucket_name,
@@ -172,10 +172,10 @@ list_objects_request_initialize_with_args(const char *bucket_name,
 		const char *delimiter,
 		unsigned int max_keys);
 /**
- * oss_list_objects_request_tÎö¹¹º¯Êı
- * @param request [in] ±êÊ¶Ò»¸öoss_list_objects_request_t½á¹¹Ö¸Õë
+ * oss_list_objects_request_tææ„å‡½æ•°
+ * @param request [in] æ ‡è¯†ä¸€ä¸ªoss_list_objects_request_tç»“æ„æŒ‡é’ˆ
  * @retval void
- * @pre request ±ØĞëÊ¹ÓÃlist_objects_request_initializeµÄ·µ»ØÖµ
+ * @pre request å¿…é¡»ä½¿ç”¨list_objects_request_initializeçš„è¿”å›å€¼
  */
 extern void
 list_objects_request_finalize(

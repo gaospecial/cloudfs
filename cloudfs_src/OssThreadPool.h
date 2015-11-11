@@ -162,7 +162,7 @@ void thpool_resume(threadpool);
 void thpool_destroy(threadpool);
 
 
-/* »ñÈ¡µ±Ç°thread_poolÖĞµÄÏß³ÌÊÇ·ñÂúÔØ, Èç¹ûÂúÔØÔò·µ»Ø1, Î´ÂúÔØ·¶Î§0 */
+/* è·å–å½“å‰thread_poolä¸­çš„çº¿ç¨‹æ˜¯å¦æ»¡è½½, å¦‚æœæ»¡è½½åˆ™è¿”å›1, æœªæ»¡è½½èŒƒå›´0 */
 int thpool_thread_workload_full(threadpool pPool);
 
 

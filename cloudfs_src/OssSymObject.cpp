@@ -7,13 +7,13 @@
 //using namespace afs;
 using namespace std;
 
-//´ÓOSS¼ÓÔØsymlinkÎÄ¼þÊ±µ÷ÓÃµÄ¹¹Ôìº¯Êý
+//ä»ŽOSSåŠ è½½symlinkæ–‡ä»¶æ—¶è°ƒç”¨çš„æž„é€ å‡½æ•°
 OssSymObject::OssSymObject(OssFS *fs, Oss *oss, const char *bucket,
 		const char *pathname, const char *filename, OssStats * stat) :
 		OssObject(fs, oss, bucket, pathname, filename, stat) {
 	// TODO Auto-generated constructor stub
 
-	//·ÖÅäm_link_nameÐèÒªµÄÊµ¼ÊÄÚ´æ³¤¶È
+	//åˆ†é…m_link_nameéœ€è¦çš„å®žé™…å†…å­˜é•¿åº¦
 	m_link_name = new char[stat->size + 1];
 
 }
@@ -29,13 +29,13 @@ void OssSymObject::set_link_obj(const char *link,size_t size){
 	memcpy(m_link_name, link, size); 
 	m_link_name[size] = 0;
 	
-	//½«Êý¾Ýpushµ½OSSÉÏ 
+	//å°†æ•°æ®pushåˆ°OSSä¸Š 
 	OSS_FILE_META meta;
 	oss_object_desc_t object;
 	
 	m_stats->to_meta(meta);
 
-	//½«ÈíÁ¬½ÓÔÚOSSºóÌ¨´æ´¢³ÉÌØÊâºó×ºÃû
+	//å°†è½¯è¿žæŽ¥åœ¨OSSåŽå°å­˜å‚¨æˆç‰¹æ®ŠåŽç¼€å
 	object.name.assign(m_pathname);
 	object.name = object.name + string(".") + AliConf::SYMLINK_TYPE_NAME;
 	
@@ -52,7 +52,7 @@ void OssSymObject::set_link_obj(const char *link,size_t size){
 
 
 void OssSymObject::get_link_obj(char *link, size_t size){
-	//´ÓOSSÉÏ½«Êý¾Ý¶Áµ½±¾µØ
+	//ä»ŽOSSä¸Šå°†æ•°æ®è¯»åˆ°æœ¬åœ°
 	string sym_name = string(m_pathname) + string(".") + AliConf::SYMLINK_TYPE_NAME;
 	m_fs->get_oss()->get_object_data(AliConf::BUCKET.c_str(), sym_name.c_str(), m_link_name, m_stats->size);
 	memcpy(link,m_link_name,m_stats->size);
