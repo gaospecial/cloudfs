@@ -153,6 +153,7 @@ int OssSubObject::read_data(off_t offset, size_t size, char *buf) {
         if (res < 0)
         {
         	log_error("file:[%s] get_object_data_with_range failed, range[%Zd-%Zd]", m_part_num * AliConf::BLOCK_SIZE, (subobj_size-1));
+			pthread_mutex_unlock(&m_mutex);
         	return 0;
         }        
 	}
