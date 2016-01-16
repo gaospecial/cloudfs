@@ -85,5 +85,7 @@ clean:
 pack : all
 	mkdir -p $(PACK_DIR)
 	cp -f $(TARGET) $(PACK_DIR)
+	chmod 777 CloudFS_Install.sh
+	cp -f CloudFS_Install.sh $(PACK_DIR)
 	cp -rf ./conf/ $(PACK_DIR)
 	tar zcf cloudfs_`uname -r`.tar.gz $(PACK_DIR)/*
