@@ -5,10 +5,12 @@ CC := $(CROSS_COMPILE)gcc
 CPP := $(CROSS_COMPILE)g++
 AR := $(CROSS_COMPILE)ar
 TARGET := cloudfs
+PACK_DIR := ./pack/
 CMPL_INC := .
 CFLAGS := -g -Wall -fmessage-length=0 -DFUSE_USE_VERSION=26 `pkg-config fuse --cflags`  -I ./include -I $(CMPL_INC)
 CFLAGS += -I /usr/include/libxml2 -I ./OssCLib/include 
-LDFLAGS := -L ./OssCLib/lib -L ./lib  -lossc -lfuse -lrt -lxml2 -lcurl -lssl -lcrypto -lunwind -ltcmalloc -lpthread -ldl
+#LDFLAGS := -L ./OssCLib/lib -L ./lib  -lossc -lfuse -lrt -lxml2 -lcurl -lssl -lcrypto -lunwind -ltcmalloc -lpthread -ldl
+LDFLAGS := -L ./OssCLib/lib -L ./lib  -lossc -lfuse -lrt -lxml2 -lcurl -lssl -lcrypto -lpthread -ldl
 TYPE := exe
 OBJ_DIR := obj
 EXCLUDE_DIRS := $(OBJ_DIR) .svn obj conf
@@ -80,6 +82,8 @@ clean:
 #	rm -f $(TARGET) $(OBJS) $(DEPS)
 	rm -rf $(OBJ_DIR) 
 
-install : all
-	mkdir -p ../install/bin
-	cp $(TARGET) ../install/bin
+pack : all
+	mkdir -p $(PACK_DIR)
+	cp -f $(TARGET) $(PACK_DIR)
+	cp -rf ./conf/ $(PACK_DIR)
+	tar zcf cloudfs_`uname -r`.tar.gz $(PACK_DIR)/*
