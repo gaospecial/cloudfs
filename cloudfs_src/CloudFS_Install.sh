@@ -32,6 +32,16 @@ function fParamProc()
 	fi
 }
 
+function get_user_input()
+{
+	read input
+	if [ "$input" != "Y" ] && [ "$input" != "y" ];then
+        	echo "Cloudfs installation has been cancelled by user."
+        	exit 0
+	fi
+
+}
+
 if [ "x$PARAM1" != "x" ]; then
 	fParamProc $PARAM1
 fi
@@ -48,14 +58,29 @@ if [ "x$MOUNT_POINT" = "x" ]; then
 	MOUNT_POINT=$DEFAULT_MOUNT_POINT
 fi
 
+echo "[Notes]"
+echo "Currently cloudfs installation scripts only support Ubuntu 14.04 and CentOS 6.5."
+echo "If your linux is not Ubuntu 14.04 or CentOS 6.5, please follow the manual step by step."
+echo "If your linux is Ubuntu 14.04 or CentOS 6.5, please input Y/y to continue."
+get_user_input	
+
+echo "[Cloudfs installation parameter]"
+echo "INSTALL DIR       :            $INSTALL_DIR"
+echo "Cloudfs MOUNT DIR :            $MOUNT_POINT"
+echo "Please check the parameters above, input Y/y to continue."
+get_user_input
+
 LINUX_DISTRIBUTION=$(head -1 /etc/issue | cut -b 1-6)
 if [ $LINUX_DISTRIBUTION = "Ubuntu" ]; then
 	cp $BASE_PATH/conf/cloudfs.ubuntu.autoboot $BASE_PATH/conf/cloudfs.init.conf
+	echo "Your Linux is Ubuntu."
 else
 	cp $BASE_PATH/conf/cloudfs.centos.autoboot $BASE_PATH/conf/cloudfs.init.conf
+	echo "Your Linux is not Ubuntu, we assume it as CentOS."
 fi
 REBOOT_SCRPTS_NAME="$BASE_PATH/conf/cloudfs.init.conf"
 
+echo "We are trying to install auto-boot script..."
 
 if [ $LINUX_DISTRIBUTION = "Ubuntu" ]; then
 	INSTALL_DIR_POS=$(cat -n $REBOOT_SCRPTS_NAME | grep "env BIN_PATH=" | awk '{print $1}')
@@ -95,7 +120,7 @@ cp $BASE_PATH/conf/cloudfs.conf $INSTALL_DIR/conf
 cp $BASE_PATH/conf/header_params $INSTALL_DIR/conf
 cp $BASE_PATH/conf/mime.types $INSTALL_DIR/conf
 
-echo " * Install CloudFS success......."
+echo "CloudFS is successfully installed ......"
 exit 0
 # replace the reboot scrpts
 
