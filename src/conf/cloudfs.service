@@ -1,0 +1,9 @@
+[Unit]
+Description=cloudfs for Aliyun OSS
+
+[Service]
+Type=simple
+ExecStart=/usr/local/cloudfs /mnt/oss -o allow_other
+
+[Install]
+WantedBy=multi-user.target
