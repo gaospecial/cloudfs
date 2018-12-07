@@ -1,9 +1,14 @@
 [Unit]
-Description=cloudfs for Aliyun OSS
+Description=cloudfs service
 
 [Service]
-Type=simple
-ExecStart=/usr/local/cloudfs /mnt/oss -o allow_other
+Type=oneshot
+WorkingDirectory=/usr/local/cloudfs
+ExecStartPre=-/bin/fusermount -uq /mnt/oss
+ExecStart=/usr/local/cloudfs/cloudfs /mnt/oss -o allow_other
+RemainAfterExit=True
+ExecStop=/usr/bin/killall cloudfs
+ExecStop=/bin/fusermount -uq /mnt/oss
 
 [Install]
 WantedBy=multi-user.target
