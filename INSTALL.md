@@ -48,6 +48,7 @@ BUCKET=your_bucket_name
 ## 设置自启动
 
 自启动文件在 `./conf/cloudfs.service`。
+关于配置的[说明](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-managing_services_with_systemd-unit_files)。
 
 ```
 [Unit]
